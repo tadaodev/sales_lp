@@ -1,0 +1,243 @@
+/**
+ * Design Tokens (3-Layer Architecture)
+ * 1. Primitive Tokens: Raw design values (Colors, Typography, Spacing, Shadows, Glass)
+ * 2. Semantic Tokens: Purpose and role mappings (Surfaces, Text, Borders, CTAs)
+ * 3. Component Tokens: UI component-specific variables
+ *
+ * Fully compliant with Japanese Subtle Luxury Aesthetic and Zero Runtime Breakage.
+ */
+
+:root {
+  /* ==========================================================
+     LAYER 1: PRIMITIVE TOKENS
+     ========================================================== */
+
+  /* --- 1.1 Color Primitives (Luxury Salon Palette) --- */
+  /* Champagne Gold (Accent, Luxury, Trust) */
+  --primitive-gold-50:  #FAF6F0;
+  --primitive-gold-100: #F3EBDD;
+  --primitive-gold-200: #E6D4B8;
+  --primitive-gold-300: #D8BD93;
+  --primitive-gold-400: #C5A880; /* Main Accent */
+  --primitive-gold-500: #B8976C;
+  --primitive-gold-600: #9E7D52;
+  --primitive-gold-700: #7E613B;
+  --primitive-gold-800: #5C4528;
+  --primitive-gold-900: #3D2D19;
+
+  /* Rose Beige (Warm, Feminine, Refined Surface) */
+  --primitive-rose-50:  #FDFCFA;
+  --primitive-rose-100: #F7F3EE; /* Main Surface */
+  --primitive-rose-200: #EFE9DF;
+  --primitive-rose-300: #E3D9CA;
+  --primitive-rose-400: #D4C5B1;
+  --primitive-rose-500: #C2AF97;
+
+  /* Deep Slate / Charcoal (Main Text, High-End Contrast) */
+  --primitive-slate-900: #121217;
+  --primitive-slate-800: #1A1A24; /* Main Dark / Main Text */
+  --primitive-slate-700: #262635;
+  --primitive-slate-600: #3E3E50;
+  --primitive-slate-500: #5E5E72;
+  --primitive-slate-400: #88889C;
+  --primitive-slate-300: #B5B5C4;
+  --primitive-slate-200: #E2E2EA;
+  --primitive-slate-100: #F0F0F5;
+
+  /* Neutral Off-White & Pure White */
+  --primitive-white:     #FFFFFF;
+  --primitive-offwhite:  #FAFAF9; /* Main Page BG */
+
+  /* Functional Accents */
+  --primitive-line-green: #06C755; /* LINE Brand Green */
+  --primitive-line-hover: #05B34C;
+  --primitive-success:    #10B981;
+  --primitive-urgent-red: #E11D48;
+
+  /* --- 1.2 Typography Primitives (Mincho + Sans Hybrid) --- */
+  --font-serif: 'Shippori Mincho', 'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  --font-sans: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Cinzel', 'Playfair Display', var(--font-serif);
+
+  /* Fluid Font Sizes (Mobile ~ Desktop smooth scaling) */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);      /* 12px ~ 13px */
+  --text-sm: clamp(0.8125rem, 0.775rem + 0.2vw, 0.875rem);     /* 13px ~ 14px */
+  --text-base: clamp(0.9375rem, 0.8875rem + 0.25vw, 1rem);     /* 15px ~ 16px */
+  --text-md: clamp(1.0625rem, 1rem + 0.35vw, 1.125rem);        /* 17px ~ 18px */
+  --text-lg: clamp(1.1875rem, 1.1rem + 0.5vw, 1.3125rem);      /* 19px ~ 21px */
+  --text-xl: clamp(1.375rem, 1.25rem + 0.7vw, 1.625rem);       /* 22px ~ 26px */
+  --text-2xl: clamp(1.625rem, 1.45rem + 1vw, 2rem);           /* 26px ~ 32px */
+  --text-3xl: clamp(2rem, 1.7rem + 1.6vw, 2.625rem);           /* 32px ~ 42px */
+  --text-4xl: clamp(2.375rem, 2rem + 2.2vw, 3.25rem);          /* 38px ~ 52px */
+  --text-hero: clamp(2.75rem, 2.2rem + 3vw, 4.25rem);          /* 44px ~ 68px */
+
+  /* Line Heights */
+  --leading-tight: 1.25;
+  --leading-snug: 1.4;
+  --leading-normal: 1.65;
+  --leading-relaxed: 1.85;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.015em;
+  --tracking-normal: 0.02em;
+  --tracking-wide: 0.06em;
+  --tracking-luxury: 0.12em;
+  --tracking-display: 0.2em;
+
+  /* --- 1.3 Elevation & Glassmorphism Primitives --- */
+  --shadow-sm: 0 2px 8px -2px rgba(26, 26, 36, 0.05);
+  --shadow-md: 0 8px 24px -4px rgba(26, 26, 36, 0.08);
+  --shadow-lg: 0 16px 40px -8px rgba(26, 26, 36, 0.12);
+  --shadow-gold: 0 12px 32px -6px rgba(197, 168, 128, 0.28);
+  --shadow-gold-hover: 0 16px 40px -4px rgba(197, 168, 128, 0.42);
+
+  --glass-blur-sm: blur(8px);
+  --glass-blur-md: blur(16px);
+  --glass-blur-lg: blur(24px);
+
+  /* --- 1.4 Spacing & Sizing Scale (8pt Grid System) --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Fluid Section Spacing */
+  --section-padding-y: clamp(3.5rem, 2.5rem + 5vw, 6.5rem);
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 450ms cubic-bezier(0.16, 1, 0.3, 1);
+
+
+  /* ==========================================================
+     LAYER 2: SEMANTIC TOKENS
+     ========================================================== */
+
+  /* Surfaces & Backgrounds */
+  --color-bg-page: var(--primitive-offwhite);
+  --color-bg-surface: var(--primitive-white);
+  --color-bg-subtle: var(--primitive-rose-100);
+  --color-bg-dark: var(--primitive-slate-800);
+  --color-bg-darker: var(--primitive-slate-900);
+
+  /* Glassmorphic Surfaces */
+  --color-bg-glass-light: rgba(255, 255, 255, 0.72);
+  --color-bg-glass-card: rgba(255, 255, 255, 0.85);
+  --color-bg-glass-dark: rgba(26, 26, 36, 0.85);
+
+  /* Semantic Color Aliases (Cross-spec compatibility) */
+  --color-primary: var(--primitive-gold-400);
+  --color-primary-light: var(--primitive-gold-300);
+  --color-primary-dark: var(--primitive-gold-600);
+  --color-bg-main: var(--primitive-offwhite);
+  --color-bg-card: rgba(255, 255, 255, 0.85);
+  --color-text-primary: var(--primitive-slate-800);
+  --color-text-secondary: var(--primitive-slate-500);
+  --color-accent-line: var(--primitive-line-green);
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.4);
+  --glass-blur: blur(16px);
+
+  /* Typography / Text */
+  --color-text-main: var(--primitive-slate-800);
+  --color-text-muted: var(--primitive-slate-500);
+  --color-text-subtle: var(--primitive-slate-400);
+  --color-text-gold: var(--primitive-gold-600);
+  --color-text-gold-light: var(--primitive-gold-400);
+  --color-text-inverse: var(--primitive-white);
+  --color-text-inverse-muted: var(--primitive-slate-200);
+
+  /* Borders & Dividers */
+  --color-border-subtle: rgba(26, 26, 36, 0.08);
+  --color-border-light: rgba(255, 255, 255, 0.5);
+  --color-border-gold: rgba(197, 168, 128, 0.35);
+  --color-border-gold-solid: var(--primitive-gold-400);
+
+  /* CTAs & Interactive */
+  --color-cta-primary-bg: linear-gradient(135deg, var(--primitive-gold-400) 0%, var(--primitive-gold-600) 100%);
+  --color-cta-primary-text: var(--primitive-white);
+  --color-cta-primary-shadow: var(--shadow-gold);
+  --color-cta-primary-hover-shadow: var(--shadow-gold-hover);
+
+  --color-cta-line-bg: var(--primitive-line-green);
+  --color-cta-line-hover: var(--primitive-line-hover);
+  --color-cta-line-text: var(--primitive-white);
+
+  --color-cta-dark-bg: var(--primitive-slate-800);
+  --color-cta-dark-hover: var(--primitive-slate-900);
+  --color-cta-dark-text: var(--primitive-white);
+
+  /* Badges & Indicators */
+  --badge-live-bg: rgba(16, 185, 129, 0.12);
+  --badge-live-text: #059669;
+  --badge-live-dot: #10B981;
+
+  --badge-upcoming-bg: rgba(136, 136, 156, 0.12);
+  --badge-upcoming-text: var(--primitive-slate-600);
+
+  --badge-gold-bg: rgba(197, 168, 128, 0.14);
+  --badge-gold-text: var(--primitive-gold-700);
+  --badge-gold-border: rgba(197, 168, 128, 0.4);
+
+
+  /* ==========================================================
+     LAYER 3: COMPONENT TOKENS
+     ========================================================== */
+
+  /* Hero Component */
+  --hero-min-height: 85vh;
+  --hero-badge-radius: var(--radius-full);
+  --hero-badge-padding: 8px 18px;
+  --hero-title-font: var(--font-serif);
+  --hero-title-tracking: var(--tracking-luxury);
+
+  /* Bento / Genre Card */
+  --card-radius: var(--radius-lg);
+  --card-padding: clamp(20px, 16px + 1.2vw, 32px);
+  --card-bg: var(--color-bg-glass-card);
+  --card-border: 1px solid var(--color-border-subtle);
+  --card-hover-border: 1px solid var(--color-border-gold-solid);
+  --card-hover-transform: translateY(-6px);
+
+  /* Sticky Bottom Bar (Mobile) */
+  --sticky-bar-height: 68px;
+  --sticky-bar-bg: rgba(255, 255, 255, 0.92);
+  --sticky-bar-blur: var(--glass-blur-md);
+  --sticky-bar-border: 1px solid rgba(197, 168, 128, 0.25);
+  --sticky-bar-z-index: 900;
+
+  /* Matsutake Pricing Cards */
+  --pricing-card-bg: var(--primitive-white);
+  --pricing-recommended-bg: linear-gradient(180deg, #FFFFFF 0%, var(--primitive-gold-50) 100%);
+  --pricing-recommended-border: 2px solid var(--primitive-gold-400);
+  --pricing-recommended-glow: var(--shadow-gold);
+
+  /* Modal UX */
+  --modal-overlay-bg: rgba(18, 18, 23, 0.65);
+  --modal-overlay-blur: blur(8px);
+  --modal-card-bg: var(--primitive-white);
+  --modal-card-radius: var(--radius-xl);
+  --modal-max-width: 580px;
+
+  /* Accordion FAQ */
+  --accordion-item-border: 1px solid rgba(26, 26, 36, 0.08);
+  --accordion-header-py: 20px;
+  --accordion-content-line-height: var(--leading-relaxed);
+}
