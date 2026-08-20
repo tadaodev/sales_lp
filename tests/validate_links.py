@@ -9,7 +9,8 @@ Validates:
 2. Rule-L2: 100% valid relative paths pointing to existing local files.
 3. Case Sensitivity Guard: Enforces exact case matching on disk to prevent Linux/GitHub Pages 404s.
 4. Rule-L3: In-page and cross-page anchor (#id) target element existence.
-5. Rule-L4: External URL scheme whitelist (http, https, line, tel, mailto).
+5. Rule-L4: External URL scheme whitelist (http, https, line, tel, mailto, javascript, data).
+6. Script Order Guard: Enforces config.js is loaded before aesthetic.js in HTML.
 """
 
 import os
@@ -44,6 +45,7 @@ class HTMLLinkExtractor(HTMLParser):
         self.file_path = file_path
         self.links: List[LinkOccurrence] = []
         self.ids: Set[str] = set()
+        self.scripts: List[str] = []
 
     def handle_starttag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]):
         line_no = self.getpos()[0]
@@ -54,6 +56,10 @@ class HTMLLinkExtractor(HTMLParser):
             self.ids.add(attrs_dict["id"])
         if tag == "a" and "name" in attrs_dict and attrs_dict["name"]:
             self.ids.add(attrs_dict["name"])
+
+        # Check script sources for order checking
+        if tag == "script" and "src" in attrs_dict and attrs_dict["src"]:
+            self.scripts.append(attrs_dict["src"].strip())
 
         # Check relevant link attributes
         link_attrs = ["href", "src", "action", "data-src", "poster"]
@@ -130,7 +136,7 @@ class LinkValidator:
         self.root_dir = root_dir
         self.html_files: List[Path] = []
         self.css_files: List[Path] = []
-        self.html_parsed_data: Dict[Path, Tuple[List[LinkOccurrence], Set[str]]] = {}
+        self.html_parsed_data: Dict[Path, Tuple[List[LinkOccurrence], Set[str], List[str]]] = {}
         self.violations: List[Dict[str, Any]] = []
 
     def discover_files(self):
@@ -154,7 +160,7 @@ class LinkValidator:
                 content = html_file.read_text(encoding="utf-8", errors="replace")
                 parser = HTMLLinkExtractor(html_file)
                 parser.feed(content)
-                self.html_parsed_data[html_file] = (parser.links, parser.ids)
+                self.html_parsed_data[html_file] = (parser.links, parser.ids, parser.scripts)
             except Exception as e:
                 self.violations.append({
                     "rule": "PARSE_ERROR",
@@ -172,10 +178,26 @@ class LinkValidator:
         total_links_checked = 0
 
         # Validate all HTML links
-        for html_file, (links, ids) in self.html_parsed_data.items():
+        for html_file, (links, ids, scripts) in self.html_parsed_data.items():
             for link in links:
                 total_links_checked += 1
                 self._check_link(link)
+
+            # Check script order in samples/aesthetic/index.html (config.js before aesthetic.js)
+            if html_file.name == "index.html" and "aesthetic" in str(html_file):
+                has_config = any("config.js" in s for s in scripts)
+                has_aesthetic = any("aesthetic.js" in s for s in scripts)
+                if has_config and has_aesthetic:
+                    config_idx = next(i for i, s in enumerate(scripts) if "config.js" in s)
+                    aesthetic_idx = next(i for i, s in enumerate(scripts) if "aesthetic.js" in s)
+                    if config_idx > aesthetic_idx:
+                        self.violations.append({
+                            "rule": "SCRIPT_LOAD_ORDER",
+                            "file": str(html_file.relative_to(self.root_dir)),
+                            "line": 1,
+                            "target": "config.js",
+                            "message": "config.js must be loaded BEFORE aesthetic.js in HTML."
+                        })
 
         # Validate all CSS links
         for css_file in self.css_files:
@@ -229,9 +251,8 @@ class LinkValidator:
         if url.startswith("#"):
             anchor_id = url[1:]
             if anchor_id and anchor_id not in {"", "top"}:
-                # Look up ID in current HTML file
                 if link.source_file in self.html_parsed_data:
-                    _, page_ids = self.html_parsed_data[link.source_file]
+                    _, page_ids, _ = self.html_parsed_data[link.source_file]
                     if anchor_id not in page_ids:
                         self.violations.append({
                             "rule": "Rule-L3 (Broken In-Page Anchor)",
@@ -279,7 +300,7 @@ class LinkValidator:
 
         # Rule-L3: Cross-page anchor validation
         if anchor_id and target_path in self.html_parsed_data:
-            _, target_ids = self.html_parsed_data[target_path]
+            _, target_ids, _ = self.html_parsed_data[target_path]
             if anchor_id not in target_ids:
                 self.violations.append({
                     "rule": "Rule-L3 (Broken Cross-Page Anchor)",

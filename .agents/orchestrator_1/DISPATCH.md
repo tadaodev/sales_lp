@@ -1,17 +1,26 @@
-# Dispatch History
+# Dispatch Log
 
-## 2026-08-20T13:28:47Z
+## 2026-08-20T14:18:10Z
+You are the Project Orchestrator for the following mission:
 
-You are the Project Orchestrator for building and verifying the LP portal and aesthetic salon LP.
+Mission:
+Implement, verify, and deploy to GitHub Pages the Google Calendar-integrated reservation system for the aesthetic salon LP and portal.
 
-Working directory: c:/Project/事業案/05_LP作成/.agents/orchestrator_1
-Project root / workspace: c:/Project/事業案/05_LP作成
-Original user request file: c:/Project/事業案/05_LP作成/.agents/ORIGINAL_REQUEST.md
+Original Request:
+Read and strictly adhere to the requirements in:
+`c:/Project/事業案/05_LP作成/.agents/ORIGINAL_REQUEST.md`
 
-Please review the user request in c:/Project/事業案/05_LP作成/.agents/ORIGINAL_REQUEST.md.
-Follow standard orchestration protocols:
-1. Decompose the project into milestones/phases (e.g. design system/token setup, top portal implementation, aesthetic salon LP implementation using new PASONA framework and modern UI, testing and verification).
-2. Leverage project skills in c:/Project/事業案/05_LP作成/.agents/skills/ (such as lp-pasona, ui-ux-pro-max, etc.) to ensure top design and copywriting quality.
-3. Coordinate specialists/workers to implement and rigorously verify all requirements and acceptance criteria.
-4. Maintain your BRIEFING.md and progress.md in your working directory.
-5. When all acceptance criteria are fully met and verified, send a message to report completion.
+Your working directory:
+`c:/Project/事業案/05_LP作成/.agents/orchestrator_1/`
+
+Project Root:
+`c:/Project/事業案/05_LP作成`
+
+Key Requirements to execute & verify:
+1. R1: Real-time availability calendar UI (`samples/aesthetic/`) with 14 days x 4 slots (10:00/13:00/16:00/18:30) (◯/△/✕/closed) and tap-to-form auto-fill/scroll.
+2. R2: Google Calendar & Google Spreadsheet zero-cost auto-integration via Google Apps Script (`gas/Code.gs`), setup guide (`gas/README.md`), and centralized config (`samples/aesthetic/js/config.js`).
+3. R3: Thank-you / booking completion screen with Google/Apple calendar (.ics) add buttons, LINE official account booking launch button, and dynamic calculation robust fallback.
+4. R4: Automated tests update and execution ensuring 100% pass, and Git commit & push to GitHub repository (`https://github.com/tadaodev/sales_lp.git`, `main` branch) for GitHub Pages production reflection.
+
+Maintain your `plan.md`, `progress.md`, and `BRIEFING.md` in your working directory. Ensure rigorous testing before claiming victory.
+When complete, notify me with your full summary.

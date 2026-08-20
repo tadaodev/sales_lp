@@ -1,40 +1,35 @@
-# E2E Test Infra: LP Portal Hub & Aesthetic Salon LP
+# E2E Test Infra: Aesthetic Salon LP & Reservation System
 
 ## Test Philosophy
-- Opaque-box, requirement-driven. Zero external heavy dependencies (pure Python standard library `urllib`, `html.parser`, `http.server`).
-- Methodology: Category-Partition + BVA + Pairwise + Workload Testing.
+- Opaque-box, requirement-driven, zero external dependencies (Python standard library only).
+- Methodology: Category-Partition + Boundary Value Analysis + Pairwise Combinatorial Testing + Real-World Workload Testing.
 
-## Feature Inventory
-| # | Feature | Source (requirement) | Tier 1 | Tier 2 | Tier 3 |
-|---|---------|---------------------|:------:|:------:|:------:|
-| 1 | Relative Path Navigation & 404-free links | ORIGINAL_REQUEST §R1, R4 | ✓ | ✓ | ✓ |
-| 2 | Portal Hero & 7-Genre Filtering Hub | ORIGINAL_REQUEST §R1 | ✓ | ✓ | ✓ |
-| 3 | Aesthetic Featured & Teaser Cards | ORIGINAL_REQUEST §R1 | ✓ | ✓ | ✓ |
-| 4 | PASONA Problem & Affinity | ORIGINAL_REQUEST §R2 | ✓ | ✓ | ✓ |
-| 5 | PASONA Solution & 3 Reasons & Before/After | ORIGINAL_REQUEST §R2 | ✓ | ✓ | ✓ |
-| 6 | PASONA Offer (Matsutake Pricing & Guarantee) | ORIGINAL_REQUEST §R2 | ✓ | ✓ | ✓ |
-| 7 | PASONA Narrowing Down & Dual CTAs | ORIGINAL_REQUEST §R2 | ✓ | ✓ | ✓ |
-| 8 | FAQ Accordion Interactive Component | ORIGINAL_REQUEST §R2, R3 | ✓ | ✓ | ✓ |
-| 9 | Mobile Sticky CTA Bar on Scroll | ORIGINAL_REQUEST §R3 | ✓ | ✓ | ✓ |
-| 10 | Return to Portal Navigation | ORIGINAL_REQUEST §R3 | ✓ | ✓ | ✓ |
-| 11 | Static HTTP Server Compatibility | ORIGINAL_REQUEST §R4 | ✓ | ✓ | ✓ |
+## Feature Inventory & Test Mapping
+| # | Feature | Source | Tier 1 (Coverage) | Tier 2 (Boundary) | Tier 3 (Cross-Feature) | Tier 4 (Scenario) |
+|---|---------|--------|:----------------:|:-----------------:|:---------------------:|:-----------------:|
+| F1 | 14-Day Calendar Grid | ORIGINAL_REQUEST §R1 | TC-CAL-01..05 | TC-CAL-B01..B05 | TC-INT-01 | TC-APP-01 |
+| F2 | Slot Status (◯/△/✕/休) | ORIGINAL_REQUEST §R1 | TC-SLT-01..05 | TC-SLT-B01..B05 | TC-INT-02 | TC-APP-01 |
+| F3 | Tap-to-Form Auto-Fill | ORIGINAL_REQUEST §R1 | TC-TAP-01..05 | TC-TAP-B01..B05 | TC-INT-03 | TC-APP-02 |
+| F4 | GAS Backend & Payloads | ORIGINAL_REQUEST §R2 | TC-GAS-01..05 | TC-GAS-B01..B05 | TC-INT-04 | TC-APP-03 |
+| F5 | Central Config (`config.js`) | ORIGINAL_REQUEST §R2 | TC-CFG-01..05 | TC-CFG-B01..B05 | TC-INT-05 | TC-APP-03 |
+| F6 | Thank-You View & Res ID | ORIGINAL_REQUEST §R3 | TC-TNK-01..05 | TC-TNK-B01..B05 | TC-INT-06 | TC-APP-04 |
+| F7 | Google / Apple (.ics) Sync | ORIGINAL_REQUEST §R3 | TC-ICS-01..05 | TC-ICS-B01..B05 | TC-INT-07 | TC-APP-04 |
+| F8 | LINE Official Integration | ORIGINAL_REQUEST §R3 | TC-LIN-01..05 | TC-LIN-B01..B05 | TC-INT-08 | TC-APP-04 |
+| F9 | Deterministic Fallback | ORIGINAL_REQUEST §R3 | TC-FBK-01..05 | TC-FBK-B01..B05 | TC-INT-09 | TC-APP-05 |
+| F10 | Relative Path & Deployment | ORIGINAL_REQUEST §R4 | TC-DEP-01..05 | TC-DEP-B01..B05 | TC-INT-10 | TC-APP-05 |
 
 ## Test Architecture
-- Test runner: `tests/run_all_tests.py`
-- Server runner: `tests/test_server.py` (simulates root and subdirectory hosting)
-- Link & Asset validator: `tests/validate_links.py` (validates strict relative paths and 404s)
-- PASONA DOM validator: `tests/validate_pasona_dom.py` (validates all PASONA sections, semantic headings, meta tags)
-- Interactive validator: `tests/test_interactive_ui.py` (validates JS filtering logic, accordion state, sticky CTA rules)
-
-## Real-World Application Scenarios (Tier 4)
-| # | Scenario | Features Exercised | Complexity |
-|---|----------|--------------------|------------|
-| 1 | 30s Working Woman Persona: Portal -> Beauty Filter -> Aesthetic LP -> Solution & Pricing -> Web Modal / LINE CTA | F1-F14 | High |
-| 2 | Salon Owner / Auditor Quality Inspection: Mobile 375px -> Sticky CTA -> FAQ Accordion -> Return to Portal -> All Genre Cards | F1-F15 | High |
+- **Runner**: `python tests/run_all_tests.py`
+- **Sub-modules**:
+  - `tests/test_server.py`: HTTP serving & routing
+  - `tests/validate_links.py`: Relative paths, 404s, case sensitivity
+  - `tests/validate_pasona_dom.py`: DOM structures, accessibility, heading hierarchy
+  - `tests/test_interactive_ui.py`: Interactive components, calendar, slots, form auto-fill, thank-you screen, fallback, config schema
+- **Pass/Fail Semantics**: Exit Code 0 = PASS, Exit Code > 0 = FAIL
 
 ## Coverage Thresholds
-- Tier 1: Feature Coverage (10 test cases)
-- Tier 2: Boundary & Corner Cases (8 test cases)
-- Tier 3: Cross-Feature Interactions (5 test cases)
-- Tier 4: Real-World Scenarios (2 complete journeys)
-- Total: 25 test cases + 2 real-world workload scenarios (100% pass required)
+- Tier 1: ≥ 50 test cases (≥ 5 per feature)
+- Tier 2: ≥ 50 boundary test cases
+- Tier 3: ≥ 10 cross-feature combination test cases
+- Tier 4: ≥ 5 realistic customer booking workflows
+- **Total Minimum Goal**: ≥ 115 test cases

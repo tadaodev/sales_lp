@@ -1,20 +1,20 @@
-# Progress Tracker — orchestrator_1
+# Progress
+
+Last visited: 2026-08-20T14:43:15Z
 
 ## Current Status
-Last visited: 2026-08-20T13:42:00Z
+- [x] Started heartbeat cron and initialized orchestrator environment
+- [x] Phase 0: Survey codebase, requirements, and test environment (3 explorers completed)
+- [x] Phase 1: Establish PROJECT.md & Decompose Milestones
+- [x] E2E Testing Track: 115 test cases (Tiers 1-4) & `TEST_READY.md` published
+- [x] Milestone 1: GAS Backend & Central Configuration (5 Reviewers/Challengers/Auditor APPROVE & CLEAN)
+- [x] Milestone 2: 14-Day Real-Time Calendar UI & Tap-to-Form (5 Reviewers/Challengers/Auditor APPROVE & CLEAN)
+- [x] Milestone 3: Thank-You View, ICS/Google Cal, LINE Sync, and Fallback Engine (5 Reviewers/Challengers/Auditor APPROVE & CLEAN)
+- [x] Milestone 4: Comprehensive Master Test Suite Verification (115/115 PASS, 100.0%)
+- [ ] Milestone 5: Production Git Commit & Push to GitHub main (Ready for Gen 2 Execution)
+- [ ] Phase 3: Final Verification & Gate Review
+- [ ] Phase 4: Final Synthesis & Human Reporting
 
 ## Iteration Status
-Current iteration: 3 / 32
-
-## Milestones & Tasks
-- [x] 0. Survey & Requirements Mining (3 Explorers completed)
-- [x] 1. Architecture & Decomposition (`PROJECT.md` created)
-- [x] 2. E2E Testing Suite Track Setup (`TEST_INFRA.md` & `TEST_READY.md` published)
-- [x] 3. Milestone 1: Design Tokens & Base Assets (`tokens.css`, `reset.css` implemented)
-- [x] 4. Milestone 2: Top Portal Page (`index.html`, `portal.css`, `js/portal.js` implemented)
-- [x] 5. Milestone 3: Aesthetic Salon LP (`samples/aesthetic/` implemented with New PASONA copy & luxury UI)
-- [x] 6. Milestone 4: E2E Verification & Interactive QA (2 Reviewers APPROVE, 2 Challengers APPROVE, Forensic Auditor CLEAN)
-- [x] 7. Final Acceptance & Sign-off (All acceptance criteria 100% satisfied)
-
-## Active Dispatches
-- All subagents completed successfully.
+Current iteration: 1 / 32
+- Succession: Spawning Orchestrator Generation 2 (Spawn threshold 16/16 reached)

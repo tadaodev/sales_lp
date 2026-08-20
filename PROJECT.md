@@ -1,95 +1,81 @@
-# Project: LP Portal Hub & Aesthetic Salon LP (New PASONA)
+# Project: Google Calendar Integrated Aesthetic Salon LP & Reservation System
 
 ## Architecture
-- **Static Hosting**: 100% compatible with GitHub Pages project site subdirectories (`https://<username>.github.io/<repo>/`).
-- **Path Protocol**: Strict relative paths (`./`, `../`, `../../`) without root-relative (`/`) dependencies.
-- **Design Tokens**: 3-layer architecture (Primitive tokens -> Semantic tokens -> Component tokens) in pure CSS custom properties.
-- **Styling & Effects**: Luxury aesthetic salon theme with Champagne Gold (`#C5A880`), Rose Beige (`#F7F3EE`), Deep Slate (`#1A1A24`), Warm White (`#FAFAF9`), and Glassmorphism (`backdrop-filter: blur(16px)`).
-- **Copywriting Framework**: New PASONA (Problem -> Affinity -> Solution -> Offer -> Narrowing Down -> Action -> FAQ).
-- **Interactivity**: Pure Vanilla JS (zero external runtime dependencies) for genre filtering, mobile scroll-triggered sticky CTA, FAQ accordion toggle, and booking modal form.
+- **Static Frontend**: Hosted on GitHub Pages (`https://tadaodev.github.io/sales_lp/samples/aesthetic/`), zero hosting cost. Pure HTML5, Modern CSS (Glassmorphism, 3-layer tokens), Vanilla JavaScript (ES6+, zero heavy external dependencies).
+- **Serverless Backend (GAS)**: Google Apps Script Web App (`gas/Code.gs`) providing REST endpoints (`doGet`, `doPost`).
+  - Google Calendar event creation & real-time busy slot check.
+  - Google Spreadsheet automated ledger (`予約台帳`).
+  - Automated customer & salon confirmation emails (GmailApp).
+- **Centralized Configuration**: `samples/aesthetic/js/config.js` (`window.SALON_CONFIG`) defining GAS URL, business hours, weekly closed days, 4 time slots (10:00, 13:00, 16:00, 18:30), salon metadata, and LINE ID.
+- **Offline / Standalone Fallback**: Deterministic slot simulation engine providing realistic availability (◯, △, ✕, 休) and seamless mock booking without breaking user experience when GAS URL is unset or offline.
+- **Post-Booking Retention & No-Show Prevention**:
+  - Auto-generated reservation ID (`LUM-YYYYMMDD-XXXX`).
+  - 1-click Google Calendar Web registration URL.
+  - Apple Calendar / Outlook RFC 5545 `.ics` file download (Blob / Data URI with 2h alarm).
+  - 1-tap LINE Official Account deep link with pre-filled booking confirmation message.
+- **Automated Test Infrastructure**: 4-Tier Python test runner (`tests/run_all_tests.py`), zero third-party dependencies, validating DOM, links, interactive UI, GAS schemas, fallback calculations, and deployment integrity.
+
+---
 
 ## Feature Inventory
 | # | Feature | Description | Milestone | Source |
 |---|---------|-------------|-----------|--------|
-| F1 | GitHub Pages Relative Path Navigation | Bidirectional navigation between portal (`./samples/aesthetic/index.html`) and LP (`../../index.html`) without 404s | M1, M2, M3 | ORIGINAL_REQUEST R1, R4 |
-| F2 | 3-Layer Design Tokens & Base CSS | Color palette, serif/sans typography, glassmorphism, responsive grid & spacing tokens | M1 | ui-ux-pro-max, design-system |
-| F3 | Top Portal Hero & Genre Hub | Header branding, hero intro, subtitle, live demo indicator | M2 | ORIGINAL_REQUEST R1 |
-| F4 | Genre Filtering System | 7 industry filter tabs (Beauty, SaaS, Legal/Pro, Edu, Gourmet, Real Estate, EC) with vanilla JS filtering | M2 | ORIGINAL_REQUEST R1 |
-| F5 | Featured LP & Teaser Cards | Highlight card for Aesthetic Salon LP + 6 teaser cards with status badges and animations | M2 | ORIGINAL_REQUEST R1 |
-| F6 | PASONA Problem (P) | Hero with luxury headline, social proof badge, and aging skin / busy lifestyle problem cards | M3 | ORIGINAL_REQUEST R2, lp-pasona |
-| F7 | PASONA Affinity (A) | Empathetic story & check list reframing customer struggle with scientific empathy | M3 | ORIGINAL_REQUEST R2, lp-pasona |
-| F8 | PASONA Solution (S) | Proprietary fascia lifting + exosome technology, 3 Reasons to Choose, 5-step process, Before/After cards | M3 | ORIGINAL_REQUEST R2, lp-pasona |
-| F9 | PASONA Offer (O) | Matsutake 3-tier pricing (Plum, Bamboo recommended at 72% off, Pine), full refund guarantee, 3 bonus gifts | M3 | ORIGINAL_REQUEST R2, lp-pasona |
-| F10 | PASONA Narrowing Down (N) | Monthly limitation (First 10 clients only), eligibility criteria to maintain quality | M3 | ORIGINAL_REQUEST R2, lp-pasona |
-| F11 | PASONA Action (A) Dual CTA | 30-second web reservation modal form + Official LINE reservation button | M3 | ORIGINAL_REQUEST R2, lp-pasona |
-| F12 | FAQ Accordion Component | 6 key questions (pain, downtime, no-solicitation pledge, cancel policy, payment) with smooth toggle | M3 | ORIGINAL_REQUEST R2, R3 |
-| F13 | Mobile Sticky CTA Bar | Bottom floating CTA bar with dual actions appearing after scrolling past hero | M3 | ORIGINAL_REQUEST R3 |
-| F14 | Return to Portal Navigation | Floating luxury badge / header link to return to portal hub seamlessly | M3 | ORIGINAL_REQUEST R3 |
-| F15 | E2E 4-Tier Automated Test Suite | Local HTTP test server, relative link validator, DOM validator, interactive UI validator across 4 tiers | E2E Track, M4 | ORIGINAL_REQUEST R4 |
+| 1 | 14-Day Availability Calendar UI | Responsive calendar table in `#action` showing 14 days × 4 slots (10:00, 13:00, 16:00, 18:30) with ◯, △, ✕, 休 | M2 | ORIGINAL_REQUEST §R1 |
+| 2 | Slot Tap-to-Form Auto-Fill | Clicking ◯ or △ slot auto-populates datetime into booking form and scrolls smoothly to form | M2 | ORIGINAL_REQUEST §R1 |
+| 3 | GAS Backend Script (`gas/Code.gs`) | `doGet` availability query + `doPost` booking handler (Calendar event, Spreadsheet row, Email notification) | M1 | ORIGINAL_REQUEST §R2 |
+| 4 | GAS 3-Minute Setup Guide (`gas/README.md`) | Non-technical step-by-step setup guide with copy-paste instructions for salon owners | M1 | ORIGINAL_REQUEST §R2 |
+| 5 | Centralized Config (`config.js`) | Salon config (GAS endpoint, business hours, slots, closed days, LINE ID) in `samples/aesthetic/js/config.js` | M1 | ORIGINAL_REQUEST §R2 |
+| 6 | Thank-You View & Reservation ID | Animated thank-you screen replacing form on submission with formatted ID (`LUM-YYYYMMDD-XXXX`) | M3 | ORIGINAL_REQUEST §R3 |
+| 7 | Google Calendar & .ics Export | 1-click web calendar add and RFC 5545 `.ics` dynamic Blob download with alarm | M3 | ORIGINAL_REQUEST §R3 |
+| 8 | 1-Tap LINE Official Booking Chat | Pre-filled booking summary for LINE Official Account to prevent cancellations | M3 | ORIGINAL_REQUEST §R3 |
+| 9 | Dynamic Simulation Fallback | Deterministic offline calendar calculation and mock reservation fallback | M3 | ORIGINAL_REQUEST §R3 |
+| 10 | Automated Test Suite Update | Python test suite verifying calendar grid, slots, tap-fill, GAS payloads, .ics, and fallback | M4 | ORIGINAL_REQUEST §R4 |
+| 11 | 100% Pass Verification & Git Push | Run all tests (100% PASS), commit, and push to `https://github.com/tadaodev/sales_lp.git` (`main`) | M5 | ORIGINAL_REQUEST §R4 |
+
+---
 
 ## Milestones
 | # | Name | Scope | Dependencies | Status |
 |---|------|-------|-------------|--------|
-| E2E | E2E Testing Track | Design and implement 4-Tier test suite (`tests/`) & publish `TEST_READY.md` | none | DONE |
-| M1 | Design Tokens & Base Assets | Shared CSS tokens (`css/tokens.css`, `css/reset.css`), base utility styles, SVG icons | none | DONE |
-| M2 | Top Portal Page Implementation | Portal hub (`index.html`, `css/portal.css`, `js/portal.js`) with genre filtering and teaser cards | M1 | DONE |
-| M3 | Aesthetic Salon LP Implementation | Salon LP (`samples/aesthetic/index.html`, `samples/aesthetic/css/aesthetic.css`, `samples/aesthetic/js/aesthetic.js`) with New PASONA copy, luxury UI, sticky CTA, FAQ accordion, booking modal | M1 | DONE |
-| M4 | Final Milestone (E2E Test Pass & Hardening) | Pass 100% of 4-Tier tests, adversarial coverage verification, forensic audit verification | E2E, M1, M2, M3 | DONE |
+| M1 | GAS Backend & Central Config | `gas/Code.gs`, `gas/README.md`, `samples/aesthetic/js/config.js` | none | DONE |
+| M2 | 14-Day Real-Time Calendar UI | `samples/aesthetic/index.html`, `samples/aesthetic/css/aesthetic.css`, `samples/aesthetic/js/aesthetic.js` | M1 | DONE |
+| M3 | Thank-You View, ICS, LINE & Fallback | `samples/aesthetic/index.html`, `samples/aesthetic/js/aesthetic.js`, `samples/aesthetic/css/aesthetic.css` | M2 | DONE |
+| M4 | Comprehensive Test Suite & Verification | `tests/run_all_tests.py`, `tests/test_interactive_ui.py`, `tests/validate_pasona_dom.py`, `tests/validate_links.py` | M1, M2, M3 | DONE |
+| M5 | Production Git Commit & GitHub Push | Full test pass, git commit, push to `origin main` | M4 | DONE |
+
+---
 
 ## Interface Contracts
-### Portal ↔ Samples Navigation
-- Portal (`/index.html`): Link to aesthetic sample MUST use relative URL: `./samples/aesthetic/index.html`.
-- Aesthetic LP (`/samples/aesthetic/index.html`): Return link to portal MUST use relative URL: `../../index.html` (or `../../` with standard directory index).
 
-### Design Tokens Contract
-- Tokens loaded in `:root` via `css/tokens.css` with standard semantic names:
-  - `--color-primary: #C5A880;` (Champagne Gold)
-  - `--color-primary-light: #DFCAAB;`
-  - `--color-primary-dark: #9A7B54;`
-  - `--color-bg-main: #FAFAF9;` (Warm Off-White)
-  - `--color-bg-card: rgba(255, 255, 255, 0.85);`
-  - `--color-text-primary: #1A1A24;`
-  - `--color-text-secondary: #5A5A68;`
-  - `--color-text-muted: #8E8E9F;`
-  - `--color-accent-line: #06C755;` (LINE Official Green)
-  - `--font-serif: 'Shippori Mincho', 'Noto Serif JP', 'Cinzel', serif;`
-  - `--font-sans: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;`
-  - `--glass-bg: rgba(255, 255, 255, 0.72);`
-  - `--glass-border: 1px solid rgba(255, 255, 255, 0.4);`
-  - `--glass-blur: blur(16px);`
-
-### DOM Structure Contract (PASONA Sections & QA Test Hooks)
-- `data-pasona="problem"` -> Problem & Hero Section (`#problem`, `#hero`)
-- `data-pasona="affinity"` -> Affinity & Empathy Section (`#affinity`)
-- `data-pasona="solution"` -> Solution & 3 Reasons Section (`#solution`, `#reasons`, `#before-after`)
-- `data-pasona="offer"` -> Offer & 3-tier Pricing Section (`#offer`, `#pricing`)
-- `data-pasona="narrowing"` -> Narrowing Down & Urgency Section (`#narrowing`)
-- `data-pasona="action"` -> Dual CTA & Booking Modal Section (`#action`, `#booking-modal`)
-- `data-pasona="faq"` -> FAQ Accordion Section (`#faq`)
-- Sticky Mobile Bar: `#mobile-sticky-cta` with class `.is-visible` when scrolled past 350px.
-- Portal Filtering: `[data-filter-tab]` and `.lp-card[data-category="..."]`.
-
-## Code Layout
+### `samples/aesthetic/js/config.js` ↔ Client Modules (`aesthetic.js`)
+```javascript
+window.SALON_CONFIG = {
+  salonName: "LUMIERA SALON",
+  salonPhone: "03-1234-5678",
+  salonEmail: "info@lumiera-salon.example.com",
+  salonAddress: "東京都港区南青山5-X-X",
+  gasWebhookUrl: "", // Paste GAS Web App URL here
+  businessHours: { start: "10:00", end: "20:00" },
+  closedDays: [2], // 0: Sun, 1: Mon, 2: Tue, 3: Wed, 4: Thu, 5: Fri, 6: Sat
+  timeSlots: ["10:00", "13:00", "16:00", "18:30"],
+  daysToShow: 14,
+  lineOfficialUrl: "https://line.me/R/ti/p/@lumiera_salon",
+  fallbackSimulation: true
+};
 ```
-c:/Project/事業案/05_LP作成/
-├── index.html                           # Top Portal Hub (Genre selector)
-├── css/
-│   ├── tokens.css                       # 3-Layer Design Tokens (CSS Variables)
-│   ├── reset.css                        # Modern CSS Reset
-│   └── portal.css                       # Portal page styling & responsive grid
-├── js/
-│   └── portal.js                        # Vanilla JS genre filtering logic
-├── samples/
-│   └── aesthetic/
-│       ├── index.html                   # Aesthetic Salon LP (New PASONA)
-│       ├── css/
-│       │   └── aesthetic.css            # Luxury Salon LP styling (Glassmorphism)
-│       └── js/
-│           └── aesthetic.js             # Sticky CTA, FAQ accordion, booking modal logic
-└── tests/
-    ├── test_server.py                   # Local static HTTP server runner
-    ├── validate_links.py                # Relative link & asset validator (404-free)
-    ├── validate_pasona_dom.py           # PASONA DOM & semantic validator
-    ├── test_interactive_ui.py           # Portal filter, accordion, sticky CTA test
-    └── run_all_tests.py                 # Integrated 4-Tier test runner
-```
+
+### Client Form ↔ GAS Web App Protocol (`gas/Code.gs`)
+- **GET Request**: `GAS_URL?action=getAvailability&days=14&startDate=YYYY-MM-DD`
+  - Response (JSON): `{ status: "success", availability: { "2026-08-21": { "10:00": "available", "13:00": "limited", "16:00": "full", "18:30": "closed" }, ... } }`
+- **POST Request**: `POST GAS_URL` (with `Content-Type: text/plain;charset=utf-8` to bypass CORS preflight)
+  - Payload: `{ action: "createBooking", name: "...", phone: "...", email: "...", plan: "...", date: "2026-08-22", time: "13:00", notes: "...", reservationId: "LUM-20260822-1234" }`
+  - Response (JSON): `{ status: "success", reservationId: "LUM-20260822-1234", message: "予約が完了しました。" }`
+
+---
+
+## Code Layout & Write Boundaries
+- **Milestone 1**: `gas/Code.gs`, `gas/README.md`, `samples/aesthetic/js/config.js`
+- **Milestone 2**: `samples/aesthetic/index.html` (Calendar section inside `#action`), `samples/aesthetic/css/aesthetic.css` (Calendar styles), `samples/aesthetic/js/aesthetic.js` (Calendar logic)
+- **Milestone 3**: `samples/aesthetic/index.html` (Thank-you view inside modal), `samples/aesthetic/js/aesthetic.js` (ICS, Google Cal, LINE, Fallback), `samples/aesthetic/css/aesthetic.css` (Thank-you styles)
+- **Milestone 4**: `tests/run_all_tests.py`, `tests/test_interactive_ui.py`, `tests/validate_pasona_dom.py`, `tests/validate_links.py`
+- **Milestone 5**: Git operations and repo synchronization
