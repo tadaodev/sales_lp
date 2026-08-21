@@ -1,59 +1,60 @@
 /**
  * samples/italian/css/italian.css
- * TRATTORIA & PIZZERIA BELLA TAVOLA — Casual Italian Restaurant Sample LP Stylesheet
+ * TRATTORIA & PIZZERIA BELLA TAVOLA — Chic Dark Italian Restaurant LP Stylesheet
  * 
- * Palette: Terracotta (#C85A32), Wine Red (#722F37), Olive Green (#556B2F),
- *          Warm Wood (#8B5A2B), Warm Plaster Cream (#FDFBF7), Dark Espresso (#2D1F1D)
+ * Palette: Chic Dark Charcoal (#120D0C), Wood-fired Terracotta (#E26D45),
+ *          Chianti Wine Red (#A83246), Candle Gold (#F5B041), Olive (#8DA855),
+ *          Cream Alabaster (#F7EFE9)
  * Responsive: 375px to 1920px+
  * Zero external CSS dependencies.
  */
 
 :root {
-  /* Brand Color Tokens */
-  --color-primary: #C85A32;          /* Wood-fire Terracotta */
-  --color-primary-dark: #A64420;     /* Deep Terracotta / Hover */
-  --color-primary-light: #F8EFEA;    /* Pale Terracotta background */
-  --color-primary-glow: rgba(200, 90, 50, 0.25);
+  /* Brand Color Tokens — Chic Dark Trattoria */
+  --color-primary: #E26D45;          /* Wood-fire Flame Terracotta */
+  --color-primary-dark: #C4552E;     /* Deep Terracotta / Hover */
+  --color-primary-light: rgba(226, 109, 69, 0.16);
+  --color-primary-glow: rgba(226, 109, 69, 0.35);
 
-  --color-wine-red: #722F37;          /* Tuscan Chianti Wine Red */
-  --color-wine-red-dark: #4F1C23;     /* Deep Espresso Wine */
-  --color-wine-red-light: #F5EAEB;
+  --color-wine-red: #A83246;          /* Tuscan Chianti Wine Red */
+  --color-wine-red-dark: #F7EFE9;     /* High-contrast Title Text */
+  --color-wine-red-light: rgba(168, 50, 70, 0.22);
 
-  --color-olive-green: #556B2F;       /* Extra Virgin Olive Green */
-  --color-olive-dark: #3D4E22;
-  --color-olive-light: #EEF4E3;
+  --color-olive-green: #8DA855;       /* Extra Virgin Olive Green */
+  --color-olive-dark: #647B36;
+  --color-olive-light: rgba(141, 168, 85, 0.2);
 
-  --color-warm-wood: #8B5A2B;         /* Artisan Wood / Trattoria Table */
-  --color-warm-wood-dark: #633D19;
-  --color-warm-wood-light: #F7EFE6;
+  --color-warm-wood: #D49B6A;         /* Artisan Wood */
+  --color-warm-wood-dark: #9C673B;
+  --color-warm-wood-light: rgba(212, 155, 106, 0.18);
 
-  --color-gold-accent: #D97706;       /* Gold / Award stars */
+  --color-gold-accent: #F5B041;       /* Antique Candle Gold */
   --color-line-green: #06C755;        /* Official LINE Green */
   --color-line-green-dark: #05A847;
 
-  /* Surfaces & Canvas */
-  --color-canvas-bg: #FDFBF7;         /* Warm Plaster Cream Canvas */
-  --color-card-bg: #FFFFFF;           /* Pure White Surface */
-  --color-card-subtle: #F6EFE9;       /* Cream Accent Card */
-  --color-dark-bg: #1F1916;           /* Trattoria Night Dark */
+  /* Surfaces & Canvas — Chic Dark Mood */
+  --color-canvas-bg: #120D0C;         /* Deep Espresso Night Charcoal */
+  --color-card-bg: #1E1614;           /* Warm Dark Timber Surface */
+  --color-card-subtle: #171110;       /* Dark Sub-surface */
+  --color-dark-bg: #0C0807;           /* Pitch Dark Ambient */
 
   /* Text & Typography */
-  --color-text-main: #2D1F1D;         /* Dark Espresso Warm Brown */
-  --color-text-muted: #6E5D57;        /* Secondary Text */
+  --color-text-main: #F7EFE9;         /* Warm Alabaster Cream */
+  --color-text-muted: #BBAAA1;        /* Soft Sand Warm Gray */
   --color-text-light: #FFFFFF;        /* White text */
-  --color-border-warm: #EADFD7;       /* Warm border */
-  --color-border-focus: #C85A32;
+  --color-border-warm: rgba(226, 109, 69, 0.22); /* Glowing Amber Border */
+  --color-border-focus: #E26D45;
 
   /* Typography Font Families */
   --font-serif: 'Shippori Mincho', 'Playfair Display', 'Cinzel', serif;
   --font-sans: 'Noto Sans JP', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Cinzel', 'Playfair Display', serif;
 
-  /* Shadows & Elevations */
-  --shadow-sm: 0 2px 8px rgba(45, 31, 29, 0.06);
-  --shadow-md: 0 8px 24px rgba(45, 31, 29, 0.09);
-  --shadow-lg: 0 16px 40px rgba(114, 47, 55, 0.13), 0 4px 12px rgba(45, 31, 29, 0.05);
-  --shadow-hover: 0 20px 48px rgba(200, 90, 50, 0.18), 0 6px 16px rgba(45, 31, 29, 0.08);
+  /* Shadows & Elevations (Moody Glow) */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 24px rgba(226, 109, 69, 0.12);
+  --shadow-hover: 0 20px 48px rgba(0, 0, 0, 0.9), 0 0 32px rgba(226, 109, 69, 0.28);
 
   /* Border Radii */
   --radius-sm: 6px;
@@ -157,19 +158,19 @@ button {
   padding: 6px 16px;
   border-radius: var(--radius-pill);
   margin-bottom: 14px;
-  border: 1px solid rgba(200, 90, 50, 0.2);
+  border: 1px solid rgba(226, 109, 69, 0.3);
 }
 
 .section-tag.wine {
   background: var(--color-wine-red-light);
-  color: var(--color-wine-red);
-  border-color: rgba(114, 47, 55, 0.2);
+  color: #F87171;
+  border-color: rgba(239, 68, 68, 0.3);
 }
 
 .section-tag.olive {
   background: var(--color-olive-light);
   color: var(--color-olive-green);
-  border-color: rgba(85, 107, 47, 0.2);
+  border-color: rgba(141, 168, 85, 0.3);
 }
 
 .section-title {
@@ -212,7 +213,7 @@ button {
   left: 0;
   width: 100%;
   z-index: 900;
-  background: rgba(253, 251, 247, 0.95);
+  background: rgba(18, 13, 12, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border-warm);
@@ -240,7 +241,7 @@ button {
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--color-text-muted);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.08);
   padding: 6px 12px;
   border-radius: var(--radius-pill);
   border: 1px solid var(--color-border-warm);
@@ -250,7 +251,7 @@ button {
 .portal-return-link:hover {
   color: var(--color-primary);
   border-color: var(--color-primary);
-  background: #FFFFFF;
+  background: rgba(226, 109, 69, 0.15);
 }
 
 .header-logo {
@@ -258,7 +259,7 @@ button {
   font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--color-wine-red-dark);
+  color: var(--color-text-main);
 }
 
 .header-logo span {
@@ -426,7 +427,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   border: 1px solid var(--color-border-warm);
   padding: 8px 16px;
   border-radius: var(--radius-pill);
@@ -463,7 +464,7 @@ button {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  background: linear-gradient(135deg, var(--color-primary), #B03A4D);
   color: #FFFFFF;
   font-size: 1.0625rem;
   font-weight: 700;
@@ -475,7 +476,7 @@ button {
 
 .cta-btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(200, 90, 50, 0.35);
+  box-shadow: 0 12px 32px rgba(226, 109, 69, 0.45);
   color: #FFFFFF;
 }
 
@@ -484,19 +485,20 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: #FFFFFF;
-  color: var(--color-wine-red);
+  background: rgba(255, 255, 255, 0.06);
+  color: #F7EFE9;
   font-size: 1.0625rem;
   font-weight: 700;
   padding: 16px 28px;
   border-radius: var(--radius-pill);
-  border: 2px solid var(--color-wine-red);
+  border: 1px solid var(--color-border-warm);
   box-shadow: var(--shadow-sm);
   transition: var(--transition-normal);
 }
 
 .cta-btn-secondary:hover {
-  background: var(--color-wine-red-light);
+  background: rgba(226, 109, 69, 0.15);
+  border-color: var(--color-primary);
   transform: translateY(-2px);
 }
 
@@ -531,7 +533,7 @@ button {
 .hero-overlay-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(31, 25, 22, 0.1) 0%, rgba(31, 25, 22, 0.75) 100%);
+  background: linear-gradient(180deg, rgba(18, 13, 12, 0.1) 0%, rgba(18, 13, 12, 0.85) 100%);
   pointer-events: none;
 }
 
@@ -539,14 +541,14 @@ button {
   position: absolute;
   top: 20px;
   left: 20px;
-  background: rgba(200, 90, 50, 0.95);
+  background: rgba(226, 109, 69, 0.95);
   backdrop-filter: blur(8px);
   color: #FFFFFF;
   padding: 8px 18px;
   border-radius: var(--radius-pill);
   font-size: 0.8125rem;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .hero-card-bottom-info {
@@ -595,7 +597,7 @@ button {
 }
 
 /* ==========================================================================
-   Problem Section (Pain Point Agitation)
+   Problem & Culinary Highlights Section
    ========================================================================== */
 .problem-cards-grid {
   display: grid;
@@ -605,7 +607,7 @@ button {
 }
 
 .problem-card {
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   border-radius: var(--radius-lg);
   padding: 32px 24px;
   border: 1px solid var(--color-border-warm);
@@ -620,7 +622,7 @@ button {
 .problem-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: var(--color-primary-light);
+  border-color: rgba(226, 109, 69, 0.4);
 }
 
 .problem-icon-badge {
@@ -628,7 +630,7 @@ button {
   height: 48px;
   border-radius: var(--radius-md);
   background: var(--color-wine-red-light);
-  color: var(--color-wine-red);
+  color: #F87171;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -649,11 +651,12 @@ button {
 }
 
 .problem-bridge-box {
-  background: linear-gradient(135deg, var(--color-wine-red-dark), var(--color-dark-bg));
+  background: linear-gradient(135deg, #2D1418, #120D0C);
   border-radius: var(--radius-lg);
   padding: 40px 32px;
   text-align: center;
   color: #FFFFFF;
+  border: 1px solid var(--color-border-warm);
   box-shadow: var(--shadow-lg);
   position: relative;
   overflow: hidden;
@@ -731,7 +734,7 @@ button {
   position: absolute;
   bottom: -20px;
   right: -16px;
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   border-radius: var(--radius-lg);
   padding: 18px 24px;
   box-shadow: var(--shadow-md);
@@ -743,7 +746,7 @@ button {
   font-family: var(--font-serif);
   font-size: 0.9375rem;
   font-weight: 700;
-  color: var(--color-wine-red);
+  color: #F8D7C9;
   line-height: 1.5;
 }
 
@@ -819,7 +822,7 @@ button {
 }
 
 .pillar-card {
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   border-radius: var(--radius-xl);
   overflow: hidden;
   border: 1px solid var(--color-border-warm);
@@ -832,7 +835,7 @@ button {
 .pillar-card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-hover);
-  border-color: var(--color-primary-light);
+  border-color: rgba(226, 109, 69, 0.45);
 }
 
 .pillar-visual {
@@ -858,7 +861,7 @@ button {
   position: absolute;
   top: 16px;
   left: 16px;
-  background: rgba(200, 90, 50, 0.95);
+  background: rgba(226, 109, 69, 0.95);
   backdrop-filter: blur(8px);
   color: #FFFFFF;
   font-family: var(--font-display);
@@ -866,7 +869,7 @@ button {
   font-weight: 700;
   padding: 4px 12px;
   border-radius: var(--radius-pill);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .pillar-body {
@@ -882,7 +885,7 @@ button {
   font-size: 1.3125rem;
   font-weight: 700;
   line-height: 1.45;
-  color: var(--color-wine-red-dark);
+  color: var(--color-text-main);
 }
 
 .pillar-desc {
@@ -901,8 +904,9 @@ button {
 .pillar-tag-badge {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-primary-dark);
-  background: var(--color-primary-light);
+  color: #F8D7C9;
+  background: rgba(226, 109, 69, 0.16);
+  border: 1px solid rgba(226, 109, 69, 0.25);
   padding: 4px 10px;
   border-radius: var(--radius-sm);
 }
@@ -921,7 +925,7 @@ button {
   font-family: var(--font-serif);
   font-size: 1.625rem;
   font-weight: 700;
-  color: var(--color-wine-red-dark);
+  color: var(--color-text-main);
   text-align: center;
   margin-bottom: 32px;
 }
@@ -936,7 +940,7 @@ button {
 }
 
 .course-card {
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   border-radius: var(--radius-xl);
   border: 1px solid var(--color-border-warm);
   padding: 36px 28px;
@@ -956,7 +960,7 @@ button {
 .course-card.is-popular {
   border: 2px solid var(--color-primary);
   box-shadow: var(--shadow-lg);
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   transform: scale(1.03);
   z-index: 2;
 }
@@ -970,7 +974,7 @@ button {
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-wine-red));
+  background: linear-gradient(135deg, var(--color-primary), #B03A4D);
   color: #FFFFFF;
   font-size: 0.8125rem;
   font-weight: 700;
@@ -991,7 +995,7 @@ button {
   display: inline-block;
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--color-wine-red);
+  color: #F87171;
   background: var(--color-wine-red-light);
   padding: 4px 12px;
   border-radius: var(--radius-pill);
@@ -1007,7 +1011,7 @@ button {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-wine-red-dark);
+  color: var(--color-text-main);
   margin-bottom: 4px;
 }
 
@@ -1070,13 +1074,13 @@ button {
 }
 
 .course-perk-box {
-  background: var(--color-primary-light);
+  background: rgba(226, 109, 69, 0.12);
   border: 1px dashed var(--color-primary);
   border-radius: var(--radius-md);
   padding: 12px;
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--color-primary-dark);
+  color: #F8D7C9;
   text-align: center;
   margin-bottom: 24px;
 }
@@ -1091,7 +1095,7 @@ button {
   border-radius: var(--radius-pill);
   font-size: 0.9375rem;
   font-weight: 700;
-  background: var(--color-card-subtle);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--color-text-main);
   border: 1px solid var(--color-border-warm);
   transition: var(--transition-fast);
@@ -1104,7 +1108,7 @@ button {
 }
 
 .course-card.is-popular .btn-select-course {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  background: linear-gradient(135deg, var(--color-primary), #B03A4D);
   color: #FFFFFF;
   border: none;
   box-shadow: 0 4px 14px var(--color-primary-glow);
@@ -1123,7 +1127,7 @@ button {
 }
 
 .menu-feature-card {
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   border-radius: var(--radius-xl);
   overflow: hidden;
   border: 1px solid var(--color-border-warm);
@@ -1160,7 +1164,7 @@ button {
   font-family: var(--font-serif);
   font-size: 1.375rem;
   font-weight: 700;
-  color: var(--color-wine-red-dark);
+  color: var(--color-text-main);
 }
 
 .menu-feature-price {
@@ -1193,12 +1197,12 @@ button {
    Narrowing Down Section (Scarcity & Perks)
    ========================================================================== */
 .narrowing-card {
-  background: linear-gradient(135deg, var(--color-dark-bg), #2C211D);
+  background: linear-gradient(135deg, #1A1210, #0C0807);
   border-radius: var(--radius-xl);
   padding: 48px 36px;
   color: #FFFFFF;
   box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(200, 90, 50, 0.3);
+  border: 1px solid rgba(226, 109, 69, 0.3);
   margin-bottom: 40px;
 }
 
@@ -1265,7 +1269,7 @@ button {
 }
 
 .perk-card {
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   border-radius: var(--radius-lg);
   padding: 28px 20px;
   border: 1px solid var(--color-border-warm);
@@ -1292,8 +1296,8 @@ button {
 .perk-badge {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-primary);
-  background: var(--color-primary-light);
+  color: #F8D7C9;
+  background: rgba(226, 109, 69, 0.2);
   padding: 2px 10px;
   border-radius: var(--radius-pill);
 }
@@ -1301,7 +1305,7 @@ button {
 .perk-title {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--color-wine-red-dark);
+  color: var(--color-text-main);
 }
 
 .perk-desc {
@@ -1324,7 +1328,7 @@ button {
    Action Section (14-Day Calendar & Web Booking Form)
    ========================================================================== */
 .calendar-card {
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   border-radius: var(--radius-xl);
   padding: 40px 32px;
   border: 1px solid var(--color-border-warm);
@@ -1386,8 +1390,8 @@ button {
 
 .legend-symbol.available { color: var(--color-olive-green); }
 .legend-symbol.limited { color: var(--color-primary); }
-.legend-symbol.full { color: #9CA3AF; }
-.legend-symbol.closed { color: #DC2626; }
+.legend-symbol.full { color: #8C7E74; }
+.legend-symbol.closed { color: #EF4444; }
 
 /* Calendar Table & Scroll Container */
 .calendar-table-scroll {
@@ -1423,7 +1427,7 @@ button {
 }
 
 .calendar-date-th {
-  background: var(--color-canvas-bg);
+  background: var(--color-card-subtle);
   font-size: 0.8125rem;
   font-weight: 700;
   color: var(--color-text-main);
@@ -1432,15 +1436,15 @@ button {
 
 .calendar-date-th.is-today {
   background: var(--color-primary-light);
-  color: var(--color-primary-dark);
+  color: #F8D7C9;
 }
 
 .calendar-date-th.is-sat {
-  color: #2563EB;
+  color: #60A5FA;
 }
 
 .calendar-date-th.is-sun {
-  color: #DC2626;
+  color: #F87171;
 }
 
 .th-today-badge {
@@ -1469,7 +1473,7 @@ button {
   font-family: var(--font-display);
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--color-wine-red-dark);
+  color: #F8D7C9;
   position: sticky;
   left: 0;
   z-index: 2;
@@ -1496,8 +1500,8 @@ button {
 
 .calendar-slot-btn.is-available {
   background: var(--color-olive-light);
-  color: var(--color-olive-dark);
-  border: 1px solid rgba(85, 107, 47, 0.3);
+  color: var(--color-olive-green);
+  border: 1px solid rgba(141, 168, 85, 0.3);
 }
 
 .calendar-slot-btn.is-available:hover {
@@ -1509,7 +1513,7 @@ button {
 .calendar-slot-btn.is-limited {
   background: var(--color-primary-light);
   color: var(--color-primary);
-  border: 1px solid rgba(200, 90, 50, 0.35);
+  border: 1px solid rgba(226, 109, 69, 0.35);
 }
 
 .calendar-slot-btn.is-limited:hover {
@@ -1519,24 +1523,24 @@ button {
 }
 
 .calendar-slot-btn.is-full {
-  background: #F3F4F6;
-  color: #9CA3AF;
-  border: 1px solid #E5E7EB;
+  background: rgba(255, 255, 255, 0.03);
+  color: #6E5D57;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   cursor: not-allowed;
   opacity: 0.75;
 }
 
 .calendar-slot-btn.is-closed {
-  background: #FEE2E2;
-  color: #DC2626;
-  border: 1px solid #FECACA;
+  background: rgba(239, 68, 68, 0.12);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.25);
   cursor: not-allowed;
 }
 
 .calendar-slot-btn.is-selected {
   background: var(--color-primary) !important;
   color: #FFFFFF !important;
-  box-shadow: 0 0 0 3px var(--color-wine-red);
+  box-shadow: 0 0 0 3px rgba(226, 109, 69, 0.4);
 }
 
 .slot-symbol {
@@ -1553,7 +1557,7 @@ button {
 
 /* Booking Form Card */
 .booking-form-card {
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   border-radius: var(--radius-xl);
   padding: 48px 40px;
   border: 1px solid var(--color-border-warm);
@@ -1566,7 +1570,7 @@ button {
   font-family: var(--font-serif);
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--color-wine-red-dark);
+  color: var(--color-text-main);
   text-align: center;
   margin-bottom: 8px;
 }
@@ -1629,7 +1633,7 @@ button {
   padding: 12px 16px;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-warm);
-  background: #FFFFFF;
+  background: #171110;
   font-size: 0.9375rem;
   color: var(--color-text-main);
   transition: var(--transition-fast);
@@ -1645,14 +1649,14 @@ button {
 
 .form-group.has-error .form-input,
 .form-group.has-error .form-select {
-  border-color: #DC2626;
-  background-color: #FEF2F2;
+  border-color: #EF4444;
+  background-color: rgba(239, 68, 68, 0.1);
 }
 
 .form-error-text {
   display: none;
   font-size: 0.75rem;
-  color: #DC2626;
+  color: #EF4444;
   font-weight: 600;
 }
 
@@ -1668,7 +1672,7 @@ button {
 .btn-submit-booking {
   width: 100%;
   padding: 18px 24px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-wine-red));
+  background: linear-gradient(135deg, var(--color-primary), #B03A4D);
   color: #FFFFFF;
   font-size: 1.125rem;
   font-weight: 700;
@@ -1684,7 +1688,7 @@ button {
 
 .btn-submit-booking:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(200, 90, 50, 0.35);
+  box-shadow: 0 12px 32px rgba(226, 109, 69, 0.45);
 }
 
 .form-guarantee-text {
@@ -1794,9 +1798,9 @@ button {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(31, 25, 22, 0.7);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(12, 8, 7, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -1813,7 +1817,8 @@ button {
 }
 
 .modal-dialog {
-  background: #FFFFFF;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border-warm);
   border-radius: var(--radius-xl);
   width: 100%;
   max-width: 620px;
@@ -1873,13 +1878,13 @@ button {
   font-family: var(--font-serif);
   font-size: 1.625rem;
   font-weight: 700;
-  color: var(--color-wine-red-dark);
+  color: var(--color-text-main);
   margin-bottom: 8px;
 }
 
 .modal-res-id-box {
-  background: var(--color-primary-light);
-  border: 1px solid rgba(200, 90, 50, 0.3);
+  background: rgba(226, 109, 69, 0.15);
+  border: 1px solid rgba(226, 109, 69, 0.35);
   border-radius: var(--radius-md);
   padding: 12px;
   margin-bottom: 24px;
@@ -1889,7 +1894,7 @@ button {
 .modal-res-id-label {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-primary-dark);
+  color: #F8D7C9;
 }
 
 .modal-res-id-value {
@@ -2019,7 +2024,7 @@ button {
 }
 
 .faq-item {
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border-warm);
   overflow: hidden;
@@ -2068,7 +2073,7 @@ button {
 .faq-q-text {
   font-size: 1.0625rem;
   font-weight: 700;
-  color: var(--color-wine-red-dark);
+  color: var(--color-text-main);
 }
 
 .faq-chevron {
@@ -2124,7 +2129,7 @@ button {
 .access-info-table {
   width: 100%;
   border-collapse: collapse;
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--color-border-warm);
@@ -2147,7 +2152,7 @@ button {
   width: 30%;
   background: var(--color-card-subtle);
   font-weight: 700;
-  color: var(--color-wine-red-dark);
+  color: #F8D7C9;
 }
 
 .access-info-table td {
@@ -2156,7 +2161,7 @@ button {
 }
 
 .access-map-wrapper {
-  background: #FFFFFF;
+  background: var(--color-card-bg);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border-warm);
   overflow: hidden;
@@ -2167,12 +2172,12 @@ button {
 
 .access-map-placeholder {
   aspect-ratio: 16 / 10;
-  background: linear-gradient(135deg, #EADFD7, #D9CCC2);
+  background: linear-gradient(135deg, #2D1418, #171110);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--color-wine-red-dark);
+  color: #F8D7C9;
   padding: 24px;
   text-align: center;
   gap: 12px;
@@ -2201,7 +2206,7 @@ button {
   background: var(--color-dark-bg);
   color: #C5B6AA;
   padding: 64px 0 32px;
-  border-top: 1px solid rgba(200, 90, 50, 0.2);
+  border-top: 1px solid rgba(226, 109, 69, 0.2);
 }
 
 .footer-inner {
@@ -2282,13 +2287,13 @@ button {
   left: 0;
   right: 0;
   z-index: 850;
-  background: rgba(253, 251, 247, 0.96);
+  background: rgba(18, 13, 12, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid var(--color-border-warm);
   padding: 10px 16px;
   padding-bottom: max(10px, env(safe-area-inset-bottom));
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
   display: none;
   transform: translateY(100%);
   transition: transform 0.3s ease;
@@ -2324,7 +2329,7 @@ button {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  background: linear-gradient(135deg, var(--color-primary), #B03A4D);
   color: #FFFFFF;
   font-size: 0.875rem;
   font-weight: 700;
