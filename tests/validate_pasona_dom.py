@@ -352,6 +352,20 @@ class PASONADOMValidator:
                 "message": "Italian Restaurant LP samples/italian/index.html not yet found on disk."
             })
 
+        legal_html = self.project_root / "samples" / "legal" / "index.html"
+        if legal_html.exists():
+            v_seo = self.validate_semantics_and_seo(legal_html)
+            v_pasona = self.validate_file_pasona(legal_html)
+            self.violations.extend(v_seo)
+            self.violations.extend(v_pasona)
+        else:
+            self.violations.append({
+                "rule": "LEGAL_LP_MISSING",
+                "file": "samples/legal/index.html",
+                "message": "Legal Consulting LP samples/legal/index.html not yet found on disk."
+            })
+
+
         is_clean = len(self.violations) == 0
         if verbose:
             if is_clean:

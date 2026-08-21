@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <linearGradient id="studioBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140F0B"/>
+      <stop offset="40%" stop-color="#241B14"/>
+      <stop offset="80%" stop-color="#1A120D"/>
+      <stop offset="100%" stop-color="#0D0907"/>
+    </linearGradient>
+    <radialGradient id="portraitGlow" cx="50%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.25"/>
+      <stop offset="60%" stop-color="#B45309" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="suitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#112240"/>
+      <stop offset="40%" stop-color="#0A192F"/>
+      <stop offset="80%" stop-color="#060E1A"/>
+      <stop offset="100%" stop-color="#03070D"/>
+    </linearGradient>
+    <linearGradient id="tieGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E5C158"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#A17C1B"/>
+    </linearGradient>
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFBEB"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </linearGradient>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="25"/>
+    </filter>
+  </defs>
+
+  <!-- Studio Background -->
+  <rect width="800" height="800" fill="url(#studioBg)"/>
+
+  <!-- Law Library Bookshelf Blurred Background -->
+  <g opacity="0.3" filter="url(#softBlur)">
+    <!-- Mahogany Shelves -->
+    <rect x="50" y="80" width="700" height="18" fill="#3D2619"/>
+    <rect x="50" y="240" width="700" height="18" fill="#3D2619"/>
+    <rect x="50" y="400" width="700" height="18" fill="#3D2619"/>
+    <!-- Legal Volumes & Leather Tomes -->
+    <rect x="80" y="100" width="40" height="140" fill="#881337"/>
+    <rect x="125" y="105" width="35" height="135" fill="#1E3A8A"/>
+    <rect x="165" y="95" width="45" height="145" fill="#78350F"/>
+    <rect x="215" y="110" width="30" height="130" fill="#14532D"/>
+    <rect x="250" y="100" width="50" height="140" fill="#701A75"/>
+    <rect x="520" y="105" width="40" height="135" fill="#78350F"/>
+    <rect x="565" y="95" width="45" height="145" fill="#1E3A8A"/>
+    <rect x="615" y="100" width="38" height="140" fill="#881337"/>
+    <rect x="658" y="110" width="42" height="130" fill="#14532D"/>
+  </g>
+
+  <!-- Warm Portrait Backlight Glow -->
+  <circle cx="400" cy="320" r="320" fill="url(#portraitGlow)"/>
+
+  <!-- Executive Leather Armchair Back -->
+  <path d="M190,460 Q170,240 230,180 Q400,150 570,180 Q630,240 610,460 Z" fill="#1C1613" stroke="#3A2B23" stroke-width="4"/>
+  <path d="M230,460 Q220,270 260,220 Q400,195 540,220 Q580,270 570,460 Z" fill="#291F1A" opacity="0.6"/>
+
+  <!-- Lawyer Shunsuke Kanzaki Silhouette & Features -->
+  <!-- Bespoke Navy Wool Suit (Shoulders & Torso) -->
+  <path d="M120,800 Q150,560 270,460 Q340,430 400,430 Q460,430 530,460 Q650,560 680,800 Z" fill="url(#suitGrad)" stroke="#1E293B" stroke-width="2"/>
+
+  <!-- Left Lapel & Right Lapel -->
+  <path d="M270,460 L330,620 L370,620 L330,445 Z" fill="#0E2442" stroke="#1E3A5F" stroke-width="1.5"/>
+  <path d="M530,460 L470,620 L430,620 L470,445 Z" fill="#0E2442" stroke="#1E3A5F" stroke-width="1.5"/>
+
+  <!-- Attorney Gold Lapel Badge (Japanese Bar Association Sunflower Seal) -->
+  <g transform="translate(300, 490)">
+    <circle cx="0" cy="0" r="14" fill="url(#goldRim)"/>
+    <!-- 16 Sunflower Petals Motif -->
+    <circle cx="0" cy="0" r="11" fill="#854D0E"/>
+    <circle cx="0" cy="0" r="8" fill="url(#goldGrad)"/>
+    <!-- Scales of Justice Center -->
+    <path d="M-4,1 L4,1 M0,-3 L0,4 M-3,4 L-1,4 M1,4 L3,4" stroke="#78350F" stroke-width="1.2"/>
+  </g>
+
+  <!-- Crisp White Oxford Shirt -->
+  <polygon points="340,435 400,520 460,435 440,425 400,455 360,425" fill="#F8FAFC"/>
+  <!-- Gold Silk Tie with Diagonal Micro-check -->
+  <polygon points="385,455 415,455 422,680 400,720 378,680" fill="url(#tieGrad)"/>
+  <!-- Tie Clip (Champagne Gold) -->
+  <rect x="382" y="540" width="36" height="5" rx="1.5" fill="#FFFBEB" stroke="#B45309" stroke-width="1"/>
+
+  <!-- Neck & Chin Contour -->
+  <path d="M355,380 L355,445 Q400,470 445,445 L445,380 Z" fill="#DEBA94"/>
+  <!-- Jawline Shadow -->
+  <path d="M340,360 Q400,430 460,360 Q400,405 340,360 Z" fill="#C49B74"/>
+
+  <!-- Head / Facial Structure -->
+  <ellipse cx="400" cy="300" rx="95" ry="115" fill="#ECCBB0"/>
+  <!-- Ears -->
+  <ellipse cx="298" cy="310" rx="14" ry="24" fill="#DFB794"/>
+  <ellipse cx="502" cy="310" rx="14" ry="24" fill="#DFB794"/>
+
+  <!-- Hair (Tailored Business Cut with Subtle Volume) -->
+  <path d="M295,300 C285,190 340,165 400,165 C470,165 520,195 505,300 C490,260 480,225 400,220 C330,225 315,260 295,300 Z" fill="#1C1917"/>
+  <path d="M305,250 Q360,205 440,210 Q495,215 500,260 Q450,230 400,230 Q340,230 305,250 Z" fill="#292524"/>
+
+  <!-- Eyes, Eyebrows, Confident Trustworthy Expression -->
+  <!-- Eyebrows -->
+  <path d="M330,265 Q360,255 380,265" stroke="#292524" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M420,265 Q440,255 470,265" stroke="#292524" stroke-width="5" stroke-linecap="round" fill="none"/>
+
+  <!-- Eyes with Intelligent Focus -->
+  <ellipse cx="355" cy="285" rx="16" ry="9" fill="#FFFFFF"/>
+  <circle cx="356" cy="285" r="7" fill="#3E2723"/>
+  <circle cx="358" cy="283" r="2.5" fill="#FFFFFF"/>
+
+  <ellipse cx="445" cy="285" rx="16" ry="9" fill="#FFFFFF"/>
+  <circle cx="444" cy="285" r="7" fill="#3E2723"/>
+  <circle cx="446" cy="283" r="2.5" fill="#FFFFFF"/>
+
+  <!-- Nose Structure -->
+  <path d="M398,275 L395,325 L408,325" stroke="#C49B74" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Warm Reassuring Smile -->
+  <path d="M365,355 Q400,380 435,355" stroke="#8D5B4C" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <path d="M375,356 Q400,368 425,356" fill="#FFFFFF" opacity="0.8"/>
+
+  <!-- Subtle Studio Rim Lighting Overlay -->
+  <circle cx="400" cy="400" r="390" fill="none" stroke="url(#goldGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- Name Plate Overlay Card (Glassmorphism) -->
+  <g transform="translate(400, 720)">
+    <rect x="-240" y="-35" width="480" height="70" rx="12" fill="#0A192F" fill-opacity="0.88" stroke="#D4AF37" stroke-width="1.5"/>
+    <text x="0" y="-5" font-family="'Shippori Mincho', serif" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">神崎 俊輔 <tspan font-size="14" fill="#D4AF37">（Shunsuke Kanzaki）</tspan></text>
+    <text x="0" y="20" font-family="'Noto Sans JP', sans-serif" font-size="12" font-weight="500" fill="#CBD5E1" text-anchor="middle" letter-spacing="1">代表弁護士・法務コンサルタント / 第一東京弁護士会所属</text>
+  </g>
+</svg>

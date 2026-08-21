@@ -194,6 +194,25 @@ def run_server_tests(verbose: bool = True) -> Tuple[bool, List[Dict[str, Any]]]:
                 f"HTTP Status {status} (Expected 200). Is samples/aesthetic/index.html created?"
             )
 
+        # Test 2b: Root samples/legal/index.html fetch
+        status, headers, body = fetch_url(f"{server.base_url}/samples/legal/index.html")
+        if status == 200:
+            content_type = headers.get("content-type", "")
+            has_html = "text/html" in content_type
+            record_result(
+                "SRV-ROOT-03",
+                "Root Mode: GET /samples/legal/index.html returns 200 OK",
+                has_html,
+                f"Status: {status}, Content-Type: {content_type}"
+            )
+        else:
+            record_result(
+                "SRV-ROOT-03",
+                "Root Mode: GET /samples/legal/index.html returns 200 OK",
+                False,
+                f"HTTP Status {status} (Expected 200). Is samples/legal/index.html created?"
+            )
+
         # Test 3: Subdirectory Mode: /<subdir>/index.html
         status, headers, body = fetch_url(f"{server.subdir_base_url}/index.html")
         record_result(
@@ -212,6 +231,15 @@ def run_server_tests(verbose: bool = True) -> Tuple[bool, List[Dict[str, Any]]]:
             f"HTTP Status {status} (Expected 200)"
         )
 
+        # Test 4b: Subdirectory Mode: /<subdir>/samples/legal/index.html
+        status, headers, body = fetch_url(f"{server.subdir_base_url}/samples/legal/index.html")
+        record_result(
+            "SRV-SUBDIR-03",
+            f"Subdirectory Mode: GET /{SUBDIR_NAME}/samples/legal/index.html returns 200 OK",
+            status == 200,
+            f"HTTP Status {status} (Expected 200)"
+        )
+
         # Test 5: Non-existent asset returns 404 cleanly (no 500)
         status, headers, body = fetch_url(f"{server.base_url}/non_existent_asset_12345.xyz")
         record_result(
@@ -225,6 +253,7 @@ def run_server_tests(verbose: bool = True) -> Tuple[bool, List[Dict[str, Any]]]:
         css_path = PROJECT_ROOT / "css" / "tokens.css"
         portal_css_path = PROJECT_ROOT / "css" / "portal.css"
         aesthetic_css_path = PROJECT_ROOT / "samples" / "aesthetic" / "css" / "aesthetic.css"
+        legal_css_path = PROJECT_ROOT / "samples" / "legal" / "css" / "legal.css"
         
         target_css = None
         if css_path.exists():
@@ -251,6 +280,18 @@ def run_server_tests(verbose: bool = True) -> Tuple[bool, List[Dict[str, Any]]]:
                 False,
                 "No CSS files found yet (css/tokens.css, css/portal.css, etc.)"
             )
+
+        if legal_css_path.exists():
+            status, headers, _ = fetch_url(f"{server.base_url}/samples/legal/css/legal.css")
+            ct = headers.get("content-type", "")
+            is_css = status == 200 and "text/css" in ct
+            record_result(
+                "SRV-MIME-02",
+                "MIME Type: GET /samples/legal/css/legal.css returns 200 and text/css",
+                is_css,
+                f"Status: {status}, Content-Type: {ct}"
+            )
+
 
     finally:
         server.stop()

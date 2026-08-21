@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050B14"/>
+      <stop offset="35%" stop-color="#0A192F"/>
+      <stop offset="70%" stop-color="#0E2442"/>
+      <stop offset="100%" stop-color="#1A365D"/>
+    </linearGradient>
+    <linearGradient id="skylineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#1E293B" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#996515"/>
+    </linearGradient>
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#D4AF37" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="twilightGlow" cx="75%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.35"/>
+      <stop offset="40%" stop-color="#D97706" stop-opacity="0.15"/>
+      <stop offset="80%" stop-color="#0A192F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="deskGlow" cx="50%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#050B14" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blurFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+    <filter id="glassBlur">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+  <rect width="1920" height="1080" fill="url(#twilightGlow)"/>
+
+  <!-- High-Rise Window Structure (Tokyo Marunouchi View) -->
+  <g opacity="0.45">
+    <!-- Window Frames -->
+    <line x1="380" y1="0" x2="380" y2="780" stroke="#1E293B" stroke-width="8"/>
+    <line x1="960" y1="0" x2="960" y2="780" stroke="#1E293B" stroke-width="12"/>
+    <line x1="1540" y1="0" x2="1540" y2="780" stroke="#1E293B" stroke-width="8"/>
+    <line x1="0" y1="780" x2="1920" y2="780" stroke="#1E293B" stroke-width="14"/>
+
+    <!-- Tokyo Skyline Silhouette -->
+    <rect x="120" y="420" width="80" height="360" fill="url(#skylineGrad)"/>
+    <rect x="230" y="340" width="110" height="440" fill="url(#skylineGrad)"/>
+    <rect x="420" y="380" width="90" height="400" fill="url(#skylineGrad)"/>
+    <rect x="540" y="280" width="140" height="500" fill="url(#skylineGrad)"/>
+    <rect x="710" y="360" width="100" height="420" fill="url(#skylineGrad)"/>
+    <rect x="840" y="450" width="80" height="330" fill="url(#skylineGrad)"/>
+    <!-- Tokyo Tower Silhouette with warm glow -->
+    <path d="M1280 780 L1330 380 L1340 380 L1390 780 Z" fill="#991B1B" opacity="0.6"/>
+    <line x1="1335" y1="380" x2="1335" y2="280" stroke="#EF4444" stroke-width="3" opacity="0.8"/>
+    <circle cx="1335" cy="280" r="4" fill="#F87171"/>
+
+    <rect x="1420" y="320" width="100" height="460" fill="url(#skylineGrad)"/>
+    <rect x="1560" y="390" width="120" height="390" fill="url(#skylineGrad)"/>
+    <rect x="1710" y="300" width="130" height="480" fill="url(#skylineGrad)"/>
+
+    <!-- City Lights Bokeh Grid -->
+    <g fill="#FDE047" opacity="0.7">
+      <circle cx="260" cy="480" r="1.5"/><circle cx="290" cy="520" r="1.5"/><circle cx="310" cy="460" r="2"/>
+      <circle cx="580" cy="400" r="1.5"/><circle cx="620" cy="440" r="2"/><circle cx="650" cy="380" r="1.5"/>
+      <circle cx="1450" cy="450" r="2"/><circle cx="1480" cy="520" r="1.5"/><circle cx="1600" cy="420" r="1.5"/>
+      <circle cx="1740" cy="400" r="2"/><circle cx="1780" cy="490" r="1.5"/><circle cx="1810" cy="360" r="2"/>
+    </g>
+  </g>
+
+  <!-- Executive Suite Interior Illumination & Table -->
+  <rect x="0" y="740" width="1920" height="340" fill="url(#deskGlow)"/>
+
+  <!-- Glass Conference Desk Reflection Plane -->
+  <polygon points="180,820 1740,820 1920,1080 0,1080" fill="#0A192F" opacity="0.92"/>
+  <polygon points="180,820 1740,820 1920,1080 0,1080" stroke="url(#goldGrad)" stroke-width="1.5" fill="none" opacity="0.3"/>
+  <line x1="180" y1="820" x2="1740" y2="820" stroke="url(#goldAccent)" stroke-width="3"/>
+
+  <!-- Lawyer & Consultation Visual Silhouette / Artwork Representation -->
+  <g transform="translate(960, 680)">
+    <!-- Leather Executive Chair -->
+    <path d="M-190,-180 Q-210,-40 -160,160 L160,160 Q210,-40 190,-180 Q0,-220 -190,-180 Z" fill="#1E1B18" stroke="#37302A" stroke-width="3"/>
+    <path d="M-150,-150 Q0,-180 150,-150 L140,80 Q0,90 -140,80 Z" fill="#2B241D" opacity="0.7"/>
+
+    <!-- Distinguished Attorney Silhouette & Navy Bespoke Suit -->
+    <!-- Shoulders & Torso -->
+    <path d="M-230,160 Q-160,-20 -90,-80 L90,-80 Q160,-20 230,160 Z" fill="#0B1B33" stroke="#1A365D" stroke-width="2"/>
+    <!-- Vest & Crisp White Collar -->
+    <polygon points="-50,-80 0,-10 50,-80 30,-85 0,-40 -30,-85" fill="#F8FAFC"/>
+    <!-- Navy / Gold Silk Tie -->
+    <polygon points="-16,-40 16,-40 10,70 0,90 -10,70" fill="url(#goldGrad)"/>
+    <line x1="-12" y1="-10" x2="12" y2="-10" stroke="#FFFFFF" stroke-width="1.5" opacity="0.6"/>
+    <!-- Head & Hair Contour -->
+    <ellipse cx="0" cy="-145" rx="55" ry="68" fill="#E2C2A0"/>
+    <path d="M-58,-160 Q0,-225 58,-160 Q65,-120 48,-115 Q30,-175 -30,-175 Q-60,-150 -58,-160 Z" fill="#1A1817"/>
+    <!-- Eyeglasses / Professional Rim -->
+    <rect x="-42" y="-150" width="34" height="18" rx="4" fill="none" stroke="#D4AF37" stroke-width="2"/>
+    <rect x="8" y="-150" width="34" height="18" rx="4" fill="none" stroke="#D4AF37" stroke-width="2"/>
+    <line x1="-8" y1="-142" x2="8" y2="-142" stroke="#D4AF37" stroke-width="2"/>
+    <!-- Confident Approachable Expression -->
+    <path d="M-18,-118 Q0,-106 18,-118" stroke="#9A6B43" stroke-width="2.5" fill="none"/>
+  </g>
+
+  <!-- Executive Table Elements: Contract Documents, Gold Fountain Pen, Japanese Seal -->
+  <g transform="translate(960, 880)">
+    <!-- Legal Contract Paper Documents -->
+    <rect x="-380" y="-30" width="260" height="160" rx="3" fill="#F8FAFC" opacity="0.95" transform="rotate(-6)" stroke="#E2E8F0" stroke-width="1"/>
+    <!-- Text Lines on Contract -->
+    <g fill="#94A3B8" opacity="0.6" transform="rotate(-6 -380 -30)">
+      <rect x="-360" y="-10" width="140" height="6" rx="2"/>
+      <rect x="-360" y="10" width="220" height="4" rx="2"/>
+      <rect x="-360" y="22" width="200" height="4" rx="2"/>
+      <rect x="-360" y="34" width="210" height="4" rx="2"/>
+      <rect x="-360" y="46" width="180" height="4" rx="2"/>
+      <rect x="-360" y="66" width="190" height="4" rx="2"/>
+      <!-- Red Stamp Verification -->
+      <circle cx="-170" cy="85" r="14" fill="#DC2626" opacity="0.8"/>
+      <circle cx="-170" cy="85" r="11" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+    </g>
+
+    <!-- iPad Pro with Strategic Legal Dashboard -->
+    <rect x="140" y="-35" width="280" height="170" rx="10" fill="#0F172A" stroke="#475569" stroke-width="3" transform="rotate(4)"/>
+    <rect x="150" y="-25" width="260" height="150" rx="4" fill="#0A192F" transform="rotate(4)"/>
+    <path d="M170,40 L210,10 L260,30 L310,-10 L370,50" fill="none" stroke="#D4AF37" stroke-width="3" transform="rotate(4)"/>
+    <circle cx="310" cy="-10" r="5" fill="#FDE047" transform="rotate(4)"/>
+
+    <!-- Gold Fountain Pen -->
+    <polygon points="-80,20 -70,10 60,60 50,70" fill="#1E293B"/>
+    <polygon points="-80,20 -95,25 -70,10" fill="url(#goldGrad)"/>
+    <rect x="-20" y="36" width="12" height="4" fill="url(#goldGrad)" transform="rotate(22 -20 36)"/>
+  </g>
+
+  <!-- Ambient Light Vignette & Floating Particles -->
+  <circle cx="960" cy="520" r="480" fill="url(#goldGrad)" opacity="0.06" filter="url(#blurFilter)"/>
+  <circle cx="300" cy="200" r="280" fill="#3B82F6" opacity="0.05" filter="url(#blurFilter)"/>
+
+  <!-- Brand Watermark & Tagline Overlay -->
+  <g transform="translate(100, 100)" opacity="0.85">
+    <text x="0" y="0" font-family="'Cinzel', 'Shippori Mincho', serif" font-size="28" font-weight="700" fill="url(#goldGrad)" letter-spacing="4">LUMEN LEGAL CONSULTING</text>
+    <text x="0" y="28" font-family="'Noto Sans JP', sans-serif" font-size="14" font-weight="500" fill="#94A3B8" letter-spacing="2">企業法務・労務リスク解決特化 総合法律事務所</text>
+  </g>
+</svg>

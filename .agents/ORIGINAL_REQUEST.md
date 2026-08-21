@@ -86,3 +86,46 @@ Integrity mode: development
 
 </USER_REQUEST>
 
+## 2026-08-21T08:25:33Z
+
+<USER_REQUEST>
+GitHub Pages対応のLPポータルに、第3弾サンプルとして新PASONAの法則（リスク回避・課題解決型）および重厚感と信頼性あふれるモダンUIを採用した「企業法務・労務コンサルティング・契約書トラブル解決に強い士業・法務総合事務所（LUMEN LEGAL CONSULTING）」の特化LPを構築し、AI生成ビジュアルアセット、オンライン＆対面2WAY相談予約カレンダー、料金体系（松竹梅）、ポータル連携、および自動テスト・本番反映を実施する。
+
+Working directory: c:/Project/事業案/05_LP作成
+Integrity mode: development
+
+## Requirements
+
+### R1. 士業・法務コンサルティング特化 サンプルLP（`samples/legal/index.html`）
+新PASONAの法則（Problem：契約・労務・未払いリスク / Affinity：代表弁護士・専門家の寄り添いストーリー / Solution：予防法務×スピード解決の3大強み / Offer：松竹梅明朗顧問・スポットプラン / Narrowing Down：毎月先着10社無料相談枠 / Action：14日間相談予約カレンダー & LINE即時相談）に基づいた高成約型コピーライティングと、信頼感・権威性のあるネイビー＆シャンパンゴールドのモダンGlassmorphism UIを実装する。
+
+### R2. 高解像度AI実写ビジュアルアセットの生成と組み込み
+Gemini画像生成ツールを活用し、以下の高解像度実写画像を生成して `samples/legal/assets/images/` に配置・最適化する。
+1. `hero_consultation.jpg`: モダンなエグゼクティブルームで親身に相談を受ける知的な日本人法務コンサルタント・弁護士
+2. `partner_portrait.jpg`: 誠実で信頼感あふれる代表パートナーの自然なポートレート
+3. `legal_contract_review.jpg`: 契約書・重要書類を緻密にチェックするプロフェッショナルな手元
+4. `boardroom_meeting.jpg`: 洗練されたカンファレンスルームでの戦略的コンサルティング風景
+
+### R3. 相談予約カレンダー（Zoomオンライン / 対面2WAY）＆ 設定一元化
+`samples/legal/js/config.js` でGAS Webhook URL、相談枠（10:00/13:00/15:30/18:00）、定休日を一元管理し、Googleカレンダー同期・動的フォールバック計算・予約完了画面（Google/Appleカレンダー登録、LINE相談連動）を実装する。
+
+### R4. トップポータル（`index.html`）統合 ＆ 双方向ナビゲーション
+トップポータルの「士業・法務」ジャンルに公開中（LIVE DEMO）カードを追加し、エステ・イタリアンと並ぶ3大看板として連携する。ヘッダーのクイックリンクや双方向復帰リンクを整備する。
+
+### R5. 自動テスト検証 ＆ GitHub Pages本番デプロイ
+リンク整合性（404ゼロ）、DOM構造、レスポンシブ表示（375px〜1920px）、相談予約カレンダー連動の自動テストスイートを拡張・100%パスさせ、GitHubの `main` ブランチへプッシュして即座にGitHub Pages本番環境を更新する。
+
+## Acceptance Criteria
+
+### 画面・機能要件
+- [ ] トップポータル（`index.html`）から `samples/legal/index.html` への遷移、および士業LPからポータルへの復帰リンクが正常に動作する
+- [ ] 士業LP内に新PASONA全セクション（リスク提起、代表メッセージ、3大強み、松竹梅料金、14日予約カレンダー、FAQ）が実装されている
+- [ ] Gemini生成の弁護士/法務実写写真がヒーロー・代表紹介・強みセクションに美しく配置されている
+- [ ] モバイル（375px〜）からPCまで完全レスポンシブで、下部追従の無料相談CTAが機能する
+- [ ] 相談予約完了画面で予約番号発行、Google/Appleカレンダー登録、LINE相談連動が動作する
+
+### 検証・品質
+- [ ] 全自動テストスイートが100%パスする
+- [ ] GitHubの `main` ブランチにプッシュされ、GitHub Pagesで公開される
+
+</USER_REQUEST>

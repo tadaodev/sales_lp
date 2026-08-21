@@ -10,7 +10,7 @@ Validates:
 3. Case Sensitivity Guard: Enforces exact case matching on disk to prevent Linux/GitHub Pages 404s.
 4. Rule-L3: In-page and cross-page anchor (#id) target element existence.
 5. Rule-L4: External URL scheme whitelist (http, https, line, tel, mailto, javascript, data).
-6. Script Order Guard: Enforces config.js is loaded before aesthetic.js in HTML.
+6. Script Order Guard: Enforces config.js is loaded before aesthetic.js, italian.js, and legal.js in HTML.
 """
 
 import os
@@ -214,6 +214,23 @@ class LinkValidator:
                             "target": "config.js",
                             "message": "config.js must be loaded BEFORE italian.js in HTML."
                         })
+
+            # Check script order in samples/legal/index.html (config.js before legal.js)
+            if html_file.name == "index.html" and "legal" in str(html_file):
+                has_config = any("config.js" in s for s in scripts)
+                has_legal = any("legal.js" in s for s in scripts)
+                if has_config and has_legal:
+                    config_idx = next(i for i, s in enumerate(scripts) if "config.js" in s)
+                    legal_idx = next(i for i, s in enumerate(scripts) if "legal.js" in s)
+                    if config_idx > legal_idx:
+                        self.violations.append({
+                            "rule": "SCRIPT_LOAD_ORDER",
+                            "file": str(html_file.relative_to(self.root_dir)),
+                            "line": 1,
+                            "target": "config.js",
+                            "message": "config.js must be loaded BEFORE legal.js in HTML."
+                        })
+
 
         # Validate all CSS links
         for css_file in self.css_files:

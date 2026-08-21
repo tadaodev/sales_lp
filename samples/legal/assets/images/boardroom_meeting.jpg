@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="boardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050B14"/>
+      <stop offset="35%" stop-color="#0A192F"/>
+      <stop offset="70%" stop-color="#0F223D"/>
+      <stop offset="100%" stop-color="#1B3860"/>
+    </linearGradient>
+    <linearGradient id="sunsetSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E1B4B"/>
+      <stop offset="40%" stop-color="#9A3412"/>
+      <stop offset="70%" stop-color="#EA580C"/>
+      <stop offset="90%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#FEF08A"/>
+    </linearGradient>
+    <linearGradient id="goldAccentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFBEB"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#92400E"/>
+    </linearGradient>
+    <linearGradient id="tableGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#261A14"/>
+      <stop offset="40%" stop-color="#19100B"/>
+      <stop offset="100%" stop-color="#0C0704"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="65%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#FDE047" stop-opacity="0.45"/>
+      <stop offset="50%" stop-color="#EA580C" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0A192F" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+  </defs>
+
+  <!-- Base Interior Room Background -->
+  <rect width="1920" height="1080" fill="url(#boardBg)"/>
+
+  <!-- High-Rise Panoramic Glass Windows & Tokyo Golden Hour View -->
+  <g opacity="0.65">
+    <!-- Sunset Sky through Windows -->
+    <rect x="140" y="80" width="1640" height="580" rx="6" fill="url(#sunsetSky)"/>
+    <!-- Sun Flare -->
+    <circle cx="1280" cy="360" r="280" fill="url(#sunGlow)" filter="url(#softGlow)"/>
+
+    <!-- Imperial Palace & Marunouchi Skyscraper Skylines -->
+    <path d="M140,540 L280,520 L360,420 L440,420 L480,560 L580,380 L680,380 L760,560 L860,460 L940,460 L1020,560 L1120,400 L1220,400 L1320,560 L1460,340 L1580,340 L1660,560 L1780,560 L1780,660 L140,660 Z" fill="#18181B" opacity="0.85"/>
+    <rect x="360" y="420" width="80" height="140" fill="#27272A"/>
+    <rect x="580" y="380" width="100" height="180" fill="#27272A"/>
+    <rect x="1120" y="400" width="100" height="160" fill="#27272A"/>
+    <rect x="1460" y="340" width="120" height="220" fill="#27272A"/>
+
+    <!-- Window Grid Mullions -->
+    <line x1="550" y1="80" x2="550" y2="660" stroke="#0F172A" stroke-width="12"/>
+    <line x1="960" y1="80" x2="960" y2="660" stroke="#0F172A" stroke-width="16"/>
+    <line x1="1370" y1="80" x2="1370" y2="660" stroke="#0F172A" stroke-width="12"/>
+    <line x1="140" y1="660" x2="1780" y2="660" stroke="#0F172A" stroke-width="18"/>
+  </g>
+
+  <!-- Modern Wall Presentation Screen (Right Side) -->
+  <g transform="translate(1440, 200)">
+    <rect x="0" y="0" width="420" height="280" rx="8" fill="#090E17" stroke="#334155" stroke-width="4"/>
+    <rect x="12" y="12" width="396" height="256" rx="4" fill="#0A192F"/>
+    <text x="25" y="40" font-family="'Cinzel', serif" font-size="14" font-weight="700" fill="#D4AF37" letter-spacing="2">STRATEGIC LEGAL RISK ANALYSIS</text>
+    <!-- Risk Map Chart -->
+    <circle cx="200" cy="145" r="70" fill="none" stroke="#1E3A5F" stroke-width="12"/>
+    <circle cx="200" cy="145" r="70" fill="none" stroke="#D4AF37" stroke-width="12" stroke-dasharray="320 440"/>
+    <circle cx="200" cy="145" r="70" fill="none" stroke="#10B981" stroke-width="12" stroke-dasharray="110 440" stroke-dashoffset="-320"/>
+    <text x="200" y="140" font-family="'Noto Sans JP', sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">98.5%</text>
+    <text x="200" y="162" font-family="'Noto Sans JP', sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle">リスク回避達成率</text>
+  </g>
+
+  <!-- Large Solid Wood & Glass Executive Conference Table -->
+  <polygon points="260,680 1660,680 1880,1080 40,1080" fill="url(#tableGrad)"/>
+  <!-- Table Rim Gold Inlay -->
+  <line x1="260" y1="680" x2="1660" y2="680" stroke="url(#goldAccentGrad)" stroke-width="3"/>
+  <polygon points="260,680 1660,680 1880,1080 40,1080" fill="none" stroke="#D4AF37" stroke-width="1" opacity="0.3"/>
+
+  <!-- Speaker / Lead Attorney Standing at Head of Table -->
+  <g transform="translate(1080, 520)">
+    <!-- Standing Attorney in Dark Navy Suit -->
+    <path d="M-60,160 L-40,-50 L40,-50 L60,160 Z" fill="#0A192F" stroke="#1E3A5F" stroke-width="1.5"/>
+    <polygon points="-15,-50 0,20 15,-50 0,-30" fill="#F8FAFC"/>
+    <polygon points="-5,-30 5,-30 3,35 0,45 -3,35" fill="url(#goldAccentGrad)"/>
+    <!-- Head -->
+    <circle cx="0" cy="-85" r="32" fill="#E2C2A0"/>
+    <path d="M-30,-90 Q0,-125 30,-90 Q34,-65 24,-65 Q10,-100 -10,-100 Q-30,-80 -30,-90 Z" fill="#1C1917"/>
+    <!-- Presentation Gesture with Document in Hand -->
+    <path d="M-40,-20 L-110,40 L-95,65 L-30,0 Z" fill="#0A192F"/>
+    <rect x="-140" y="20" width="45" height="60" rx="2" fill="#FFFFFF" transform="rotate(-20 -140 20)"/>
+    <!-- Right Arm -->
+    <path d="M40,-20 L80,30 L65,45 L30,0 Z" fill="#0A192F"/>
+  </g>
+
+  <!-- Executives Seated Around Conference Table (Silhouettes / Realistic Figures) -->
+  <!-- Left Side Executives (3 Persons) -->
+  <g transform="translate(360, 690)">
+    <!-- Executive 1 -->
+    <circle cx="0" cy="-70" r="28" fill="#DFB794"/>
+    <path d="M-26,-75 Q0,-105 26,-75 Q28,-55 20,-55 Q10,-85 -10,-85 Q-26,-70 -26,-75 Z" fill="#292524"/>
+    <path d="M-55,50 L-35,-40 L35,-40 L55,50 Z" fill="#1E293B"/>
+    <!-- Laptop on desk -->
+    <rect x="-40" y="30" width="70" height="40" rx="3" fill="#64748B"/>
+    <polygon points="-40,30 -25,0 45,0 30,30" fill="#94A3B8"/>
+  </g>
+
+  <g transform="translate(560, 710)">
+    <!-- Executive 2 (Female Director) -->
+    <circle cx="0" cy="-70" r="26" fill="#ECCBB0"/>
+    <path d="M-28,-70 Q0,-110 28,-70 Q35,-20 20,-20 Q10,-90 -10,-90 Q-35,-20 -28,-70 Z" fill="#18181B"/>
+    <path d="M-50,60 L-30,-35 L30,-35 L50,60 Z" fill="#334155"/>
+    <rect x="-35" y="40" width="60" height="8" rx="2" fill="#FEF08A" opacity="0.8"/>
+  </g>
+
+  <g transform="translate(760, 720)">
+    <!-- Executive 3 (Senior Managing Director) -->
+    <circle cx="0" cy="-75" r="28" fill="#D4A373"/>
+    <path d="M-26,-80 Q0,-105 26,-80 Q25,-65 20,-65 Q10,-90 -10,-90 Q-26,-75 -26,-80 Z" fill="#64748B"/>
+    <path d="M-55,70 L-35,-40 L35,-40 L55,70 Z" fill="#0F172A"/>
+  </g>
+
+  <!-- Right Side Executives (2 Persons) -->
+  <g transform="translate(1360, 710)">
+    <circle cx="0" cy="-70" r="27" fill="#DEBA94"/>
+    <path d="M-26,-75 Q0,-105 26,-75 Q28,-55 20,-55 Q10,-85 -10,-85 Q-26,-70 -26,-75 Z" fill="#1C1917"/>
+    <path d="M-50,60 L-30,-35 L30,-35 L50,60 Z" fill="#1E293B"/>
+    <rect x="-30" y="40" width="60" height="40" rx="3" fill="#475569"/>
+  </g>
+
+  <g transform="translate(1560, 690)">
+    <circle cx="0" cy="-68" r="26" fill="#ECCBB0"/>
+    <path d="M-26,-72 Q0,-105 26,-72 Q30,-40 20,-40 Q10,-85 -10,-85 Q-30,-40 -26,-72 Z" fill="#292524"/>
+    <path d="M-48,50 L-28,-35 L28,-35 L48,50 Z" fill="#334155"/>
+  </g>
+
+  <!-- Polycom Conference Speaker in Table Center -->
+  <g transform="translate(960, 840)">
+    <polygon points="0,-25 24,18 -24,18" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+    <circle cx="0" cy="0" r="8" fill="#0EA5E9"/>
+    <circle cx="0" cy="0" r="4" fill="#38BDF8"/>
+  </g>
+
+  <!-- Water Glasses & Documents on Table -->
+  <g opacity="0.75">
+    <ellipse cx="480" cy="800" rx="10" ry="5" fill="#E2E8F0"/>
+    <ellipse cx="680" cy="815" rx="10" ry="5" fill="#E2E8F0"/>
+    <ellipse cx="1260" cy="815" rx="10" ry="5" fill="#E2E8F0"/>
+    <ellipse cx="1460" cy="800" rx="10" ry="5" fill="#E2E8F0"/>
+  </g>
+
+  <!-- Champagne Gold Frame Badge -->
+  <g transform="translate(80, 80)">
+    <rect x="0" y="0" width="460" height="64" rx="10" fill="#0A192F" fill-opacity="0.9" stroke="#D4AF37" stroke-width="1.5"/>
+    <text x="25" y="28" font-family="'Shippori Mincho', serif" font-size="16" font-weight="700" fill="#FFFFFF">【強み02】元大手企業法務チームの集合知</text>
+    <text x="25" y="48" font-family="'Noto Sans JP', sans-serif" font-size="12" fill="#D4AF37">解決実績1,200社超・勝率98.5%の戦略顧問</text>
+  </g>
+</svg>

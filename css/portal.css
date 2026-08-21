@@ -299,6 +299,15 @@ body {
   box-shadow: 0 8px 24px rgba(226, 109, 69, 0.28);
 }
 
+.quick-demo-pill.pill-legal {
+  border-color: rgba(212, 175, 55, 0.45);
+}
+
+.quick-demo-pill.pill-legal:hover {
+  border-color: var(--primitive-gold-500);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+}
+
 .pill-dot {
   width: 8px;
   height: 8px;
@@ -314,6 +323,11 @@ body {
 .pill-dot.italian {
   background: #E26D45;
   box-shadow: 0 0 6px rgba(226, 109, 69, 0.6);
+}
+
+.pill-dot.legal {
+  background: #D4AF37;
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
 }
 
 .pill-arrow {

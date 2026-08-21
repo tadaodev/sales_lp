@@ -1,27 +1,28 @@
-# Project: Sales LP Portal & Italian Restaurant Sample LP (TRATTORIA & PIZZERIA BELLA TAVOLA)
+# Project: Sales LP Portal & Legal Consulting Sample LP (LUMEN LEGAL CONSULTING)
 
 ## Architecture
 - **Multi-Vertical Landing Page Suite**: Hosted on GitHub Pages (`https://tadaodev.github.io/sales_lp/`), zero hosting cost.
-  - Portal (`index.html`): Filterable showcase with category tabs (All, 美容・サロン, 飲食・店舗, 士業・コンサル, etc.) and preview modals.
+  - Portal (`index.html`): Filterable showcase with category tabs (All, 美容・サロン, 飲食・店舗, 士業・法務, etc.) and preview modals.
   - Aesthetic Salon Sample (`samples/aesthetic/`): Luxury aesthetic salon LP with 14-day slot availability, GAS integration, .ics & LINE integration.
-  - Italian Restaurant Sample (`samples/italian/`): Casual Italian restaurant "TRATTORIA & PIZZERIA BELLA TAVOLA" LP based on new PASONA formula, rich warm modern styling (terracotta `#C85A32`, wine red `#722F37`, olive green `#556B2F`, warm wood `#8B5A2B`, cream background `#FDFBF7`), pizza & pasta sizzle, 14-day lunch/dinner 2-shift seat calendar, instant reservation modal, Google/Apple calendar and LINE integration.
-- **Static Frontend Architecture**: Pure HTML5, Modern CSS (CSS custom properties, glassmorphism, responsive grid/flexbox), Vanilla ES6+ JavaScript.
+  - Italian Restaurant Sample (`samples/italian/`): Casual Italian restaurant "TRATTORIA & PIZZERIA BELLA TAVOLA" LP based on new PASONA formula, warm modern styling, lunch/dinner 2-shift seat calendar.
+  - Legal Consulting Sample (`samples/legal/`): Corporate legal & labor consulting "LUMEN LEGAL CONSULTING" LP based on new PASONA formula (risk avoidance), Luxury Glassmorphism UI (Navy `#0A192F` & Champagne Gold `#D4AF37`), 4 photographic AI visual assets, 14-day 2WAY consultation booking calendar (Zoom online vs In-person Marunouchi office), Matsutake 3-tier pricing, Google/Apple (.ics with 2h alarm) calendar integration, and LINE instant consultation.
+- **Static Frontend Architecture**: Pure HTML5, Modern CSS (CSS custom properties, Glassmorphism `backdrop-filter: blur(16px)`), Vanilla ES6+ JavaScript.
 - **Serverless Backend (GAS)**: Google Apps Script Web App (`gas/Code.gs`) providing reservation endpoints and ledger recording.
-- **Centralized Configuration**: `samples/italian/js/config.js` (`window.RESTAURANT_CONFIG`) defining GAS URL, business hours (Lunch 11:30-15:00 / Dinner 17:30-22:30), closed days (Tuesday), table seat capacity, time shifts, LINE ID, and fallback simulation flag.
-- **Offline / Standalone Fallback**: Deterministic seat calculation engine providing realistic availability (◯, △, ✕, 休) and seamless mock booking without breaking user experience when GAS URL is unset or offline.
-- **Automated Test Infrastructure**: Multi-tier Python test runner (`tests/run_all_tests.py`), verifying links, DOM structures, responsive UI, seat reservation calendar calculations, and deployment integrity.
+- **Centralized Configuration**: `samples/legal/js/config.js` (`window.LEGAL_CONFIG`) defining firm info, consultation modes (Zoom online / In-person), business hours (9:30-19:30), closed days (Sat/Sun [0, 6]), time slots (10:00/13:00/15:30/18:00), 14-day span, LINE ID, and deterministic fallback simulation.
+- **Offline / Standalone Fallback**: Deterministic calculation engine providing realistic availability (◯, △, ✕, 休) and seamless mock booking without breaking user experience when GAS URL is unset or offline.
+- **Automated Test Infrastructure**: Multi-tier Python test runner (`tests/run_all_tests.py`), verifying links, DOM structures, responsive UI, 2WAY consultation calendar calculations, and deployment integrity (100% pass guarantee).
 
 ---
 
 ## Feature Inventory
 | # | Feature | Description | Milestone | Source |
 |---|---------|-------------|-----------|--------|
-| 1 | Italian Restaurant Sample LP HTML/CSS/JS | Full new PASONA structure (Problem, Affinity, Solution, Offer, Narrowing, Action) with warm sizzling UI | M1 | ORIGINAL_REQUEST §R1 |
-| 2 | Image Asset Wiring & Sizzle Visuals | Proper placement of 4 generated high-res images (`trattoria_interior.jpg`, `pizza_margherita.jpg`, `handmade_pasta.jpg`, `dolce_tiramisu.jpg`) | M1 | ORIGINAL_REQUEST §R2 |
-| 3 | Unified Config & Seat Calendar Logic | `config.js` with lunch/dinner 2-shift seat reservation calendar (◯, △, ✕, 休) and dynamic fallback calculation | M1 | ORIGINAL_REQUEST §R3 |
-| 4 | Reservation Modal & ICS / LINE Integration | Modal on submit with booking ID, Google Calendar, Apple Calendar (.ics), and 1-tap LINE confirmation | M1 | ORIGINAL_REQUEST §R3 |
-| 5 | Top Portal Integration & Bi-directional Nav | Add Italian LP card to `index.html` under "飲食・店舗", ensure bidirectional navigation with zero 404s | M2 | ORIGINAL_REQUEST §R4 |
-| 6 | Automated Test Suite Extension | Extend `tests/` with Italian LP DOM, relative links, responsive checks, and seat calendar verification (100% pass) | M3 | ORIGINAL_REQUEST §R5 |
+| 1 | Legal Consulting Sample LP HTML/CSS/JS | Full new PASONA structure (Problem, Affinity, Solution, Offer, Narrowing, Action, FAQ) with Luxury Glassmorphism (Navy & Champagne Gold) | M1 | ORIGINAL_REQUEST §R1 |
+| 2 | High-Resolution AI Image Assets | 4 photographic visual assets (`hero_consultation.jpg`, `partner_portrait.jpg`, `legal_contract_review.jpg`, `boardroom_meeting.jpg`) under `samples/legal/assets/images/` | M1 | ORIGINAL_REQUEST §R2 |
+| 3 | Unified Config & 2WAY Consultation Calendar | `config.js` with `window.LEGAL_CONFIG`, Zoom online vs In-person 2WAY mode, 4 slots (10:00/13:00/15:30/18:00), 14-day availability calculation & fallback | M1 | ORIGINAL_REQUEST §R3 |
+| 4 | Consultation Modal & ICS / LINE Integration | Modal on submit with booking ID (`LEG-YYYYMMDD-XXXX` or `LUM-YYYYMMDD-XXXX`), Google Calendar, Apple Calendar (.ics with 2h alarm), and 1-tap LINE confirmation | M1 | ORIGINAL_REQUEST §R3 |
+| 5 | Top Portal Integration & Bi-directional Nav | Add Legal LP card to `index.html` under "士業・法務" filter with LIVE DEMO badge, quick links, and bidirectional navigation | M2 | ORIGINAL_REQUEST §R4 |
+| 6 | Automated Test Suite Extension | Extend `tests/` with Legal LP DOM, relative links, responsive checks, 2WAY calendar, and image presence (100% pass) | M3 | ORIGINAL_REQUEST §R5 |
 | 7 | Git Commit & GitHub Pages Push | Commit all changes and push to `main` for instant deployment | M4 | ORIGINAL_REQUEST §R5 |
 
 ---
@@ -29,42 +30,53 @@
 ## Milestones
 | # | Name | Scope | Dependencies | Status |
 |---|------|-------|-------------|--------|
-| M1 | Italian Restaurant LP Implementation | `samples/italian/index.html`, `samples/italian/css/italian.css`, `samples/italian/js/config.js`, `samples/italian/js/italian.js`, asset wiring | none | DONE |
-| M2 | Top Portal Integration & Nav | `index.html`, `samples/italian/index.html` return links | M1 | DONE |
-| M3 | Automated Test Suite Extension | `tests/run_all_tests.py`, `tests/validate_pasona_dom.py`, `tests/validate_links.py`, `tests/test_interactive_ui.py` | M1, M2 | DONE |
-| M4 | Git Commit & GitHub Pages Deploy | Git commit and push to `origin main` | M3 | DONE |
+| M1 | Legal Consulting LP Implementation & Assets | `samples/legal/index.html`, `samples/legal/css/legal.css`, `samples/legal/js/config.js`, `samples/legal/js/legal.js`, `samples/legal/assets/images/*` | none | COMPLETED |
+| M2 | Top Portal Integration & Nav | `index.html` (portal card, quick links, filter badge) & bidirectional nav | M1 | COMPLETED |
+| M3 | Automated Test Suite Extension | `tests/run_all_tests.py`, `tests/validate_links.py`, `tests/validate_pasona_dom.py`, `tests/test_interactive_ui.py`, `tests/test_server.py` | M1, M2 | COMPLETED |
+| M4 | Git Commit & GitHub Pages Deploy | Git commit and push to `origin main` | M3 | COMPLETED |
 
 ---
 
 ## Interface Contracts
 
-### `samples/italian/js/config.js` ↔ `samples/italian/js/italian.js`
+### `samples/legal/js/config.js` ↔ `samples/legal/js/legal.js`
 ```javascript
-window.RESTAURANT_CONFIG = {
-  restaurantName: "TRATTORIA & PIZZERIA BELLA TAVOLA",
-  restaurantPhone: "03-5678-9012",
-  restaurantEmail: "info@bellatavola.example.com",
-  restaurantAddress: "東京都渋谷区神宮前5-X-X",
-  gasWebhookUrl: "", // Optional GAS Web App URL
-  businessHours: {
-    lunch: { start: "11:30", end: "15:00", lastOrder: "14:30" },
-    dinner: { start: "17:30", end: "22:30", lastOrder: "21:30" }
-  },
-  closedDays: [2], // Tuesday (0: Sun, 1: Mon, 2: Tue, 3: Wed, 4: Thu, 5: Fri, 6: Sat)
-  timeSlots: {
-    lunch: ["11:30", "12:00", "12:30", "13:00", "13:30"],
-    dinner: ["17:30", "18:00", "18:30", "19:00", "19:30", "20:00"]
-  },
+window.LEGAL_CONFIG = {
+  firmName: "LUMEN LEGAL CONSULTING",
+  firmJapaneseName: "ルーメン総合法律事務所",
+  firmTagline: "企業法務・労務リスク解決特化 総合法律事務所",
+  postalCode: "100-0005",
+  address: "東京都千代田区丸の内1-8-3 丸の内トラストタワーN館 18F",
+  access: "JR東京駅 日本橋口 徒歩1分 / 東京メトロ大手町駅 B7出口 徒歩2分",
+  phone: "03-6890-1234",
+  email: "contact@lumen-legal.example.com",
+  gasWebhookUrl: "",
+  businessHours: { weekday: "9:30 - 19:30", label: "平日 9:30 - 19:30（土日祝 定休）" },
+  closedDays: [0, 6], // 0: Sun, 6: Sat
+  closedDaysLabel: "土曜日・日曜日・祝日",
+  timeSlots: ["10:00", "13:00", "15:30", "18:00"],
   daysToShow: 14,
-  lineOfficialUrl: "https://line.me/R/ti/p/@bella_tavola",
-  fallbackSimulation: true
+  consultationModes: {
+    online: { id: "online", label: "Zoomオンライン相談", badge: "全国対応・移動ゼロ" },
+    in_person: { id: "in_person", label: "丸の内オフィス対面相談", badge: "完全個室・重要書類持参" }
+  },
+  lineOfficialUrl: "https://line.me/R/ti/p/@lumen_legal",
+  fallbackSimulation: true,
+  simulationSeedSalt: "lumen_legal_consulting_2026",
+  planMaster: {
+    free_trial: { id: "free_trial", name: "初回60分 無料法律相談", price: 0, priceLabel: "¥0（通常 ¥15,000）" },
+    bamboo: { id: "bamboo", name: "【竹】スタンダード顧問プラン ★人気No.1", price: 50000, priceLabel: "¥50,000 / 月" },
+    plum: { id: "plum", name: "【梅】ライト顧問プラン", price: 30000, priceLabel: "¥30,000 / 月" },
+    pine: { id: "pine", name: "【松】プレミアム顧問プラン", price: 100000, priceLabel: "¥100,000 / 月" },
+    spot_review: { id: "spot_review", name: "【スポット】契約書作成・チェック", price: 20000, priceLabel: "¥20,000〜 / 通" }
+  }
 };
 ```
 
 ---
 
 ## Code Layout & Write Boundaries
-- **Milestone 1**: `samples/italian/index.html`, `samples/italian/css/italian.css`, `samples/italian/js/config.js`, `samples/italian/js/italian.js`
+- **Milestone 1**: `samples/legal/index.html`, `samples/legal/css/legal.css`, `samples/legal/js/config.js`, `samples/legal/js/legal.js`, `samples/legal/assets/images/*`
 - **Milestone 2**: `index.html` (Top portal integration)
-- **Milestone 3**: `tests/run_all_tests.py`, `tests/validate_links.py`, `tests/validate_pasona_dom.py`, `tests/test_interactive_ui.py`
+- **Milestone 3**: `tests/run_all_tests.py`, `tests/validate_links.py`, `tests/validate_pasona_dom.py`, `tests/test_interactive_ui.py`, `tests/test_server.py`
 - **Milestone 4**: Git repository sync

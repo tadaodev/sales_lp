@@ -1,16 +1,15 @@
-## 2026-08-21T00:00:25Z
-Execute the following terminal commands using run_command tool in PowerShell (with UTF-8 prefix [Console]::OutputEncoding = [System.Text.Encoding]::UTF8;):
-1. Run master test suite:
-   `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $env:PYTHONUTF8=1; python tests/run_all_tests.py`
-2. Git status:
-   `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; git status`
-3. Git stage:
-   `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; git add .`
-4. Git commit:
-   `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; git commit -m "feat(italian): カジュアルイタリアンLP（BELLA TAVOLA）新規構築・新PASONA構成・14日2部制席予約カレンダー・ポータル統合・自動テスト拡充"`
-5. Git push:
-   `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; git push origin main`
-6. Verify `git log -1`:
-   `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; git log -1`
+## 2026-08-21T09:00:19Z
 
-Capture the outputs, write your execution report to `c:\Project\事業案\05_LP作成\.agents\worker_git_sync\handoff.md`, and report completion to parent via send_message.
+You are a Git deploy worker (worker_git_sync).
+Your working directory is c:\Project\事業案\05_LP作成\.agents\worker_git_sync.
+
+Execute the following commands in PowerShell with UTF-8 encoding:
+1. Run master test suite:
+   [Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $env:PYTHONUTF8=1; python tests/run_all_tests.py
+2. Stage and commit all changes:
+   git add .
+   git commit -m "feat(legal): add Legal Consulting sample LP (LUMEN LEGAL CONSULTING), 2WAY booking calendar, AI assets, portal integration, and full test suite"
+3. Push to GitHub main branch:
+   git push origin main
+
+Report the exact terminal output and status back to me with send_message and write handoff.md in your working directory.
