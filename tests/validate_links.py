@@ -199,6 +199,22 @@ class LinkValidator:
                             "message": "config.js must be loaded BEFORE aesthetic.js in HTML."
                         })
 
+            # Check script order in samples/italian/index.html (config.js before italian.js)
+            if html_file.name == "index.html" and "italian" in str(html_file):
+                has_config = any("config.js" in s for s in scripts)
+                has_italian = any("italian.js" in s for s in scripts)
+                if has_config and has_italian:
+                    config_idx = next(i for i, s in enumerate(scripts) if "config.js" in s)
+                    italian_idx = next(i for i, s in enumerate(scripts) if "italian.js" in s)
+                    if config_idx > italian_idx:
+                        self.violations.append({
+                            "rule": "SCRIPT_LOAD_ORDER",
+                            "file": str(html_file.relative_to(self.root_dir)),
+                            "line": 1,
+                            "target": "config.js",
+                            "message": "config.js must be loaded BEFORE italian.js in HTML."
+                        })
+
         # Validate all CSS links
         for css_file in self.css_files:
             links = extract_css_links(css_file)

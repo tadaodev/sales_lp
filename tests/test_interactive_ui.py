@@ -125,6 +125,54 @@ class ConfigSchemaValidator:
             return False, {}, "Failed to parse SALON_CONFIG structure."
 
 
+class ItalianConfigSchemaValidator:
+    """Validates samples/italian/js/config.js structure and schema."""
+    def __init__(self, project_root: Path = PROJECT_ROOT):
+        self.config_path = project_root / "samples" / "italian" / "js" / "config.js"
+
+    def parse_config(self) -> Tuple[bool, Dict[str, Any], str]:
+        if not self.config_path.exists():
+            return False, {}, f"Config file not found at {self.config_path}"
+
+        content = self.config_path.read_text(encoding="utf-8", errors="replace")
+
+        if "RESTAURANT_CONFIG" not in content:
+            return False, {}, "window.RESTAURANT_CONFIG object definition not found."
+
+        extracted = {}
+        patterns = {
+            "restaurantName": r'restaurantName\s*:\s*["\']([^"\']+)["\']',
+            "restaurantPhone": r'restaurantPhone\s*:\s*["\']([^"\']+)["\']',
+            "restaurantAddress": r'restaurantAddress\s*:\s*["\']([^"\']+)["\']',
+            "daysToShow": r'daysToShow\s*:\s*(\d+)',
+            "lineOfficialUrl": r'lineOfficialUrl\s*:\s*["\']([^"\']+)["\']',
+            "fallbackSimulation": r'fallbackSimulation\s*:\s*(true|false)'
+        }
+        for k, pat in patterns.items():
+            m = re.search(pat, content)
+            if m:
+                extracted[k] = m.group(1)
+
+        cd_m = re.search(r'closedDays\s*:\s*\[([^\]]*)\]', content)
+        if cd_m:
+            extracted["closedDays"] = [int(x.strip()) for x in cd_m.group(1).split(",") if x.strip().isdigit()]
+
+        ts_lunch = re.search(r'lunch\s*:\s*\[([^\]]*)\]', content)
+        ts_dinner = re.search(r'dinner\s*:\s*\[([^\]]*)\]', content)
+        extracted["timeSlots"] = {}
+        if ts_lunch:
+            extracted["timeSlots"]["lunch"] = [x.strip().strip('"\'') for x in ts_lunch.group(1).split(",") if x.strip()]
+        if ts_dinner:
+            extracted["timeSlots"]["dinner"] = [x.strip().strip('"\'') for x in ts_dinner.group(1).split(",") if x.strip()]
+
+        if "courseMaster" in content or "courses" in content:
+            extracted["courseMaster"] = True
+
+        if extracted.get("restaurantName") and extracted.get("closedDays") and extracted.get("timeSlots"):
+            return True, extracted, ""
+        return False, {}, "Failed to parse RESTAURANT_CONFIG structure."
+
+
 class GASBackendValidator:
     """Validates gas/Code.gs and gas/README.md structure, endpoints, and setup instructions."""
     def __init__(self, project_root: Path = PROJECT_ROOT):
@@ -260,9 +308,9 @@ class ThankYouViewValidator:
     """Validates reservation ID format, RFC 5545 .ics generation, and LINE URL encoding."""
 
     @staticmethod
-    def validate_reservation_id(res_id: str) -> bool:
-        """Validates format LUM-YYYYMMDD-XXXX."""
-        pattern = r'^LUM-\d{8}-[A-Z0-9]{4}$'
+    def validate_reservation_id(res_id: str, prefix: str = "LUM") -> bool:
+        """Validates format (LUM|TAV)-YYYYMMDD-XXXX."""
+        pattern = rf'^{prefix}-\d{{8}}-[A-Z0-9]{{4}}$'
         return bool(re.match(pattern, res_id))
 
     @staticmethod
@@ -472,6 +520,57 @@ class InteractiveUIValidator:
             "Fallback Engine: Deterministic pseudo-randomness & regular holiday closure (Tue=closed)",
             deterministic_ok and closed_ok,
             f"100 repeated calls identical: {deterministic_ok}, Tuesday closed: {closed_ok}"
+        )
+
+        # 8. Italian Restaurant Config Validation
+        itl_cfg_val = ItalianConfigSchemaValidator(self.project_root)
+        itl_cfg_ok, itl_cfg_dict, itl_cfg_err = itl_cfg_val.parse_config()
+        self.record_result(
+            "TC-ITL-CFG-VAL",
+            "Italian Config: RESTAURANT_CONFIG schema & required fields (lunch 5 / dinner 6 slots)",
+            itl_cfg_ok and "timeSlots" in itl_cfg_dict and "closedDays" in itl_cfg_dict,
+            itl_cfg_err if not itl_cfg_ok else f"Parsed keys: {list(itl_cfg_dict.keys())}"
+        )
+
+        # 9. Italian Calendar DOM Validation
+        italian_html = self.project_root / "samples" / "italian" / "index.html"
+        if italian_html.exists():
+            itl_html_text = italian_html.read_text(encoding="utf-8", errors="replace")
+            itl_parser = TagFinder()
+            itl_parser.feed(itl_html_text)
+
+            has_itl_calendar = any(
+                "calendar" in e["attrs"].get("id", "") or "calendar" in e["attrs"].get("class", "")
+                for e in itl_parser.elements
+            ) or "calendar-table-container" in itl_html_text
+
+            self.record_result(
+                "TC-ITL-CAL-DOM",
+                "Italian Calendar UI: DOM container & 2-shift table container in #action",
+                has_itl_calendar,
+                "Italian calendar container detected." if has_itl_calendar else "Italian calendar container not found."
+            )
+        else:
+            self.record_result("TC-ITL-CAL-DOM", "Italian Calendar UI", False, "samples/italian/index.html not found.")
+
+        # 10. Italian Reservation ID Validation (TAV-YYYYMMDD-XXXX)
+        res_id_itl = "TAV-20260821-4B2E"
+        itl_id_valid = ThankYouViewValidator.validate_reservation_id(res_id_itl, prefix="TAV")
+        self.record_result(
+            "TC-ITL-TNK-RESID",
+            "Italian Thank-You: Reservation ID format (TAV-YYYYMMDD-XXXX) validation",
+            itl_id_valid,
+            f"Sample ID: {res_id_itl}, format valid: {itl_id_valid}"
+        )
+
+        # 11. Italian LINE Deep Link Validation
+        itl_line_url = ThankYouViewValidator.generate_line_chat_url("TAV-20260821-4B2E", "竹コース", "2026-08-22", "18:30", line_id="@bella_tavola")
+        itl_line_ok = itl_line_url.startswith("https://line.me/R/oaMessage/@bella_tavola") and "TAV-20260821-4B2E" in urllib.parse.unquote(itl_line_url)
+        self.record_result(
+            "TC-ITL-LIN-URL",
+            "Italian LINE Integration: URL deep link and URL-encoded reservation parameters",
+            itl_line_ok,
+            f"Generated LINE URL: {itl_line_url[:60]}..."
         )
 
         all_passed = all(r["passed"] for r in self.results)

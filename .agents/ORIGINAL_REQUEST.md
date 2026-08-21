@@ -38,3 +38,51 @@ Integrity mode: development
 - [ ] GitHubの `main` ブランチに正常にプッシュされ、GitHub Pagesでアクセス可能になっている
 
 </USER_REQUEST>
+
+## 2026-08-20T23:40:16Z
+
+<USER_REQUEST>
+GitHub Pages対応のLPポータルに、第2弾サンプルとして新PASONAの法則とシズル感あふれるモダンUIを採用した「本格石窯ピッツァ＆手打ちパスタの親しみやすいカジュアルイタリアン（TRATTORIA & PIZZERIA BELLA TAVOLA）」のサンプルLPを構築し、生成済み料理画像アセットの組み込み、席予約・カレンダー連動、およびトップポータルからの選択動線を実装・本番デプロイする。
+
+Working directory: c:/Project/事業案/05_LP作成
+Integrity mode: development
+
+## 料理・店舗ビジュアルアセット（生成済み）
+- `samples/italian/assets/images/trattoria_interior.jpg`（温かみあるトラットリア店内）
+- `samples/italian/assets/images/pizza_margherita.jpg`（薪窯焼き立てマルゲリータ）
+- `samples/italian/assets/images/handmade_pasta.jpg`（手打ちタリアテッレ ボロネーゼ）
+- `samples/italian/assets/images/dolce_tiramisu.jpg`（自家製濃厚ティラミス＆エスプレッソ）
+
+## Requirements
+
+### R1. イタリア料理店 サンプルLP（`samples/italian/index.html`）
+新PASONAの法則（Problem・Affinity・Solution・Offer・Narrowing Down・Action）に基づき、食欲とシズル感を刺激するコピーライティング（本場ナポリ仕込みの薪窯ピッツァ・毎朝手打ちの生パスタ・厳選オーガニックワイン・記念日＆歓送迎会プラン）と、暖色系（テラコッタ・ワインレッド・オリーブグリーン・木目調）のモダンUIを持つLPを実装する。
+シェフのこだわりストーリー、名物料理・コースメニュー一覧（松竹梅コース＆ランチ）、リアルタイム席空き状況カレンダー、Web席予約/LINE予約、店舗アクセス案内（地図・営業時間）を含む。
+
+### R2. 生成済み料理画像アセットの最適配置とビジュアル演出
+`samples/italian/assets/images/` 配下の高解像度実写画像をヒーロー・メニュー紹介・こだわり・ドルチェ各セクションに最適配置し、シズル感のある写真ギャラリーやホバー演出を実装する。
+
+### R3. 設定一元管理（`samples/italian/js/config.js`）＆ Googleカレンダー自動同期対応
+エステLPと同様の完全自動化設計を踏襲し、`config.js` でGAS Webhook URL、営業時間（ランチ・ディナー2部制）、定休日、席数設定を一元管理する。未設定時でも動的計算フォールバックで席カレンダー（◯・△・✕）と予約シミュレーションが完結動作すること。
+
+### R4. トップポータル（`index.html`）統合 ＆ 双方向ナビゲーション
+トップポータルのジャンルフィルタ「飲食・店舗」に本イタリアンLPのカード（サムネイル・新PASONA特徴タグ・直接リンク）を追加し、エステLPと並ぶ「公開中」サンプルとして連携する。イタリアンLP側からもポータルへの戻りリンクを完備する。
+
+### R5. 自動テスト検証 ＆ GitHub Pages本番デプロイ
+リンク整合性（404ゼロ）、DOM構造、レスポンシブ表示（375px〜1920px）、席予約カレンダー連動の自動テストスイートを拡張・全件合格させ、GitHubの `main` ブランチへプッシュして即座にGitHub Pages本番環境を更新する。
+
+## Acceptance Criteria
+
+### 画面・機能要件
+- [ ] トップポータル（`index.html`）から `samples/italian/index.html` への遷移、およびイタリアンLPからトップへの復帰リンクが正常に動作する
+- [ ] イタリアンLP内に生成済みの料理・店内写真が適切に配置され、シズル感のある洗練されたデザインになっている
+- [ ] 新PASONA全セクション（こだわり、コース料金、利用シーン・お客様の声、席予約カレンダー、FAQ等）が実装されている
+- [ ] モバイル（375px〜）からPCまで完全レスポンシブで、下部追従の席予約CTAが機能する
+- [ ] 席予約完了画面で予約番号発行、Google/Appleカレンダー登録、LINE連動が動作する
+
+### 検証・品質
+- [ ] 全自動テストが100%パスする
+- [ ] GitHubの `main` ブランチにプッシュされ、GitHub Pagesで公開される
+
+</USER_REQUEST>
+

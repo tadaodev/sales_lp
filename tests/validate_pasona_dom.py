@@ -339,6 +339,19 @@ class PASONADOMValidator:
                 "message": "Aesthetic Salon LP samples/aesthetic/index.html not yet found on disk."
             })
 
+        italian_html = self.project_root / "samples" / "italian" / "index.html"
+        if italian_html.exists():
+            v_seo = self.validate_semantics_and_seo(italian_html)
+            v_pasona = self.validate_file_pasona(italian_html)
+            self.violations.extend(v_seo)
+            self.violations.extend(v_pasona)
+        else:
+            self.violations.append({
+                "rule": "ITALIAN_LP_MISSING",
+                "file": "samples/italian/index.html",
+                "message": "Italian Restaurant LP samples/italian/index.html not yet found on disk."
+            })
+
         is_clean = len(self.violations) == 0
         if verbose:
             if is_clean:
