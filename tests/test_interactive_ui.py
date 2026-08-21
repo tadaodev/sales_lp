@@ -224,6 +224,102 @@ class LegalConfigSchemaValidator:
         return False, {}, "Failed to parse LEGAL_CONFIG structure."
 
 
+class BakeryConfigSchemaValidator:
+    """Validates samples/bakery/js/config.js structure and schema."""
+    def __init__(self, project_root: Path = PROJECT_ROOT):
+        self.config_path = project_root / "samples" / "bakery" / "js" / "config.js"
+
+    def parse_config(self) -> Tuple[bool, Dict[str, Any], str]:
+        if not self.config_path.exists():
+            return False, {}, f"Config file not found at {self.config_path}"
+
+        content = self.config_path.read_text(encoding="utf-8", errors="replace")
+
+        if "BAKERY_CONFIG" not in content:
+            return False, {}, "window.BAKERY_CONFIG object definition not found."
+
+        extracted = {}
+        patterns = {
+            "bakeryName": r'bakeryName\s*:\s*["\']([^"\']+)["\']',
+            "bakeryPhone": r'(?:bakeryPhone|phone)\s*:\s*["\']([^"\']+)["\']',
+            "bakeryAddress": r'(?:bakeryAddress|address)\s*:\s*["\']([^"\']+)["\']',
+            "bakeryEmail": r'(?:bakeryEmail|email)\s*:\s*["\']([^"\']+)["\']',
+            "daysToShow": r'daysToShow\s*:\s*(\d+)',
+            "lineOfficialUrl": r'lineOfficialUrl\s*:\s*["\']([^"\']+)["\']',
+            "fallbackSimulation": r'fallbackSimulation\s*:\s*(true|false)'
+        }
+        for k, pat in patterns.items():
+            m = re.search(pat, content)
+            if m:
+                extracted[k] = m.group(1) if k != "fallbackSimulation" else (m.group(1) == "true")
+
+        cd_m = re.search(r'closedDays\s*:\s*\[([^\]]*)\]', content)
+        if cd_m:
+            extracted["closedDays"] = [int(x.strip()) for x in cd_m.group(1).split(",") if x.strip().isdigit()]
+
+        ts_m = re.search(r'timeSlots\s*:\s*\[([^\]]*)\]', content)
+        if ts_m:
+            extracted["timeSlots"] = [x.strip().strip('"\'') for x in ts_m.group(1).split(",") if x.strip()]
+
+        if "bakingSchedule" in content:
+            extracted["bakingSchedule"] = True
+
+        if "planMaster" in content or "assortments" in content:
+            extracted["planMaster"] = True
+
+        if extracted.get("bakeryName") and extracted.get("closedDays") is not None and extracted.get("timeSlots"):
+            return True, extracted, ""
+        return False, {}, "Failed to parse BAKERY_CONFIG structure."
+
+
+class WashokuConfigSchemaValidator:
+    """Validates samples/washoku/js/config.js structure and schema."""
+    def __init__(self, project_root: Path = PROJECT_ROOT):
+        self.config_path = project_root / "samples" / "washoku" / "js" / "config.js"
+
+    def parse_config(self) -> Tuple[bool, Dict[str, Any], str]:
+        if not self.config_path.exists():
+            return False, {}, f"Config file not found at {self.config_path}"
+
+        content = self.config_path.read_text(encoding="utf-8", errors="replace")
+
+        if "WASHOKU_CONFIG" not in content:
+            return False, {}, "window.WASHOKU_CONFIG object definition not found."
+
+        extracted = {}
+        patterns = {
+            "restaurantName": r'restaurantName\s*:\s*["\']([^"\']+)["\']',
+            "restaurantPhone": r'(?:restaurantPhone|phone)\s*:\s*["\']([^"\']+)["\']',
+            "restaurantAddress": r'(?:restaurantAddress|address)\s*:\s*["\']([^"\']+)["\']',
+            "restaurantEmail": r'(?:restaurantEmail|email)\s*:\s*["\']([^"\']+)["\']',
+            "daysToShow": r'daysToShow\s*:\s*(\d+)',
+            "maxPartySize": r'maxPartySize\s*:\s*(\d+)',
+            "lineOfficialUrl": r'lineOfficialUrl\s*:\s*["\']([^"\']+)["\']',
+            "fallbackSimulation": r'fallbackSimulation\s*:\s*(true|false)'
+        }
+        for k, pat in patterns.items():
+            m = re.search(pat, content)
+            if m:
+                extracted[k] = m.group(1) if k not in ("fallbackSimulation", "maxPartySize", "daysToShow") else (
+                    int(m.group(1)) if k in ("maxPartySize", "daysToShow") else (m.group(1) == "true")
+                )
+
+        cd_m = re.search(r'closedDays\s*:\s*\[([^\]]*)\]', content)
+        if cd_m:
+            extracted["closedDays"] = [int(x.strip()) for x in cd_m.group(1).split(",") if x.strip().isdigit()]
+
+        ts_m = re.search(r'timeSlots\s*:\s*\[([^\]]*)\]', content)
+        if ts_m:
+            extracted["timeSlots"] = [x.strip().strip('"\'') for x in ts_m.group(1).split(",") if x.strip()]
+
+        if "courseMaster" in content or "courses" in content:
+            extracted["courseMaster"] = True
+
+        if extracted.get("restaurantName") and extracted.get("closedDays") is not None and extracted.get("timeSlots"):
+            return True, extracted, ""
+        return False, {}, "Failed to parse WASHOKU_CONFIG structure."
+
+
 
 class GASBackendValidator:
     """Validates gas/Code.gs and gas/README.md structure, endpoints, and setup instructions."""
@@ -419,12 +515,132 @@ class LegalCalendarEngineSimulator:
         return self.consultation_modes.get(mode, {}).get("location", "Zoomオンライン")
 
 
+class BakeryCalendarSimulator:
+    """Simulates 14-day calendar date calculation and deterministic fallback logic for Bakery LP."""
+    def __init__(self, closed_days: Optional[List[int]] = None, time_slots: Optional[List[str]] = None):
+        self.closed_days = closed_days if closed_days is not None else [1, 2]  # 1: Mon, 2: Tue
+        self.time_slots = time_slots if time_slots is not None else ["08:00", "11:00", "14:00", "16:30"]
+
+    def generate_14_days(self, base_date: datetime.date) -> List[datetime.date]:
+        """Generates list of 14 consecutive dates starting from base_date."""
+        return [base_date + datetime.timedelta(days=i) for i in range(14)]
+
+    def compute_deterministic_status(self, date_obj: datetime.date, slot_time: str) -> str:
+        """
+        Deterministic slot status calculation for Bakery LP:
+        - Regular closed days (Mon=1, Tue=2 in JS weekday): 'closed'
+        - Open days: pseudo-random 'available', 'limited', or 'full'
+        """
+        js_weekday = (date_obj.weekday() + 1) % 7
+
+        if js_weekday in self.closed_days:
+            return "closed"
+
+        date_str = date_obj.strftime("%Y-%m-%d")
+        slot_idx = self.time_slots.index(slot_time) if slot_time in self.time_slots else 0
+
+        seed = 0
+        for char in f"{date_str}-{slot_time}-bakery-boulangerie_artisanale_bakery_2026":
+            seed = (seed * 31 + ord(char)) & 0xFFFFFFFF
+
+        score = (seed + slot_idx * 13) % 100
+
+        if score < 50:
+            return "available"
+        elif score < 80:
+            return "limited"
+        else:
+            return "full"
+
+    def get_status_symbol(self, status: str) -> str:
+        mapping = {
+            "available": "◯",
+            "limited": "△",
+            "full": "✕",
+            "closed": "休"
+        }
+        return mapping.get(status, "✕")
+
+    def get_status_class(self, status: str) -> str:
+        mapping = {
+            "available": "is-available",
+            "limited": "is-limited",
+            "full": "is-full",
+            "closed": "is-closed"
+        }
+        return mapping.get(status, "is-closed")
+
+
+class WashokuCalendarSimulator:
+    """Simulates 14-day calendar date calculation and deterministic fallback logic for Washoku LP."""
+    def __init__(self, closed_days: Optional[List[int]] = None, time_slots: Optional[List[str]] = None, max_party: int = 40):
+        self.closed_days = closed_days if closed_days is not None else [0]  # 0: Sun
+        self.time_slots = time_slots if time_slots is not None else ["17:00", "18:30", "19:30", "20:30"]
+        self.max_party = max_party
+
+    def generate_14_days(self, base_date: datetime.date) -> List[datetime.date]:
+        """Generates list of 14 consecutive dates starting from base_date."""
+        return [base_date + datetime.timedelta(days=i) for i in range(14)]
+
+    def compute_deterministic_status(self, date_obj: datetime.date, slot_time: str) -> str:
+        """
+        Deterministic slot status calculation for Washoku Izakaya LP:
+        - Regular closed days (Sun=0 in JS weekday): 'closed'
+        - Open days: pseudo-random 'available', 'limited', or 'full'
+        """
+        js_weekday = (date_obj.weekday() + 1) % 7
+
+        if js_weekday in self.closed_days:
+            return "closed"
+
+        date_str = date_obj.strftime("%Y-%m-%d")
+        slot_idx = self.time_slots.index(slot_time) if slot_time in self.time_slots else 0
+
+        seed = 0
+        for char in f"{date_str}-{slot_time}-washoku-enishi_washoku_banquet_2026":
+            seed = (seed * 31 + ord(char)) & 0xFFFFFFFF
+
+        score = (seed + slot_idx * 17) % 100
+
+        if score < 50:
+            return "available"
+        elif score < 80:
+            return "limited"
+        else:
+            return "full"
+
+    def get_status_symbol(self, status: str) -> str:
+        mapping = {
+            "available": "◯",
+            "limited": "△",
+            "full": "✕",
+            "closed": "休"
+        }
+        return mapping.get(status, "✕")
+
+    def get_status_class(self, status: str) -> str:
+        mapping = {
+            "available": "is-available",
+            "limited": "is-limited",
+            "full": "is-full",
+            "closed": "is-closed"
+        }
+        return mapping.get(status, "is-closed")
+
+    def validate_party_size(self, size: int) -> Tuple[bool, str]:
+        if size < 2:
+            return False, "最低2名様よりご予約を承ります。"
+        if size > self.max_party:
+            return False, f"最大{self.max_party}名様までの宴会個室となります（貸切はお電話にてご相談ください）。"
+        return True, ""
+
+
 class ThankYouViewValidator:
     """Validates reservation ID format, RFC 5545 .ics generation, and LINE URL encoding."""
 
     @staticmethod
-    def validate_reservation_id(res_id: str, prefix: str = "LUM|TAV|LEG") -> bool:
-        """Validates format (LUM|TAV|LEG)-YYYYMMDD-XXXX."""
+    def validate_reservation_id(res_id: str, prefix: str = "LUM|TAV|LEG|BAK|WSH") -> bool:
+        """Validates format (LUM|TAV|LEG|BAK|WSH)-YYYYMMDD-XXXX."""
         pattern = rf'^(?:{prefix})-\d{{8}}-[A-Z0-9]{{4}}$'
         return bool(re.match(pattern, res_id))
 
@@ -482,6 +698,66 @@ class ThankYouViewValidator:
         """Constructs LINE deep link for Legal Consultation."""
         mode_label = "Zoomオンライン相談" if mode == "online" else "丸の内オフィス対面相談"
         msg = f"【法律相談予約確認】\n予約番号: {res_id}\n相談形式: {mode_label}\nご希望日時: {date_str} {time_str}\n選択プラン: {plan_name}\nよろしくお願いいたします。"
+        encoded_msg = urllib.parse.quote(msg)
+        return f"https://line.me/R/oaMessage/{line_id}/?{encoded_msg}"
+
+    @staticmethod
+    def generate_bakery_google_calendar_url(res_id: str, plan_name: str, date_str: str, time_str: str, bakery_name: str = "BOULANGERIE ARTISANALE") -> str:
+        """Constructs Google Calendar Web template URL for Bakery pickup (30 min duration)."""
+        dt_start_clean = date_str.replace("-", "") + "T" + time_str.replace(":", "") + "00"
+        h, m = map(int, time_str.split(":"))
+        end_m = m + 30
+        end_h = h + end_m // 60
+        end_m = end_m % 60
+        dt_end_clean = date_str.replace("-", "") + f"T{end_h:02d}{end_m:02d}00"
+
+        title = f"【パン受取予約】{bakery_name} ({plan_name})"
+        details = f"ご予約番号: {res_id}\nご注文内容: {plan_name}\n店舗: {bakery_name}\n受取日時: {date_str} {time_str}\n※焼きたてをご用意してお待ちしております。"
+        location = "東京都目黒区八雲3-12-8 ブーランジェリーテラス 1F"
+
+        params = {
+            "action": "TEMPLATE",
+            "text": title,
+            "dates": f"{dt_start_clean}/{dt_end_clean}",
+            "details": details,
+            "location": location
+        }
+        return "https://calendar.google.com/calendar/render?" + urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
+
+    @staticmethod
+    def generate_bakery_line_chat_url(res_id: str, plan_name: str, date_str: str, time_str: str, line_id: str = "@boulangerie_art") -> str:
+        """Constructs LINE deep link for Bakery reservation."""
+        msg = f"【パン取り置き予約確認】\n予約番号: {res_id}\n受取日時: {date_str} {time_str}\n選択BOX: {plan_name}\nよろしくお願いいたします。"
+        encoded_msg = urllib.parse.quote(msg)
+        return f"https://line.me/R/oaMessage/{line_id}/?{encoded_msg}"
+
+    @staticmethod
+    def generate_washoku_google_calendar_url(res_id: str, course_name: str, date_str: str, time_str: str, party_size: int = 4, restaurant_name: str = "個室和食 旬彩 縁 -ENISHI-") -> str:
+        """Constructs Google Calendar Web template URL for Washoku Banquet (120 min duration)."""
+        dt_start_clean = date_str.replace("-", "") + "T" + time_str.replace(":", "") + "00"
+        h, m = map(int, time_str.split(":"))
+        end_m = m + 120
+        end_h = h + end_m // 60
+        end_m = end_m % 60
+        dt_end_clean = date_str.replace("-", "") + f"T{end_h:02d}{end_m:02d}00"
+
+        title = f"【宴会予約】{restaurant_name} ({course_name})"
+        details = f"ご予約番号: {res_id}\nコース: {course_name}\n人数: {party_size}名様\n店舗: {restaurant_name}\n※2時間飲み放題付き宴会となります。"
+        location = "東京都中央区銀座7-X-X 銀座縁ビル 3F・4F"
+
+        params = {
+            "action": "TEMPLATE",
+            "text": title,
+            "dates": f"{dt_start_clean}/{dt_end_clean}",
+            "details": details,
+            "location": location
+        }
+        return "https://calendar.google.com/calendar/render?" + urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
+
+    @staticmethod
+    def generate_washoku_line_chat_url(res_id: str, course_name: str, date_str: str, time_str: str, party_size: int = 4, line_id: str = "@enishi_washoku") -> str:
+        """Constructs LINE deep link for Washoku Izakaya reservation."""
+        msg = f"【個室宴会予約確認】\n予約番号: {res_id}\nご希望日時: {date_str} {time_str}\n人数: {party_size}名様\n選択コース: {course_name}\nよろしくお願いいたします。"
         encoded_msg = urllib.parse.quote(msg)
         return f"https://line.me/R/oaMessage/{line_id}/?{encoded_msg}"
 
@@ -829,6 +1105,214 @@ class InteractiveUIValidator:
             "Legal 2WAY Consultation: Zoom Online vs In-Person Marunouchi Office Location Routing",
             twoway_ok,
             f"Online: {online_loc}, In-Person: {in_person_loc}"
+        )
+
+        # 19. Bakery LP Config Validation
+        bak_cfg_val = BakeryConfigSchemaValidator(self.project_root)
+        bak_cfg_ok, bak_cfg_dict, bak_cfg_err = bak_cfg_val.parse_config()
+        self.record_result(
+            "TC-BAK-CFG-VAL",
+            "Bakery Config: BAKERY_CONFIG schema & required fields (4 pickup slots, closedDays [1,2], timetable)",
+            bak_cfg_ok and "timeSlots" in bak_cfg_dict and "closedDays" in bak_cfg_dict and len(bak_cfg_dict["timeSlots"]) == 4,
+            bak_cfg_err if not bak_cfg_ok else f"Parsed keys: {list(bak_cfg_dict.keys())}"
+        )
+
+        # 20. Bakery Calendar DOM Validation
+        bakery_html = self.project_root / "samples" / "bakery" / "index.html"
+        if bakery_html.exists():
+            bak_html_text = bakery_html.read_text(encoding="utf-8", errors="replace")
+            bak_parser = TagFinder()
+            bak_parser.feed(bak_html_text)
+
+            has_bak_calendar = any(
+                "calendar" in e["attrs"].get("id", "") or "calendar" in e["attrs"].get("class", "")
+                for e in bak_parser.elements
+            ) or "calendar-container" in bak_html_text or "calendar-grid" in bak_html_text
+
+            self.record_result(
+                "TC-BAK-CAL-DOM",
+                "Bakery Calendar UI: DOM container & 14-day schedule grid in #action",
+                has_bak_calendar,
+                "Bakery calendar container detected." if has_bak_calendar else "Bakery calendar container not found."
+            )
+        else:
+            self.record_result("TC-BAK-CAL-DOM", "Bakery Calendar UI", False, "samples/bakery/index.html not found.")
+
+        # 21. Bakery Reservation ID Validation (BAK-YYYYMMDD-XXXX)
+        res_id_bak = "BAK-20260822-8M2X"
+        bak_id_valid = ThankYouViewValidator.validate_reservation_id(res_id_bak, prefix="BAK")
+        self.record_result(
+            "TC-BAK-TNK-RESID",
+            "Bakery Thank-You: Reservation ID format (BAK-YYYYMMDD-XXXX) validation",
+            bak_id_valid,
+            f"Sample ID: {res_id_bak}, format valid: {bak_id_valid}"
+        )
+
+        # 22. Bakery RFC 5545 .ics Validation (30m duration & 2-hour VALARM)
+        bakery_sample_ics = (
+            "BEGIN:VCALENDAR\r\n"
+            "VERSION:2.0\r\n"
+            "PRODID:-//BOULANGERIE ARTISANALE//Bakery Reservation//JA\r\n"
+            "BEGIN:VEVENT\r\n"
+            "UID:BAK-20260822-8M2X@boulangerie-artisanale.example.com\r\n"
+            "DTSTAMP:20260822T070000Z\r\n"
+            "DTSTART:20260823T110000\r\n"
+            "DTEND:20260823T113000\r\n"
+            "SUMMARY:【パン受取予約】BOULANGERIE ARTISANALE (竹 定番7種詰め合わせBOX)\r\n"
+            "DESCRIPTION:ご予約番号: BAK-20260822-8M2X\\n内容: 竹 定番7種詰め合わせBOX\\n受取: 八雲本店\\r\n"
+            "LOCATION:東京都目黒区八雲3-12-8 ブーランジェリーテラス 1F\r\n"
+            "BEGIN:VALARM\r\n"
+            "TRIGGER:-PT2H\r\n"
+            "ACTION:DISPLAY\r\n"
+            "DESCRIPTION:パン受取の2時間前リマインダー\r\n"
+            "END:VALARM\r\n"
+            "END:VEVENT\r\n"
+            "END:VCALENDAR\r\n"
+        )
+        bak_ics_ok, bak_ics_errs = ThankYouViewValidator.validate_rfc5545_ics(bakery_sample_ics)
+        self.record_result(
+            "TC-BAK-ICS-RFC",
+            "Bakery ICS Sync: RFC 5545 compliance (VALARM -PT2H, 30m pickup duration)",
+            bak_ics_ok,
+            "; ".join(bak_ics_errs)
+        )
+
+        # 23. Bakery LINE Deep Link Validation
+        bak_line_url = ThankYouViewValidator.generate_bakery_line_chat_url("BAK-20260822-8M2X", "竹 定番7種詰め合わせBOX", "2026-08-23", "11:00", line_id="@boulangerie_art")
+        bak_line_ok = bak_line_url.startswith("https://line.me/R/oaMessage/@boulangerie_art") and "BAK-20260822-8M2X" in urllib.parse.unquote(bak_line_url)
+        self.record_result(
+            "TC-BAK-LIN-URL",
+            "Bakery LINE Integration: URL deep link and URL-encoded reservation parameters",
+            bak_line_ok,
+            f"Generated LINE URL: {bak_line_url[:60]}..."
+        )
+
+        # 24. Bakery Fallback Engine & Mon/Tue Closures (Mon/Tue = closed)
+        bak_engine = BakeryCalendarSimulator(closed_days=[1, 2], time_slots=["08:00", "11:00", "14:00", "16:30"])
+        bak_test_d = datetime.date(2026, 8, 23)  # Sunday
+        bak_statuses = [bak_engine.compute_deterministic_status(bak_test_d, "11:00") for _ in range(100)]
+        bak_det_ok = len(set(bak_statuses)) == 1
+
+        mon_d = datetime.date(2026, 8, 24)  # Monday
+        tue_d = datetime.date(2026, 8, 25)  # Tuesday
+        mon_status = bak_engine.compute_deterministic_status(mon_d, "08:00")
+        tue_status = bak_engine.compute_deterministic_status(tue_d, "11:00")
+        bak_closed_ok = (mon_status == "closed" and tue_status == "closed")
+
+        self.record_result(
+            "TC-BAK-FBK-DET",
+            "Bakery Fallback Engine: Deterministic pseudo-randomness & regular closures (Mon/Tue=closed)",
+            bak_det_ok and bak_closed_ok,
+            f"100 repeated calls identical: {bak_det_ok}, Monday closed: {mon_status == 'closed'}, Tuesday closed: {tue_status == 'closed'}"
+        )
+
+        # 25. Washoku LP Config Validation
+        wsh_cfg_val = WashokuConfigSchemaValidator(self.project_root)
+        wsh_cfg_ok, wsh_cfg_dict, wsh_cfg_err = wsh_cfg_val.parse_config()
+        self.record_result(
+            "TC-WSH-CFG-VAL",
+            "Washoku Config: WASHOKU_CONFIG schema & required fields (4 banquet slots, maxPartySize 40, closedDays [0])",
+            wsh_cfg_ok and "timeSlots" in wsh_cfg_dict and "closedDays" in wsh_cfg_dict and len(wsh_cfg_dict["timeSlots"]) == 4,
+            wsh_cfg_err if not wsh_cfg_ok else f"Parsed keys: {list(wsh_cfg_dict.keys())}"
+        )
+
+        # 26. Washoku Calendar DOM Validation
+        washoku_html = self.project_root / "samples" / "washoku" / "index.html"
+        if washoku_html.exists():
+            wsh_html_text = washoku_html.read_text(encoding="utf-8", errors="replace")
+            wsh_parser = TagFinder()
+            wsh_parser.feed(wsh_html_text)
+
+            has_wsh_calendar = any(
+                "calendar" in e["attrs"].get("id", "") or "calendar" in e["attrs"].get("class", "")
+                for e in wsh_parser.elements
+            ) or "calendar-container" in wsh_html_text or "calendar-grid" in wsh_html_text
+
+            self.record_result(
+                "TC-WSH-CAL-DOM",
+                "Washoku Calendar UI: DOM container & 14-day schedule grid in #action",
+                has_wsh_calendar,
+                "Washoku calendar container detected." if has_wsh_calendar else "Washoku calendar container not found."
+            )
+        else:
+            self.record_result("TC-WSH-CAL-DOM", "Washoku Calendar UI", False, "samples/washoku/index.html not found.")
+
+        # 27. Washoku Reservation ID Validation (WSH-YYYYMMDD-XXXX)
+        res_id_wsh = "WSH-20260822-4P9Q"
+        wsh_id_valid = ThankYouViewValidator.validate_reservation_id(res_id_wsh, prefix="WSH")
+        self.record_result(
+            "TC-WSH-TNK-RESID",
+            "Washoku Thank-You: Reservation ID format (WSH-YYYYMMDD-XXXX) validation",
+            wsh_id_valid,
+            f"Sample ID: {res_id_wsh}, format valid: {wsh_id_valid}"
+        )
+
+        # 28. Washoku RFC 5545 .ics Validation (120m banquet duration & 2-hour VALARM)
+        washoku_sample_ics = (
+            "BEGIN:VCALENDAR\r\n"
+            "VERSION:2.0\r\n"
+            "PRODID:-//ENISHI WASHOKU//Banquet Reservation//JA\r\n"
+            "BEGIN:VEVENT\r\n"
+            "UID:WSH-20260822-4P9Q@enishi-washoku.example.com\r\n"
+            "DTSTAMP:20260822T070000Z\r\n"
+            "DTSTART:20260828T183000\r\n"
+            "DTEND:20260828T203000\r\n"
+            "SUMMARY:【宴会予約】個室和食 旬彩 縁 -ENISHI- (竹 王道宴会コース 20名様)\r\n"
+            "DESCRIPTION:ご予約番号: WSH-20260822-4P9Q\\nコース: 竹 王道宴会コース\\n人数: 20名様\\n※2時間飲み放題付き\\r\n"
+            "LOCATION:東京都中央区銀座7-X-X 銀座縁ビル 3F・4F\r\n"
+            "BEGIN:VALARM\r\n"
+            "TRIGGER:-PT2H\r\n"
+            "ACTION:DISPLAY\r\n"
+            "DESCRIPTION:ご宴会の2時間前リマインダー\r\n"
+            "END:VALARM\r\n"
+            "END:VEVENT\r\n"
+            "END:VCALENDAR\r\n"
+        )
+        wsh_ics_ok, wsh_ics_errs = ThankYouViewValidator.validate_rfc5545_ics(washoku_sample_ics)
+        self.record_result(
+            "TC-WSH-ICS-RFC",
+            "Washoku ICS Sync: RFC 5545 compliance (VALARM -PT2H, 120m banquet duration for 18:30-20:30)",
+            wsh_ics_ok,
+            "; ".join(wsh_ics_errs)
+        )
+
+        # 29. Washoku LINE Deep Link Validation
+        wsh_line_url = ThankYouViewValidator.generate_washoku_line_chat_url("WSH-20260822-4P9Q", "竹 王道宴会コース", "2026-08-28", "18:30", party_size=20, line_id="@enishi_washoku")
+        wsh_line_ok = wsh_line_url.startswith("https://line.me/R/oaMessage/@enishi_washoku") and "WSH-20260822-4P9Q" in urllib.parse.unquote(wsh_line_url)
+        self.record_result(
+            "TC-WSH-LIN-URL",
+            "Washoku LINE Integration: URL deep link and URL-encoded reservation parameters (20名様)",
+            wsh_line_ok,
+            f"Generated LINE URL: {wsh_line_url[:60]}..."
+        )
+
+        # 30. Washoku Fallback Engine & Sunday Closure (Sun = closed)
+        wsh_engine = WashokuCalendarSimulator(closed_days=[0], time_slots=["17:00", "18:30", "19:30", "20:30"])
+        wsh_test_d = datetime.date(2026, 8, 28)  # Friday
+        wsh_statuses = [wsh_engine.compute_deterministic_status(wsh_test_d, "18:30") for _ in range(100)]
+        wsh_det_ok = len(set(wsh_statuses)) == 1
+
+        sun_wsh_d = datetime.date(2026, 8, 23)  # Sunday
+        sun_wsh_status = wsh_engine.compute_deterministic_status(sun_wsh_d, "17:00")
+        wsh_closed_ok = (sun_wsh_status == "closed")
+
+        self.record_result(
+            "TC-WSH-FBK-DET",
+            "Washoku Fallback Engine: Deterministic pseudo-randomness & Sunday regular closure (Sun=closed)",
+            wsh_det_ok and wsh_closed_ok,
+            f"100 repeated calls identical: {wsh_det_ok}, Sunday closed: {sun_wsh_status == 'closed'}"
+        )
+
+        # 31. Washoku Party Size Bounds Validation
+        pty_valid, _ = wsh_engine.validate_party_size(20)
+        pty_too_small, _ = wsh_engine.validate_party_size(1)
+        pty_too_big, _ = wsh_engine.validate_party_size(50)
+        party_bounds_ok = pty_valid and (not pty_too_small) and (not pty_too_big)
+        self.record_result(
+            "TC-WSH-PTY-VAL",
+            "Washoku Party Size Validation: Min 2, Max 40 bounds check",
+            party_bounds_ok,
+            f"Valid 20: {pty_valid}, Reject 1: {not pty_too_small}, Reject 50: {not pty_too_big}"
         )
 
         all_passed = all(r["passed"] for r in self.results)

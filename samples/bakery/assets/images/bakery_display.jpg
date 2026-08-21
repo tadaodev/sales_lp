@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <radialGradient id="displayWarmth" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#F2ECE1"/>
+      <stop offset="50%" stop-color="#D4A359" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#221C16"/>
+    </radialGradient>
+    <linearGradient id="shelfGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7A4B2A"/>
+      <stop offset="100%" stop-color="#3D2413"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#displayWarmth)"/>
+  <!-- Shelves -->
+  <rect x="150" y="320" width="1620" height="30" fill="url(#shelfGrad)" rx="6"/>
+  <rect x="150" y="580" width="1620" height="30" fill="url(#shelfGrad)" rx="6"/>
+  <rect x="150" y="840" width="1620" height="30" fill="url(#shelfGrad)" rx="6"/>
+  <!-- Wicker Baskets & Breads on top shelf -->
+  <g transform="translate(350, 240)">
+    <ellipse cx="0" cy="50" rx="140" ry="30" fill="#D4A359"/>
+    <!-- Baguettes standing -->
+    <rect x="-60" y="-120" width="30" height="150" rx="15" fill="#E6BE7E" transform="rotate(-15)"/>
+    <rect x="-20" y="-140" width="32" height="170" rx="16" fill="#D4A359" transform="rotate(-5)"/>
+    <rect x="25" y="-130" width="30" height="160" rx="15" fill="#B88536" transform="rotate(12)"/>
+  </g>
+  <!-- Croissants on middle shelf -->
+  <g transform="translate(850, 520)">
+    <ellipse cx="-120" cy="30" rx="70" ry="35" fill="#DDAF64"/>
+    <ellipse cx="0" cy="30" rx="75" ry="38" fill="#D4A359"/>
+    <ellipse cx="130" cy="30" rx="70" ry="35" fill="#DDAF64"/>
+  </g>
+  <!-- Sourdough Boules on bottom shelf -->
+  <g transform="translate(1400, 780)">
+    <circle cx="-100" cy="20" r="60" fill="#7A4B2A"/>
+    <circle cx="60" cy="20" r="65" fill="#5C3A21"/>
+  </g>
+  <text x="960" y="930" text-anchor="middle" font-family="'Playfair Display', serif" font-size="54" font-weight="bold" fill="#FDFCFA" letter-spacing="4">BOULANGERIE ARTISANALE BOUTIQUE</text>
+  <text x="960" y="990" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="28" fill="#D4A359" letter-spacing="4">欧風アンティークの温もり溢れる店内に並ぶ 毎朝の焼き立てパン</text>
+</svg>

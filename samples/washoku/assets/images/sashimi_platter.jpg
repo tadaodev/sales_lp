@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <radialGradient id="iceGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#E0F7FA"/>
+      <stop offset="40%" stop-color="#80DEEA" stop-opacity="0.5"/>
+      <stop offset="80%" stop-color="#0D1B2A"/>
+      <stop offset="100%" stop-color="#050B14"/>
+    </radialGradient>
+    <linearGradient id="getaWood" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5D4037"/>
+      <stop offset="30%" stop-color="#8D6E63"/>
+      <stop offset="70%" stop-color="#5D4037"/>
+      <stop offset="100%" stop-color="#3E2723"/>
+    </linearGradient>
+    <linearGradient id="maguroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B71C1C"/>
+      <stop offset="60%" stop-color="#880E4F"/>
+      <stop offset="100%" stop-color="#4A001F"/>
+    </linearGradient>
+    <linearGradient id="salmonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7043"/>
+      <stop offset="50%" stop-color="#F4511E"/>
+      <stop offset="100%" stop-color="#D84315"/>
+    </linearGradient>
+    <linearGradient id="taiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF0F5"/>
+      <stop offset="50%" stop-color="#F8BBD0"/>
+      <stop offset="100%" stop-color="#E91E63"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#050B14"/>
+  <rect width="100%" height="100%" fill="url(#iceGlow)"/>
+  <!-- Wooden Geta Serving Platter -->
+  <g transform="translate(600, 440)">
+    <polygon points="-460,160 460,160 400,-120 -400,-120" fill="url(#getaWood)" stroke="#271406" stroke-width="6"/>
+    <!-- Crushed Ice Mound -->
+    <ellipse cx="0" cy="10" rx="380" ry="110" fill="#E0F7FA" opacity="0.9"/>
+    <!-- Shiso Leaves (Green Perilla) -->
+    <path d="M-220,-60 Q-280,-140 -200,-150 Q-160,-90 -220,-60 Z" fill="#2E7D32"/>
+    <path d="M0,-80 Q-40,-170 30,-170 Q60,-100 0,-80 Z" fill="#388E3C"/>
+    <path d="M220,-60 Q160,-150 240,-150 Q280,-90 220,-60 Z" fill="#2E7D32"/>
+    <!-- Sashimi Slices: Maguro (Tuna) -->
+    <g transform="translate(-200, -20) rotate(-15)">
+      <path d="M-60,-25 C-30,-45 40,-40 60,-15 C40,25 -30,25 -60,-25 Z" fill="url(#maguroGrad)"/>
+      <line x1="-40" y1="-20" x2="40" y2="-10" stroke="#FFCDD2" stroke-width="2" opacity="0.6"/>
+    </g>
+    <!-- Sashimi Slices: Salmon -->
+    <g transform="translate(-60, -40) rotate(-5)">
+      <path d="M-65,-25 C-30,-45 45,-40 65,-15 C45,25 -30,25 -65,-25 Z" fill="url(#salmonGrad)"/>
+      <line x1="-45" y1="-22" x2="45" y2="-12" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+    </g>
+    <!-- Sashimi Slices: Tai (Sea Bream) -->
+    <g transform="translate(80, -35) rotate(12)">
+      <path d="M-60,-25 C-30,-45 40,-40 60,-15 C40,25 -30,25 -60,-25 Z" fill="url(#taiGrad)"/>
+      <line x1="-35" y1="-20" x2="35" y2="-10" stroke="#E91E63" stroke-width="2" opacity="0.7"/>
+    </g>
+    <!-- Botan Ebi (Sweet Prawn) -->
+    <path d="M190,-30 Q270,-90 250,-10 Q210,30 190,-30 Z" fill="#FF8A65" stroke="#D84315" stroke-width="3"/>
+    <!-- Wasabi Mound & Lemon -->
+    <circle cx="-280" cy="50" r="28" fill="#7CB342" stroke="#558B2F" stroke-width="3"/>
+    <circle cx="280" cy="40" r="32" fill="#FDD835" stroke="#FBC02D" stroke-width="4"/>
+  </g>
+  <!-- Typography -->
+  <text x="600" y="690" text-anchor="middle" font-family="'Shippori Mincho', 'Noto Serif JP', serif" font-size="36" font-weight="bold" fill="#E5A93C" letter-spacing="4">豊洲市場直送 鮮魚極上5点盛り合わせ</text>
+  <text x="600" y="740" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="20" fill="#E0F7FA" letter-spacing="3">毎朝料理長が目利きする 本マグロ・旬の白身・極上生雲丹</text>
+</svg>

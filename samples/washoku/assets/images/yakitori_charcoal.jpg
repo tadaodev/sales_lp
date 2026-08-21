@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <radialGradient id="fireGlow" cx="50%" cy="60%" r="55%">
+      <stop offset="0%" stop-color="#FF5722" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#E65100" stop-opacity="0.7"/>
+      <stop offset="70%" stop-color="#211006" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#080402"/>
+    </radialGradient>
+    <linearGradient id="charcoalGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1A1A1A"/>
+      <stop offset="30%" stop-color="#D84315"/>
+      <stop offset="50%" stop-color="#FF8A65"/>
+      <stop offset="70%" stop-color="#BF360C"/>
+      <stop offset="100%" stop-color="#1A1A1A"/>
+    </linearGradient>
+    <linearGradient id="tareGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8D4004"/>
+      <stop offset="50%" stop-color="#4E2203"/>
+      <stop offset="100%" stop-color="#260F01"/>
+    </linearGradient>
+    <filter id="glowSpark">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="#080402"/>
+  <rect width="100%" height="100%" fill="url(#fireGlow)"/>
+  <!-- Binchotan Charcoal Grill & Embers -->
+  <g transform="translate(600, 480)">
+    <!-- Charcoal Logs -->
+    <rect x="-420" y="40" width="840" height="60" rx="15" fill="url(#charcoalGrad)" stroke="#FF3D00" stroke-width="2"/>
+    <rect x="-360" y="0" width="720" height="50" rx="12" fill="url(#charcoalGrad)" opacity="0.9"/>
+    <!-- Iron Grill Mesh Lines -->
+    <line x1="-460" y1="-20" x2="460" y2="-20" stroke="#757575" stroke-width="6"/>
+    <line x1="-460" y1="20" x2="460" y2="20" stroke="#757575" stroke-width="6"/>
+    <!-- Yakitori Skewer 1: Negima -->
+    <g transform="translate(-240, -50) rotate(-8)">
+      <line x1="0" y1="140" x2="0" y2="-140" stroke="#D7CCC8" stroke-width="6"/>
+      <rect x="-35" y="-110" width="70" height="40" rx="12" fill="url(#tareGrad)"/>
+      <rect x="-25" y="-60" width="50" height="35" rx="6" fill="#2E7D32" stroke="#1B5E20" stroke-width="2"/>
+      <rect x="-35" y="-15" width="70" height="40" rx="12" fill="url(#tareGrad)"/>
+      <rect x="-25" y="35" width="50" height="35" rx="6" fill="#2E7D32" stroke="#1B5E20" stroke-width="2"/>
+      <rect x="-35" y="80" width="70" height="40" rx="12" fill="url(#tareGrad)"/>
+      <!-- Glaze Shimmer -->
+      <circle cx="-10" cy="-90" r="5" fill="#FFE082" opacity="0.8"/>
+      <circle cx="-10" cy="5" r="5" fill="#FFE082" opacity="0.8"/>
+    </g>
+    <!-- Yakitori Skewer 2: Tsukune (Meatball) -->
+    <g transform="translate(0, -60)">
+      <line x1="0" y1="140" x2="0" y2="-140" stroke="#D7CCC8" stroke-width="6"/>
+      <ellipse cx="0" cy="-90" rx="35" ry="28" fill="url(#tareGrad)"/>
+      <ellipse cx="0" cy="-30" rx="35" ry="28" fill="url(#tareGrad)"/>
+      <ellipse cx="0" cy="30" rx="35" ry="28" fill="url(#tareGrad)"/>
+      <ellipse cx="0" cy="90" rx="35" ry="28" fill="url(#tareGrad)"/>
+      <circle cx="-8" cy="-35" r="6" fill="#FFE082" opacity="0.8"/>
+    </g>
+    <!-- Yakitori Skewer 3: Kawa / Momo -->
+    <g transform="translate(240, -50) rotate(8)">
+      <line x1="0" y1="140" x2="0" y2="-140" stroke="#D7CCC8" stroke-width="6"/>
+      <rect x="-35" y="-110" width="70" height="42" rx="12" fill="url(#tareGrad)"/>
+      <rect x="-32" y="-55" width="64" height="42" rx="12" fill="url(#tareGrad)"/>
+      <rect x="-35" y="0" width="70" height="42" rx="12" fill="url(#tareGrad)"/>
+      <rect x="-32" y="55" width="64" height="42" rx="12" fill="url(#tareGrad)"/>
+    </g>
+    <!-- Floating Glowing Sparks -->
+    <circle cx="-150" cy="-180" r="4" fill="#FFD54F" filter="url(#glowSpark)"/>
+    <circle cx="-50" cy="-220" r="5" fill="#FFAB00" filter="url(#glowSpark)"/>
+    <circle cx="120" cy="-190" r="4" fill="#FFD54F" filter="url(#glowSpark)"/>
+    <circle cx="180" cy="-240" r="6" fill="#FF6D00" filter="url(#glowSpark)"/>
+  </g>
+  <!-- Typography -->
+  <text x="600" y="700" text-anchor="middle" font-family="'Shippori Mincho', 'Noto Serif JP', serif" font-size="36" font-weight="bold" fill="#FFB74D" letter-spacing="4">職人手打ち 備長炭火焼き鳥</text>
+  <text x="600" y="750" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="20" fill="#FFE082" letter-spacing="3">土佐備長炭の強火で旨味を閉じ込めた 秘伝創業タレ仕込み</text>
+</svg>

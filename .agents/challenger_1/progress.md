@@ -1,16 +1,17 @@
-# Progress - Challenger 1 (Relative Path & Hosting Stress Testing)
+# Progress — challenger_1
 
-Last visited: 2026-08-20T22:43:00+09:00
+**Last visited**: 2026-08-22T07:43:00+09:00
+**Status**: Stress testing complete. Findings synthesized into handoff report with verdict REQUEST_CHANGES.
 
-## Status: COMPLETE
-
-### Checklist
-- [x] Read ORIGINAL_REQUEST.md, PROJECT.md, TEST_READY.md
-- [x] Initialize DISPATCH.md, BRIEFING.md, progress.md
-- [x] Step 1: Run `python tests/run_all_tests.py` and inspect full execution log
-- [x] Step 2: Adversarially audit link resolution and case sensitivity across directory levels (`index.html`, `samples/aesthetic/index.html`, CSS `@import` / `url()`, JS `fetch`/redirects)
-- [x] Step 3: Run independent empirical static HTTP hosting tests on Root `/` and Subdirectory `/repo/` (simulating GitHub Pages project page)
-- [x] Step 4: Stress-test responsive boundary conditions (375px mobile, 768px tablet, 1920px desktop) via CSS rule analysis and DOM assertions
-- [x] Step 5: Test edge cases in Vanilla JS interactivity (modal, accordion, category filtering, hash changes, resize events)
-- [x] Step 6: Formulate verdict (APPROVE), finalize `handoff.md`, and notify parent agent
-- [ ] Step 7: Execute Obsidian daemon sync (final step of turn)
+## Checklist
+- [x] Initialized DISPATCH.md and BRIEFING.md
+- [x] Inspect source files (`PROJECT.md`, `ORIGINAL_REQUEST.md`, `samples/bakery/js/*`, `samples/washoku/js/*`, `tests/*`)
+- [x] Execute Empirical Stress Tests:
+  - [x] 1. Calendar math (+14 days, leap year 2028, month rollovers, timezone/day boundaries) -> PASSED
+  - [x] 2. Past time slot marking on today's date -> PASSED
+  - [x] 3. Closed days rendering (Bakery: Mon/Tue, Washoku: Sun) -> PASSED
+  - [x] 4. Party size validation (Washoku: 2-40) and bonus badge highlighting -> PASSED
+  - [x] 5. Fallback deterministic seed reproducibility and RFC 5545 `.ics` formatting -> PASSED
+  - [x] 6. Static asset and test suite audit -> DEFECT IDENTIFIED (Washoku 4 image assets are 74-79B text stubs)
+- [x] Synthesize findings into handoff report with verdict REQUEST_CHANGES
+- [ ] Obsidian sync daemon execution & send message to caller

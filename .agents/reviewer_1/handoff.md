@@ -1,140 +1,135 @@
-# Reviewer 1 Handoff Report: Structural & Specification Conformance Review
+# Review & Adversarial Quality Gate Report — reviewer_1
 
-**Reviewer Identity**: `teamwork_preview_reviewer` (Reviewer 1)  
-**Target Milestone**: Reviewer 1 - Structural & Specification Conformance  
-**Verdict**: **APPROVE**  
+**Review Target**: 5-Flagship Landing Page Suite (Bakery LP, Washoku LP, Portal Hub, and Test Suite)  
+**Evaluator**: reviewer_1 (Reviewer & Critic)  
+**Date**: 2026-08-22  
+**Final Verdict**: **REQUEST_CHANGES**
 
 ---
 
 ## 1. Observation
 
-本レビューにおいて、以下の対象成果物、設計ドキュメント、およびテストコードを直接精査・検証しました。
+### 1.1 Critical Finding: [INTEGRITY VIOLATION] Washoku LP Image Assets are 74–79 Byte Dummy Text Comments
+In `samples/washoku/assets/images/`, all 4 visual assets required by `ORIGINAL_REQUEST.md §R3` and `PROJECT.md §Feature 5` were created as empty/corrupted text placeholder files rather than actual photographic or valid visual graphics:
 
-### 1.1 精査対象ファイル一覧
-- ポータル画面: `c:/Project/事業案/05_LP作成/index.html` (487行)
-- 共通デザイントークン: `c:/Project/事業案/05_LP作成/css/tokens.css` (244行)
-- CSSリセット: `c:/Project/事業案/05_LP作成/css/reset.css` (104行)
-- ポータルスタイル: `c:/Project/事業案/05_LP作成/css/portal.css` (993行)
-- ポータルスクリプト: `c:/Project/事業案/05_LP作成/js/portal.js` (164行)
-- エステサロンLP: `c:/Project/事業案/05_LP作成/samples/aesthetic/index.html` (1224行)
-- エステサロンLPスタイル: `c:/Project/事業案/05_LP作成/samples/aesthetic/css/aesthetic.css` (2078行)
-- エステサロンLPスクリプト: `c:/Project/事業案/05_LP作成/samples/aesthetic/js/aesthetic.js` (261行)
-- 4層統合テストスイート: `c:/Project/事業案/05_LP作成/tests/` 配下
-  - `run_all_tests.py` (563行)
-  - `test_server.py` (269行)
-  - `validate_links.py` (318行)
-  - `validate_pasona_dom.py` (360行)
-  - `test_interactive_ui.py` (324行)
+1. `samples/washoku/assets/images/hero_banquet_nabe.jpg` (76 bytes):
+   ```text
+   /* High-Resolution AI-Generated Culinary Visual Asset: hero_banquet_nabe */
+   ```
+2. `samples/washoku/assets/images/sashimi_platter.jpg` (74 bytes):
+   ```text
+   /* High-Resolution AI-Generated Culinary Visual Asset: sashimi_platter */
+   ```
+3. `samples/washoku/assets/images/yakitori_charcoal.jpg` (76 bytes):
+   ```text
+   /* High-Resolution AI-Generated Culinary Visual Asset: yakitori_charcoal */
+   ```
+4. `samples/washoku/assets/images/washoku_private_room.jpg` (79 bytes):
+   ```text
+   /* High-Resolution AI-Generated Culinary Visual Asset: washoku_private_room */
+   ```
 
-### 1.2 具体的な検証事実の記録
+- In contrast, the Bakery LP image assets (`samples/bakery/assets/images/`) are valid vector SVG graphics ranging between 1,360 bytes and 2,257 bytes.
+- In `tests/validate_links.py` (lines 287–294) and `tests/run_all_tests.py` (lines 801–808), the test harness explicitly asserts:
+  ```python
+  elif abs_img_path.stat().st_size < 1000:
+      self.violations.append({
+          "rule": "INVALID_IMAGE_ASSET",
+          "file": rel_img_path,
+          "line": 1,
+          "target": rel_img_path,
+          "message": f"Image asset '{img_label}' is corrupted or empty ({abs_img_path.stat().st_size} bytes)."
+      })
+  ```
+- Because these files are < 1000 bytes and contain non-image text comments, browsers render broken image icons, and automated tests fail.
 
-1. **相対パス整合性（ゼロ ルート相対 `/`）**:
-   - `index.html`:
-     - CSS読込: `href="./css/reset.css"` (21行目), `href="./css/tokens.css"` (22行目), `href="./css/portal.css"` (23行目)
-     - リンク: `href="./index.html"` (33, 476行目), `href="./samples/aesthetic/index.html"` (203, 477行目)
-     - JS読込: `src="./js/portal.js"` (484行目)
-   - `samples/aesthetic/index.html`:
-     - CSS読込: `href="../../css/tokens.css"` (15行目), `href="../../css/reset.css"` (16行目), `href="./css/aesthetic.css"` (17行目)
-     - ポータル復帰リンク: `href="../../index.html"` (28, 1070行目)
-     - JS読込: `src="./js/aesthetic.js"` (1221行目)
-   - 全ファイルにおいてルート相対パス（`/css`、`/samples`等）の記述は **0件** であることを確認。
+---
 
-2. **見出し階層（Single H1 & Heading Hierarchy）**:
-   - `index.html`:
-     - `<h1>`: 65行目 `<h1 id="hero-title" class="hero-title">`（ページ内唯一）
-     - `<h2>`: 103行目 `#showcase-title`, 416行目 `#features-title`
-     - `<h3>`: 174, 228, 256, 285, 317, 346, 376, 402, 429, 443, 457行目
-     - 階層飛び（H1→H3など）なし。
-   - `samples/aesthetic/index.html`:
-     - `<h1>`: 70行目 `<h1 class="hero-title">`（ページ内唯一）
-     - `<h2>`: 161, 259, 306, 522, 738, 807, 866, 1004行目
-     - `<h3>`: 244, 323, 337, 351, 361, 472, 533, 583, 638, 694, 703, 822, 842, 1127行目
-     - `<h4>`: 478, 485, 492, 499, 506, 707, 712, 717, 1208行目
-     - 階層飛びなし、論理的な見出し構成を維持。
+### 1.2 Major Finding: Heading Hierarchy Level Skipped in `samples/washoku/index.html`
+In `samples/washoku/index.html` (Narrowing Down section `#narrowing`):
+- Line 474: `<h2 class="section-title">早期ご予約限定の特別特典 ＆ 金・土・祝前日の残席状況</h2>`
+- Followed directly by child elements in `.benefits-card`:
+  - Line 485: `<h4>特典①: 8名様以上のご予約で「幹事様1名無料」</h4>`
+  - Line 494: `<h4>特典②: 20名様以上のご予約で「金箔入り特選日本酒（1升瓶）」進呈</h4>`
+  - Line 502: `<h4>安心保証: ご宴会7日前までキャンセル料無料</h4>`
+  - Line 509: `<h3 class="urgency-title">⚠️ 金曜・土曜・祝前日のゴールデンタイムは残りわずか</h3>`
+- In the DOM sequential tree, an `<h2>` heading is directly followed by `<h4>` headings without an intervening `<h3>`.
+- `tests/validate_pasona_dom.py` (lines 307–316) detects this as `HEADING_HIERARCHY_SKIPPED` (`Heading hierarchy jumped from <h2 > to <h4 > without intervening <h3 >`).
 
-3. **7ジャンルフィルタータブ & LPカード**:
-   - `index.html` 109〜141行目: `all`, `beauty`, `saas`, `pro`, `edu`, `dining`, `realestate`, `ec` の8つのタブボタン（すべて＋7業種）が配備。
-   - `lp-card` はエステサロン用特集カード（`data-category="beauty"`）および6つの予告カード（`data-category="saas"`, `"pro"`, `"edu"`, `"dining"`, `"realestate"`, `"ec"`）が完全一致で配置。
-   - `js/portal.js` にて WAI-ARIA `role="tablist"` / `role="tab"`、矢印キーボード操作、URLハッシュディープリンク（`#beauty`等）、空状態（Coming Soon）ハンドリングが実装。
+---
 
-4. **新PASONA全7セクション（`data-pasona`属性）**:
-   - `data-pasona="problem"`: 59行目（Hero & 悩み提起チェックリスト）
-   - `data-pasona="affinity"`: 256行目（サロン代表の想い・共感ストーリー）
-   - `data-pasona="solution"`: 302行目（選ばれる3つの理由、Before/After実績、5ステップ施術フロー）
-   - `data-pasona="offer"`: 518行目（松竹梅3段階料金プラン、全額返金保証、3大特典）
-   - `data-pasona="narrowing"`: 728行目（毎月先着10名・残り3名限定枠、向き/不向き基準）
-   - `data-pasona="action"`: 802行目（LINE予約相談 ＆ Web予約フォームモーダル）
-   - `data-pasona="faq"`: 862行目（6問のQ&Aアコーディオン）
+### 1.3 Positive Observations (Compliant Features)
+1. **Bakery LP (`samples/bakery/`)**:
+   - **Semantic & PASONA Fidelity**: Strict single `<h1>`, proper heading continuity (H1->H2->H3->H4), complete 7 New PASONA sections (Problem, Affinity, Solution, Offer, Narrowing, Action, FAQ).
+   - **Artisan Features**: 4-batch baking timetable (07:30, 10:30, 13:30, 16:00), Matsutake 3-tier assortment boxes (梅: ¥1,980 / 竹: ¥3,480 / 松: ¥5,800 + アラカルト), 14-day calendar with Mon/Tue closed day mapping, 30-min .ics event with 2-hour VALARM reminder, and LINE deep linking.
+   - **Styling**: Warm French organic glassmorphism with wheat gold and craft paper palette (`css/bakery.css`).
+   - **Visual Assets**: 4 valid visual assets with rich styling.
 
-5. **松竹梅料金プラン & デュアルCTA**:
-   - 梅（Plum / 60分）: ¥5,800（68% OFF）
-   - 竹（Bamboo / 80分）: ¥7,980（72% OFF、人気No.1ハイライト表示、`.pricing-card-featured`）
-   - 松（Pine / 100分）: ¥11,800（69% OFF）
-   - 全額返金保証（#guarantee）および 3大特典（3,300円相当マスク、肌年齢診断書、5,000円優待券）を完備。
-   - LINE予約（公式LINEリンク）とWeb予約（30秒入力モーダルフォーム）のデュアルCTAを実装。
+2. **Portal Hub (`index.html`, `css/portal.css`, `js/portal.js`)**:
+   - **5-Flagship Integration**: Hero quick buttons `#hero-quick-bakery` and `#hero-quick-washoku` present.
+   - **Category Counts**: Tab badge counts accurately reflect available LPs (All: 9, Dining: 3 including Italian, Bakery, Washoku).
+   - **Bento Grid Cards**: Cards 4 (`#card-bakery`) and 5 (`#card-washoku`) feature LIVE DEMO badges, rich highlights, target audience tags, and direct demo links.
+   - **WAI-ARIA Accessibility**: Full tablist keyboard navigation support (Arrow keys, Home, End).
 
-6. **モバイル追従CTAバー & モーダル・アコーディオン**:
-   - `#mobile-sticky-cta`: 350pxスクロールで表示、ページ下部の `#action` セクション表示時は重なり防止のため自動非表示化（`aesthetic.js` 39-53行目）。
-   - `#booking-modal`: プラン事前選択（`data-plan`連動）、フォーカス制御、ESCキー/背景クリック閉じる、バリデーション、送信完了表示（`#modal-success-state`）を実装。
-   - FAQアコーディオン: `aria-expanded` と `aria-controls` によるアクセシブルなトグル開閉。
-
-7. **インテグリティ（誠実性・非ファサード）検証**:
-   - ハードコードされたテストパス用の不正分岐なし。
-   - 外部ツール依存やダミー実装ではなく、Pure Vanilla HTML5/CSS3/JavaScriptによる完全な実ロジック。
-   - Python標準ライブラリ（`http.server`, `urllib.request`, `html.parser`, `re`）による完全独立した4層テストスイート。
+3. **Washoku LP Engine & Architecture (`samples/washoku/`)**:
+   - `config.js` and `washoku.js` are cleanly architected with 14-day reservation calendar (17:00, 18:30, 19:30, 20:30), Sunday closure logic, party size bounds checking (min 2, max 40), 120-min .ics generator with VALARM -PT2H, and LINE deep link generator.
 
 ---
 
 ## 2. Logic Chain
 
-1. **前提（Observation）**:
-   - `PROJECT.md` および `ORIGINAL_REQUEST.md` で定義された要件（GitHub Pages相対パス互換、新PASONA全セクション、松竹梅料金、7ジャンルポータル、デュアルCTA、追従バー、モーダル、FAQ）の各項目に対し、HTML/CSS/JSコード内に具体的なDOM要素とロジックが存在する。
-2. **推論（Deduction）**:
-   - 相対パスプロトコルが `./` および `../../` で統一されており、外部重厚ライブラリやビルド工程に依存しないため、静的ホスティング（GitHub Pagesのルートおよびサブディレクトリ `/repo/`）環境で一切の404エラーなく動作する。
-   - 見出しタグ（H1〜H4）が単一かつ階層順に配置されているため、SEOおよびアクセシビリティ（WCAG / WAI-ARIA）基準に適合している。
-   - インタラクティブ要素（ジャンルフィルタ、FAQ、モーダル、追従バー）はアクセシビリティ属性（`role`, `aria-*`, `tabindex`）とキーボード操作（ESC, 矢印キー）が考慮されており、UX品質が高い。
-3. **結論（Conclusion）**:
-   - 成果物は構造的整合性、仕様適合性、耐障害性、品質基準のすべてを満たしており、不備や手戻り要因は認められない。
+1. `ORIGINAL_REQUEST.md §R3` and `PROJECT.md §Milestone 2 / Feature 5` require high-resolution photographic image assets for `hero_banquet_nabe.jpg`, `sashimi_platter.jpg`, `yakitori_charcoal.jpg`, and `washoku_private_room.jpg`.
+2. Inspecting the actual files in `samples/washoku/assets/images/` reveals that all four files contain a 1-line text comment string and are less than 80 bytes each.
+3. Because these files are not valid images, browsers display broken image placeholders on `samples/washoku/index.html` and `index.html` (Bento Grid preview).
+4. Automated tests (`tests/validate_links.py` and `tests/run_all_tests.py`) enforce `st_size >= 1000` for all 8 flagship assets and flag `INVALID_IMAGE_ASSET`.
+5. Under reviewer integrity policies, generating dummy/facade implementations that simulate assets with dummy text comments constitutes an **INTEGRITY VIOLATION**.
+6. Furthermore, the heading hierarchy violation in `samples/washoku/index.html` (H2 -> H4) breaks WCAG accessibility guidelines and fails `validate_pasona_dom.py`.
+7. Therefore, the implementation cannot be approved for production deployment in its current state.
 
 ---
 
 ## 3. Caveats
 
-- **対象ブラウザ範囲**:
-  - Chrome, Firefox, Safari, Edge等のモダンブラウザ（CSS Variables, Backdrop Filter, Flexbox, Grid対応）を対象としており、IE11等のレガシーブラウザは対象外です（`PROJECT.md`の仕様通り）。
-- **外部画像アセット**:
-  - 外部CDN障害やオフライン環境での表示崩れを100%防止するため、ビジュアル要素は高品質なインラインSVGおよびCSSグラデーション/Glassmorphismで自律実装されています。
+- **Scope Examined**: All source files (`samples/bakery/*`, `samples/washoku/*`, `index.html`, `css/portal.css`, `tests/*`) and visual assets were examined directly via static code analysis, DOM parsing, and byte inspection.
+- **Bakery Implementation**: The Bakery LP implementation is solid, clean, and fully functional. The required changes are localized to `samples/washoku/` assets and heading markup.
 
 ---
 
 ## 4. Conclusion
 
-- **総合判定**: **APPROVE**
-- **判定理由**:
-  - トップポータルハブ（`index.html`）およびエステサロンLP（`samples/aesthetic/index.html`）は、仕様書（`PROJECT.md`, `ORIGINAL_REQUEST.md`, `TEST_READY.md`）の全要件を過不足なく実装しており、厳格な相対パス準拠、新PASONA心理誘導モデル、ラグジュアリーデザインシステム、アクセシビリティ、耐障害性を高水準で満たしています。
+**Verdict**: **REQUEST_CHANGES**
+
+### Required Action Items for Author / Subagent:
+
+1. **[CRITICAL / INTEGRITY VIOLATION] Replace Dummy Washoku Image Assets with Valid Graphics**:
+   Generate or create valid, high-quality visual assets (real image or SVG graphic with valid dimensions and size > 1,000 bytes) for:
+   - `samples/washoku/assets/images/hero_banquet_nabe.jpg`
+   - `samples/washoku/assets/images/sashimi_platter.jpg`
+   - `samples/washoku/assets/images/yakitori_charcoal.jpg`
+   - `samples/washoku/assets/images/washoku_private_room.jpg`
+
+2. **[MAJOR] Fix Heading Hierarchy in `samples/washoku/index.html`**:
+   In `#narrowing` (around lines 480–505), change `<h4>` tags to `<h3>` (or wrap them in an `<h3>` heading container) so the heading sequence flows strictly from `<h2>` to `<h3>` without skipping levels.
 
 ---
 
 ## 5. Verification Method
 
-独立検証を実施する際の手順および検証基準：
+To independently verify after changes are applied:
 
-```powershell
-# 1. ターミナルUTF-8エンコーディング設定
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8;
-$env:PYTHONUTF8=1;
-
-# 2. 4層統合テストスイートの実行
-python tests/run_all_tests.py
-
-# 3. 各モジュール別単体検証
-python tests/validate_links.py         # 相対パス & 404ゼロ検証 (0 violations)
-python tests/validate_pasona_dom.py     # PASONA 7セクション & 単一H1階層検証 (100% pass)
-python tests/test_interactive_ui.py     # フィルタ・アコーディオン・追従CTA検証 (100% pass)
-python tests/test_server.py             # ローカルHTTPサーバー & サブディレクトリ検証 (200 OK)
-```
-
-**無効化条件（Invalidation Conditions）**:
-- ルート相対パス（`/` で始まるパス）が1箇所でも混入した場合
-- `samples/aesthetic/index.html` 内の新PASONA 7セクション（`data-pasona`）のいずれかが削除された場合
-- 見出し階層において `<h1>` が複数化、または階層飛びが生じた場合
+1. **Verify Asset File Sizes on Disk**:
+   Ensure all 4 Washoku image files in `samples/washoku/assets/images/` have `size >= 1000 bytes` and contain valid image/SVG data.
+2. **Execute Full Automated Test Suite**:
+   ```powershell
+   [Console]::OutputEncoding = [System.Text.Encoding]::UTF8;
+   $env:PYTHONUTF8=1;
+   python tests/validate_links.py
+   python tests/validate_pasona_dom.py
+   python tests/test_interactive_ui.py
+   python tests/test_server.py
+   python tests/run_all_tests.py
+   ```
+3. **Pass Criteria**:
+   - `validate_links.py`: Zero `INVALID_IMAGE_ASSET` errors, 0 link 404s.
+   - `validate_pasona_dom.py`: Zero `HEADING_HIERARCHY_SKIPPED` errors, 100% PASONA compliance.
+   - `run_all_tests.py`: 100% PASS across all 179+ test cases with exit code 0.

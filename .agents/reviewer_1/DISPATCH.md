@@ -1,17 +1,28 @@
-## 2026-08-20T13:38:02Z
+## 2026-08-21T22:40:07Z
+You are reviewer_1. Your working directory is `c:\Project\事業案\05_LP作成\.agents\reviewer_1`.
+You are independently reviewing the newly implemented Bakery LP (`samples/bakery/`), Washoku LP (`samples/washoku/`), Portal Hub integration (`index.html`, `css/portal.css`), and test suite (`tests/`).
 
-Read c:/Project/事業案/05_LP作成/.agents/ORIGINAL_REQUEST.md, c:/Project/事業案/05_LP作成/PROJECT.md, and c:/Project/事業案/05_LP作成/TEST_READY.md.
+Read the following files carefully:
+- `c:\Project\事業案\05_LP作成\.agents\ORIGINAL_REQUEST.md`
+- `c:\Project\事業案\05_LP作成\PROJECT.md`
+- `samples/bakery/index.html`, `css/bakery.css`, `js/config.js`, `js/bakery.js`
+- `samples/washoku/index.html`, `css/washoku.css`, `js/config.js`, `js/washoku.js`
+- `index.html`, `css/portal.css`
+- `tests/validate_links.py`, `tests/validate_pasona_dom.py`, `tests/test_interactive_ui.py`, `tests/test_server.py`, `tests/run_all_tests.py`
 
-Working directory: c:/Project/事業案/05_LP作成/.agents/reviewer_1
-Your identity: teamwork_preview_reviewer (Reviewer 1 - Structural & Specification Conformance)
+Review Criteria:
+1. Architectural & semantic correctness: Single H1 per page, strict heading hierarchy (h1->h2->h3), complete New PASONA 7 sections, WAI-ARIA accordions, meta tags, OGP, and descriptive image `alt` attributes.
+2. Design & UX quality: Warm French Organic Glassmorphism (Bakery) and Indigo & Amber Japanese Modern Glassmorphism (Washoku), 375px-1920px responsiveness, sticky mobile CTA bars.
+3. Portal Hub 5-Flagship showcase: `#hero-quick-bakery` & `#hero-quick-washoku`, tab badge counts (all: 9, dining: 3), Bento Grid cards 4 & 5 with LIVE DEMO badges and links.
+4. Run all automated tests:
+   ```powershell
+   [Console]::OutputEncoding = [System.Text.Encoding]::UTF8;
+   $env:PYTHONUTF8=1;
+   python tests/validate_links.py
+   python tests/validate_pasona_dom.py
+   python tests/test_interactive_ui.py
+   python tests/test_server.py
+   python tests/run_all_tests.py
+   ```
 
-Perform a comprehensive objective review:
-1. Examine index.html, css/tokens.css, css/reset.css, css/portal.css, js/portal.js.
-2. Examine samples/aesthetic/index.html, samples/aesthetic/css/aesthetic.css, samples/aesthetic/js/aesthetic.js.
-3. Check relative path consistency (./ and ../../, zero root-relative /), single H1, heading hierarchy, 7 genre filter tabs, New PASONA sections (data-pasona), Matsutake pricing, dual CTAs, mobile sticky bar, booking modal, FAQ accordion.
-4. Run/inspect the test suite in tests/run_all_tests.py.
-5. State your clear verdict: APPROVE or REQUEST_CHANGES.
-
-Write your handoff report to:
-c:/Project/事業案/05_LP作成/.agents/reviewer_1/handoff.md
-Send a completion message back to parent when done.
+State your final verdict explicitly as **APPROVE** or **REQUEST_CHANGES** in `c:\Project\事業案\05_LP作成\.agents\reviewer_1\handoff.md` and send a message when complete.

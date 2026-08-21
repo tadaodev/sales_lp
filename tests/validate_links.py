@@ -231,6 +231,96 @@ class LinkValidator:
                             "message": "config.js must be loaded BEFORE legal.js in HTML."
                         })
 
+            # Check script order in samples/bakery/index.html (config.js before bakery.js)
+            if html_file.name == "index.html" and "bakery" in str(html_file):
+                has_config = any("config.js" in s for s in scripts)
+                has_bakery = any("bakery.js" in s for s in scripts)
+                if has_config and has_bakery:
+                    config_idx = next(i for i, s in enumerate(scripts) if "config.js" in s)
+                    bakery_idx = next(i for i, s in enumerate(scripts) if "bakery.js" in s)
+                    if config_idx > bakery_idx:
+                        self.violations.append({
+                            "rule": "SCRIPT_LOAD_ORDER",
+                            "file": str(html_file.relative_to(self.root_dir)),
+                            "line": 1,
+                            "target": "config.js",
+                            "message": "config.js must be loaded BEFORE bakery.js in HTML."
+                        })
+
+            # Check script order in samples/washoku/index.html (config.js before washoku.js)
+            if html_file.name == "index.html" and "washoku" in str(html_file):
+                has_config = any("config.js" in s for s in scripts)
+                has_washoku = any("washoku.js" in s for s in scripts)
+                if has_config and has_washoku:
+                    config_idx = next(i for i, s in enumerate(scripts) if "config.js" in s)
+                    washoku_idx = next(i for i, s in enumerate(scripts) if "washoku.js" in s)
+                    if config_idx > washoku_idx:
+                        self.violations.append({
+                            "rule": "SCRIPT_LOAD_ORDER",
+                            "file": str(html_file.relative_to(self.root_dir)),
+                            "line": 1,
+                            "target": "config.js",
+                            "message": "config.js must be loaded BEFORE washoku.js in HTML."
+                        })
+
+        # Validate all 8 newly created visual image assets under bakery and washoku
+        required_new_images = [
+            ("samples/bakery/assets/images/hero_baguette.jpg", "Bakery Hero Baguette"),
+            ("samples/bakery/assets/images/baker_craftsman.jpg", "Bakery Craftsman Baker"),
+            ("samples/bakery/assets/images/campagne_slice.jpg", "Bakery Campagne Slice"),
+            ("samples/bakery/assets/images/bakery_display.jpg", "Bakery Display"),
+            ("samples/washoku/assets/images/hero_banquet_nabe.jpg", "Washoku Hero Banquet Nabe"),
+            ("samples/washoku/assets/images/sashimi_platter.jpg", "Washoku Sashimi Platter"),
+            ("samples/washoku/assets/images/yakitori_charcoal.jpg", "Washoku Yakitori Charcoal"),
+            ("samples/washoku/assets/images/washoku_private_room.jpg", "Washoku Private Room")
+        ]
+        for rel_img_path, img_label in required_new_images:
+            abs_img_path = self.root_dir / rel_img_path
+            if not abs_img_path.exists():
+                self.violations.append({
+                    "rule": "MISSING_IMAGE_ASSET",
+                    "file": rel_img_path,
+                    "line": 1,
+                    "target": rel_img_path,
+                    "message": f"Required image asset '{img_label}' not found on disk at {rel_img_path}."
+                })
+            elif abs_img_path.stat().st_size < 1000:
+                self.violations.append({
+                    "rule": "INVALID_IMAGE_ASSET",
+                    "file": rel_img_path,
+                    "line": 1,
+                    "target": rel_img_path,
+                    "message": f"Image asset '{img_label}' is corrupted or empty ({abs_img_path.stat().st_size} bytes)."
+                })
+
+        # Validate bidirectional navigation between Portal Hub and all 5 sample LPs
+        portal_path = self.root_dir / "index.html"
+        if portal_path.exists():
+            portal_text = portal_path.read_text(encoding="utf-8", errors="replace")
+            sample_slugs = ["aesthetic", "italian", "legal", "bakery", "washoku"]
+            for slug in sample_slugs:
+                # Forward link check from Portal to Sample LP
+                expected_fwd = f"samples/{slug}/index.html"
+                if expected_fwd not in portal_text:
+                    self.violations.append({
+                        "rule": "BIDIRECTIONAL_NAV_MISSING",
+                        "file": "index.html",
+                        "line": 1,
+                        "target": expected_fwd,
+                        "message": f"Portal index.html missing forward link to '{expected_fwd}'."
+                    })
+                # Backward return link check from Sample LP to Portal
+                sample_html = self.root_dir / "samples" / slug / "index.html"
+                if sample_html.exists():
+                    sample_text = sample_html.read_text(encoding="utf-8", errors="replace")
+                    if "../../index.html" not in sample_text:
+                        self.violations.append({
+                            "rule": "BIDIRECTIONAL_NAV_MISSING",
+                            "file": f"samples/{slug}/index.html",
+                            "line": 1,
+                            "target": "../../index.html",
+                            "message": f"Sample LP samples/{slug}/index.html missing return link to '../../index.html'."
+                        })
 
         # Validate all CSS links
         for css_file in self.css_files:

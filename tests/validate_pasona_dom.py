@@ -208,6 +208,73 @@ class PASONADOMValidator:
 
         return local_violations
 
+    def validate_bakery_pasona(self, html_path: Path) -> List[Dict[str, Any]]:
+        """Validates Bakery LP specific PASONA components (Baking Timetable, Matsutake Assortment Boxes, 14-Day Calendar)."""
+        local_violations = self.validate_file_pasona(html_path)
+        if not html_path.exists():
+            return local_violations
+
+        content = html_path.read_text(encoding="utf-8", errors="replace")
+        rel_file = str(html_path.relative_to(self.project_root))
+
+        # Check Baking Timetable (焼き上がり時刻表 / タイムテーブル / 4便)
+        has_timetable = bool(re.search(r'(timetable|baking-schedule|焼き上がり時刻表|焼き上がり|第1便|第2便|第3便|第4便)', content, re.IGNORECASE))
+        if not has_timetable:
+            local_violations.append({
+                "rule": "BAKERY_TIMETABLE_MISSING",
+                "file": rel_file,
+                "message": "Bakery LP must contain a daily baking timetable (焼き上がり時刻表 / 4 batches)."
+            })
+
+        # Check Matsutake assortment boxes (梅 / 竹 / 松)
+        has_bakery_boxes = bool(re.search(r'(モーニングハード|人気定番7種|プレミアム薪|アソートBOX|詰め合わせ)', content, re.IGNORECASE))
+        if not has_bakery_boxes:
+            local_violations.append({
+                "rule": "BAKERY_ASSORTMENT_BOXES_MISSING",
+                "file": rel_file,
+                "message": "Bakery LP must contain Matsutake 3-tier assortment boxes (梅・竹・松アソートBOX)."
+            })
+
+        return local_violations
+
+    def validate_washoku_pasona(self, html_path: Path) -> List[Dict[str, Any]]:
+        """Validates Washoku Izakaya LP specific PASONA components (3 Guarantees, 4 Signature Dishes, Matsutake Courses, 14-Day Calendar)."""
+        local_violations = self.validate_file_pasona(html_path)
+        if not html_path.exists():
+            return local_violations
+
+        content = html_path.read_text(encoding="utf-8", errors="replace")
+        rel_file = str(html_path.relative_to(self.project_root))
+
+        # Check 3 Organizer Guarantees (3大安心保証 / 幹事様安心)
+        has_guarantees = bool(re.search(r'(3大安心保証|3大保証|安心保証|guarantee|幹事様を絶対に|明朗会計)', content, re.IGNORECASE))
+        if not has_guarantees:
+            local_violations.append({
+                "rule": "WASHOKU_GUARANTEES_MISSING",
+                "file": rel_file,
+                "message": "Washoku LP must contain the 3 Organizer Guarantees (幹事様3大安心保証)."
+            })
+
+        # Check 4 Signature Dishes (名物料理 / 鮮魚5点盛り / 備長炭火焼き鳥 / もつ鍋 / 天ぷら)
+        has_dishes = bool(re.search(r'(名物料理|4大名物|鮮魚.*5点盛り|炭火焼き鳥|もつ鍋|寄せ鍋|天ぷら|舟盛り)', content, re.IGNORECASE))
+        if not has_dishes:
+            local_violations.append({
+                "rule": "WASHOKU_SIGNATURE_DISHES_MISSING",
+                "file": rel_file,
+                "message": "Washoku LP must contain 4 Signature Dishes highlights (豊洲鮮魚・炭火焼き鳥・もつ鍋・天ぷら)."
+            })
+
+        # Check Matsutake banquet courses with 2h all-you-can-drink
+        has_courses = bool(re.search(r'(3,980|4,980|6,500|飲み放題|宴会コース)', content))
+        if not has_courses:
+            local_violations.append({
+                "rule": "WASHOKU_BANQUET_COURSES_MISSING",
+                "file": rel_file,
+                "message": "Washoku LP must contain 3-tier Matsutake banquet courses with 2h drink inclusion (¥3,980 / ¥4,980 / ¥6,500)."
+            })
+
+        return local_violations
+
     def validate_semantics_and_seo(self, html_path: Path) -> List[Dict[str, Any]]:
         """Validates H1-H6 hierarchy, viewport, OGP, and image accessibility."""
         local_violations = []
@@ -313,6 +380,10 @@ class PASONADOMValidator:
         
         portal_html = self.project_root / "index.html"
         aesthetic_html = self.project_root / "samples" / "aesthetic" / "index.html"
+        italian_html = self.project_root / "samples" / "italian" / "index.html"
+        legal_html = self.project_root / "samples" / "legal" / "index.html"
+        bakery_html = self.project_root / "samples" / "bakery" / "index.html"
+        washoku_html = self.project_root / "samples" / "washoku" / "index.html"
 
         if verbose:
             print("\n=== Running PASONA DOM & Semantic Validation (tests/validate_pasona_dom.py) ===")
@@ -339,7 +410,6 @@ class PASONADOMValidator:
                 "message": "Aesthetic Salon LP samples/aesthetic/index.html not yet found on disk."
             })
 
-        italian_html = self.project_root / "samples" / "italian" / "index.html"
         if italian_html.exists():
             v_seo = self.validate_semantics_and_seo(italian_html)
             v_pasona = self.validate_file_pasona(italian_html)
@@ -352,7 +422,6 @@ class PASONADOMValidator:
                 "message": "Italian Restaurant LP samples/italian/index.html not yet found on disk."
             })
 
-        legal_html = self.project_root / "samples" / "legal" / "index.html"
         if legal_html.exists():
             v_seo = self.validate_semantics_and_seo(legal_html)
             v_pasona = self.validate_file_pasona(legal_html)
@@ -365,6 +434,29 @@ class PASONADOMValidator:
                 "message": "Legal Consulting LP samples/legal/index.html not yet found on disk."
             })
 
+        if bakery_html.exists():
+            v_seo = self.validate_semantics_and_seo(bakery_html)
+            v_pasona = self.validate_bakery_pasona(bakery_html)
+            self.violations.extend(v_seo)
+            self.violations.extend(v_pasona)
+        else:
+            self.violations.append({
+                "rule": "BAKERY_LP_MISSING",
+                "file": "samples/bakery/index.html",
+                "message": "Bakery LP samples/bakery/index.html not yet found on disk."
+            })
+
+        if washoku_html.exists():
+            v_seo = self.validate_semantics_and_seo(washoku_html)
+            v_pasona = self.validate_washoku_pasona(washoku_html)
+            self.violations.extend(v_seo)
+            self.violations.extend(v_pasona)
+        else:
+            self.violations.append({
+                "rule": "WASHOKU_LP_MISSING",
+                "file": "samples/washoku/index.html",
+                "message": "Washoku LP samples/washoku/index.html not yet found on disk."
+            })
 
         is_clean = len(self.violations) == 0
         if verbose:

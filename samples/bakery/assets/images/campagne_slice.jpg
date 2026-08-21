@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+  <defs>
+    <radialGradient id="sliceBg" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#3D2413"/>
+      <stop offset="100%" stop-color="#1A140E"/>
+    </radialGradient>
+    <linearGradient id="crumbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F9F6F0"/>
+      <stop offset="60%" stop-color="#E5DAC7"/>
+      <stop offset="100%" stop-color="#D1C0A5"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#sliceBg)"/>
+  <!-- Campagne Slice Shape -->
+  <g transform="translate(600, 420)">
+    <!-- Crust Ring -->
+    <path d="M-380,180 C-420,-160 -180,-300 0,-300 C180,-300 420,-160 380,180 Z" fill="#5C3A21" stroke="#3D2413" stroke-width="12"/>
+    <!-- Open Crumb Inner -->
+    <path d="M-350,160 C-390,-130 -160,-270 0,-270 C160,-270 390,-130 350,160 Z" fill="url(#crumbGrad)"/>
+    <!-- Honeycomb Alveoli Holes -->
+    <ellipse cx="-120" cy="-140" rx="45" ry="32" fill="#D1C0A5" opacity="0.8"/>
+    <ellipse cx="60" cy="-180" rx="35" ry="50" fill="#D1C0A5" opacity="0.75"/>
+    <ellipse cx="180" cy="-60" rx="60" ry="40" fill="#D1C0A5" opacity="0.8"/>
+    <ellipse cx="-180" cy="20" rx="50" ry="45" fill="#D1C0A5" opacity="0.7"/>
+    <ellipse cx="0" cy="-20" rx="70" ry="50" fill="#D1C0A5" opacity="0.85"/>
+    <ellipse cx="120" cy="80" rx="40" ry="35" fill="#D1C0A5" opacity="0.75"/>
+    <ellipse cx="-80" cy="90" rx="55" ry="35" fill="#D1C0A5" opacity="0.8"/>
+  </g>
+  <text x="600" y="740" text-anchor="middle" font-family="'Playfair Display', serif" font-size="40" font-weight="bold" fill="#F9F6F0">Pain de Campagne Honeycomb Crumb</text>
+  <text x="600" y="790" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="24" fill="#D4A359">72時間低温熟成 × 自家製ルヴァン酵母が生む気泡とみずみずしさ</text>
+</svg>

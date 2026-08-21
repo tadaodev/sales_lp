@@ -1,55 +1,58 @@
-# BRIEFING — 2026-08-20T22:41:40+09:00
+# BRIEFING — 2026-08-22T07:43:00Z
 
 ## Mission
-Objective structural and specification conformance review of Portal and Aesthetic LP deliverables.
+Independently review Bakery LP, Washoku LP, Portal Hub integration, and test suite for semantic correctness, visual/UX fidelity, and test integrity.
 
 ## 🔒 My Identity
-- Archetype: teamwork_preview_reviewer
+- Archetype: reviewer_critic
 - Roles: reviewer, critic
-- Working directory: c:/Project/事業案/05_LP作成/.agents/reviewer_1
-- Original parent: 4b6c469d-d43a-4ccf-bc5e-021cf8381478
-- Milestone: Reviewer 1 - Structural & Specification Conformance
+- Working directory: c:\Project\事業案\05_LP作成\.agents\reviewer_1
+- Original parent: 083470c7-d487-4f37-b7cd-3d44514a50bf
+- Milestone: Review of Bakery & Washoku Flagship LPs + Portal Hub
 - Instance: 1 of 1
 
 ## 🔒 Key Constraints
 - Review-only — do NOT modify implementation code
-- Check for integrity violations (hardcoded test bypasses, facade implementations, shortcuts, fabricated verifications)
-- Verify relative paths (zero root-relative /), single H1, heading hierarchy, 7 genre filter tabs, New PASONA sections, Matsutake pricing, dual CTAs, mobile sticky bar, booking modal, FAQ accordion
-- Test verification via tests/run_all_tests.py
-- Output Japanese in user-facing / parent messages and report
+- Check integrity violations (hardcoded outputs, facade implementations, test bypasses)
+- Follow UTF-8 terminal encoding and Japanese user communication rules
 
 ## Current Parent
-- Conversation ID: 4b6c469d-d43a-4ccf-bc5e-021cf8381478
-- Updated: 2026-08-20T22:38:02+09:00
+- Conversation ID: 083470c7-d487-4f37-b7cd-3d44514a50bf
+- Updated: 2026-08-22T07:43:00Z
 
 ## Review Scope
-- **Files to review**: index.html, css/tokens.css, css/reset.css, css/portal.css, js/portal.js, samples/aesthetic/index.html, samples/aesthetic/css/aesthetic.css, samples/aesthetic/js/aesthetic.js, tests/run_all_tests.py
-- **Interface contracts**: PROJECT.md, ORIGINAL_REQUEST.md, TEST_READY.md
-- **Review criteria**: Structural conformance, specification adherence, relative path correctness, single H1 & heading hierarchy, component functionality, test suite execution & integrity
+- **Files to review**:
+  - `c:\Project\事業案\05_LP作成\.agents\ORIGINAL_REQUEST.md`
+  - `c:\Project\事業案\05_LP作成\PROJECT.md`
+  - `samples/bakery/index.html`, `css/bakery.css`, `js/config.js`, `js/bakery.js`
+  - `samples/washoku/index.html`, `css/washoku.css`, `js/config.js`, `js/washoku.js`
+  - `index.html`, `css/portal.css`
+  - `tests/validate_links.py`, `tests/validate_pasona_dom.py`, `tests/test_interactive_ui.py`, `tests/test_server.py`, `tests/run_all_tests.py`
+- **Interface contracts**: PROJECT.md, ORIGINAL_REQUEST.md
+- **Review criteria**: semantic correctness, WAI-ARIA, design token conformance, responsive design, test execution & integrity
 
 ## Key Decisions Made
-- Confirmed strict relative path protocol (`./`, `../../`) across all assets, navigation links, and scripts with zero root-relative `/` violations.
-- Verified heading hierarchy: exactly one `<h1>` per page, continuous `<h2>` -> `<h3>` -> `<h4>` hierarchy without skipped levels.
-- Verified New PASONA 7 sections (`data-pasona`: problem, affinity, solution, offer, narrowing, action, faq).
-- Verified Matsutake 3-tier pricing (Plum ¥5,800 / Bamboo ¥7,980 / Pine ¥11,800) with 72% discount highlighting, full refund guarantee, and 3 bonus gifts.
-- Verified Dual CTAs (LINE + Web Booking Modal with form validation and plan selection linkage).
-- Verified Mobile Sticky Bar (`#mobile-sticky-cta`) with scroll threshold trigger and collision prevention.
-- Verified 7 genre filter tabs (Beauty, SaaS, Pro, Edu, Dining, Real Estate, EC) with WAI-ARIA tablist accessibility pattern and deep-linking URL hash support.
-- Verified zero integrity violations: no hardcoded bypasses, no dummy facades, complete standard-library test suite.
-- Issued verdict: **APPROVE**.
+- Discovered Critical Integrity Violation: 4 Washoku image assets are 74-79 byte dummy comment text files, violating R3 and failing `< 1000` bytes test check.
+- Discovered Major Semantic Heading violation in `samples/washoku/index.html` (H2 -> H4 skipped level).
+- Confirmed Bakery LP (`samples/bakery/`) is fully implemented with high quality, valid assets, and sound architecture.
+- Confirmed Portal Hub (`index.html`, `css/portal.css`) 5-Flagship showcase is well-integrated with correct badges and navigation.
+- Verdict decided: **REQUEST_CHANGES**.
 
 ## Artifact Index
-- c:/Project/事業案/05_LP作成/.agents/reviewer_1/DISPATCH.md — Dispatch log
-- c:/Project/事業案/05_LP作成/.agents/reviewer_1/BRIEFING.md — Situational awareness
-- c:/Project/事業案/05_LP作成/.agents/reviewer_1/progress.md — Progress and heartbeat
-- c:/Project/事業案/05_LP作成/.agents/reviewer_1/handoff.md — Final review report
+- `.agents/reviewer_1/DISPATCH.md` — Incoming dispatch log
+- `.agents/reviewer_1/BRIEFING.md` — Agent state and briefing
+- `.agents/reviewer_1/progress.md` — Heartbeat progress
+- `.agents/reviewer_1/handoff.md` — Final review report and verdict
 
 ## Review Checklist
-- **Items reviewed**: index.html, css/tokens.css, css/reset.css, css/portal.css, js/portal.js, samples/aesthetic/index.html, samples/aesthetic/css/aesthetic.css, samples/aesthetic/js/aesthetic.js, tests/test_server.py, tests/validate_links.py, tests/validate_pasona_dom.py, tests/test_interactive_ui.py, tests/run_all_tests.py
-- **Verdict**: APPROVE
-- **Unverified claims**: None (all specification and structural requirements verified)
+- **Items reviewed**: Bakery LP (HTML, CSS, JS, Assets), Washoku LP (HTML, CSS, JS, Assets), Portal Hub (HTML, CSS, JS), Test suite (5 test files)
+- **Verdict**: REQUEST_CHANGES
+- **Unverified claims**: Live browser rendering of heavy CSS backdrop-filter (static analysis verified)
 
 ## Attack Surface
-- **Hypotheses tested**: Root-relative path leakage, heading level jumps, missing PASONA tags, mobile sticky CTA collision with in-page action section, modal focus management, empty filter state crash, test suite fake pass risk.
-- **Vulnerabilities found**: None. All components implement defensive error handling, valid fallbacks, and standard-compliant markup.
-- **Untested angles**: Cross-browser rendering on legacy Internet Explorer (not in scope; modern browsers targeted as per PROJECT.md).
+- **Hypotheses tested**:
+  - Image assets validity: FAILED for Washoku LP (dummy facade files)
+  - Heading hierarchy: FAILED for Washoku LP (H2 -> H4 in #narrowing)
+  - Portal 5-flagship badge count: PASSED (9 total, 3 dining)
+  - WAI-ARIA accordions & tablist: PASSED
+  - Deterministic fallback & .ics VALARM: PASSED

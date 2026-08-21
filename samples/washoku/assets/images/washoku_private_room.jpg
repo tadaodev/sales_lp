@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <radialGradient id="roomWarmth" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#FFD54F" stop-opacity="0.6"/>
+      <stop offset="40%" stop-color="#C58525" stop-opacity="0.3"/>
+      <stop offset="80%" stop-color="#141E30"/>
+      <stop offset="100%" stop-color="#070B14"/>
+    </radialGradient>
+    <linearGradient id="tatamiGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#556B2F"/>
+      <stop offset="50%" stop-color="#6B8E23"/>
+      <stop offset="100%" stop-color="#3B4D1A"/>
+    </linearGradient>
+    <linearGradient id="woodTable" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D1810"/>
+      <stop offset="50%" stop-color="#1A0D08"/>
+      <stop offset="100%" stop-color="#0F0804"/>
+    </linearGradient>
+    <linearGradient id="shojiLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFDE7" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FFF9C4" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#070B14"/>
+  <rect width="100%" height="100%" fill="url(#roomWarmth)"/>
+  <!-- Shoji Screen Backdrop -->
+  <g opacity="0.35">
+    <rect x="100" y="80" width="1000" height="340" fill="url(#shojiLight)" stroke="#3E2723" stroke-width="8"/>
+    <line x1="350" y1="80" x2="350" y2="420" stroke="#3E2723" stroke-width="4"/>
+    <line x1="600" y1="80" x2="600" y2="420" stroke="#3E2723" stroke-width="6"/>
+    <line x1="850" y1="80" x2="850" y2="420" stroke="#3E2723" stroke-width="4"/>
+    <line x1="100" y1="190" x2="1100" y2="190" stroke="#3E2723" stroke-width="3"/>
+    <line x1="100" y1="300" x2="1100" y2="300" stroke="#3E2723" stroke-width="3"/>
+  </g>
+  <!-- Andon Lantern Glow -->
+  <g transform="translate(200, 240)">
+    <rect x="-40" y="-70" width="80" height="140" fill="#FFF8E1" stroke="#4E342E" stroke-width="6" rx="4"/>
+    <line x1="-40" y1="0" x2="40" y2="0" stroke="#4E342E" stroke-width="3"/>
+    <circle cx="0" cy="0" r="30" fill="#FFB300" opacity="0.6"/>
+  </g>
+  <g transform="translate(1000, 240)">
+    <rect x="-40" y="-70" width="80" height="140" fill="#FFF8E1" stroke="#4E342E" stroke-width="6" rx="4"/>
+    <line x1="-40" y1="0" x2="40" y2="0" stroke="#4E342E" stroke-width="3"/>
+    <circle cx="0" cy="0" r="30" fill="#FFB300" opacity="0.6"/>
+  </g>
+  <!-- Sunken Kotatsu Floor & Table -->
+  <polygon points="0,520 1200,520 1200,800 0,800" fill="url(#tatamiGrad)"/>
+  <!-- Horigotatsu Recessed Well -->
+  <polygon points="250,560 950,560 1020,740 180,740" fill="#0A0604"/>
+  <!-- Solid Lacquered Wood Table -->
+  <polygon points="280,510 920,510 990,660 210,660" fill="url(#woodTable)" stroke="#8D6E63" stroke-width="3"/>
+  <!-- Tableware & Sake Tokkuri Sets -->
+  <g transform="translate(600, 560)">
+    <!-- Tokkuri (Sake Flask) -->
+    <path d="M-80,-25 L-75,-5 C-70,10 -90,10 -85,-5 Z" fill="#ECEFF1"/>
+    <circle cx="-50" cy="5" r="8" fill="#ECEFF1"/>
+    <!-- Lacquer Tray -->
+    <rect x="-30" y="-15" width="60" height="35" rx="4" fill="#C62828" stroke="#8E0000" stroke-width="2"/>
+    <line x1="-20" y1="0" x2="20" y2="0" stroke="#D7CCC8" stroke-width="3"/>
+  </g>
+  <!-- Typography -->
+  <text x="600" y="720" text-anchor="middle" font-family="'Shippori Mincho', 'Noto Serif JP', serif" font-size="34" font-weight="bold" fill="#E5A93C" letter-spacing="4">完全個室 掘りごたつ空間</text>
+  <text x="600" y="765" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="20" fill="#FFF8E1" letter-spacing="3">2名様〜最大40名様対応 扉付き完全プライベート空間</text>
+</svg>

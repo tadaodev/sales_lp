@@ -1,15 +1,15 @@
-# BRIEFING — 2026-08-21T17:25:33+09:00
+# BRIEFING — 2026-08-22T07:12:24+09:00
 
 ## Mission
-Manage Sentinel monitoring, routing, and victory audit for Legal Consulting LP (LUMEN LEGAL CONSULTING) sample creation, AI asset generation, 2WAY booking calendar, portal integration, automated tests, and GitHub Pages production deploy.
+Manage Sentinel monitoring, routing, and victory audit for 4th and 5th sample LPs: Bakery (BOULANGERIE ARTISANALE) and Washoku Izakaya (個室和食 旬彩 縁 -ENISHI-), including AI visual asset generation, 14-day reservation/takeout calendars, pricing tiers, portal hub integration, comprehensive test suite expansion, and GitHub Pages production deploy.
 
 ## 🔒 My Identity
 - Archetype: sentinel
 - Working directory: c:\Project\事業案\05_LP作成\.agents\sentinel
-- Orchestrator: 19da49d9-803d-47b9-af23-f18b44137088 (orchestrator_4)
-- Victory Auditor: ace5d58f-effa-4610-881c-26bae914e798 (auditor_victory_3)
-- Progress Cron Task: a17a9ca4-63dd-4cc8-a17e-6a05dd902117/task-23
-- Liveness Cron Task: a17a9ca4-63dd-4cc8-a17e-6a05dd902117/task-25
+- Orchestrator: 083470c7-d487-4f37-b7cd-3d44514a50bf (orchestrator_5)
+- Victory Auditor: 840fae8b-3272-433e-aa1d-634c783fab22 (auditor_victory_4)
+- Progress Cron Task: 9ae9ffb1-8159-49aa-beae-89145b423511/task-27
+- Liveness Cron Task: 9ae9ffb1-8159-49aa-beae-89145b423511/task-29
 
 ## 🔒 Key Constraints
 - No technical decisions — relay only
@@ -18,16 +18,15 @@ Manage Sentinel monitoring, routing, and victory audit for Legal Consulting LP (
 - Verification via independent post-victory auditor before declaring success
 
 ## User Context
-- **Last user request**: 士業・法務コンサルティング特化LP（LUMEN LEGAL CONSULTING）構築、AI実写画像生成・配置、オンライン/対面2WAY相談予約カレンダー＆設定一元化、トップポータル統合、全自動テスト拡充＆GitHub mainブランチデプロイ
+- **Last user request**: ハード系特化ベーカリー（BOULANGERIE ARTISANALE）および忘年会・宴会向けリーズナブル和食居酒屋（個室和食 旬彩 縁 -ENISHI-）の特化LP 2件同時構築、AI実写画像生成・配置、14日間予約/取り置きカレンダー＆設定一元化、トップポータル統合（5大看板化）、全自動テスト拡充（150+ケース）＆GitHub mainブランチデプロイ
 - **Pending clarifications**: none
 - **Delivered results**:
-  - 士業・法務特化LP本体（`samples/legal/index.html`）
-  - 専用Luxury Glassmorphismスタイルシート（`samples/legal/css/legal.css`）
-  - 設定一元管理（`samples/legal/js/config.js`）
-  - 2WAY（Zoom/対面）予約カレンダー＆フォールバック連動ロジック（`samples/legal/js/legal.js`）
-  - 高解像度AI実写画像4点（`samples/legal/assets/images/*`）
-  - トップポータル統合・士業ジャンル動線（`index.html`）
-  - 全自動テストスイート拡充（120/120 PASS）
+  - ハード系特化ベーカリーLP（`samples/bakery/index.html`, `bakery.css`, `config.js`, `bakery.js`）
+  - 忘年会・個室和食居酒屋LP（`samples/washoku/index.html`, `washoku.css`, `config.js`, `washoku.js`）
+  - AI実写・高精細ビジュアルアセット8点（`samples/bakery/assets/images/*`, `samples/washoku/assets/images/*`）
+  - 14日間 予約・取り置きカレンダー（Google/Appleカレンダー登録、LINE連動、動的フォールバック）
+  - トップポータルハブ5大看板化・LIVE DEMOカード・クイックナビゲーション（`index.html`, `portal.css`）
+  - 全4層・179件マスター自動テストスイート 100% PASS（`tests/run_all_tests.py`）
   - 独立ビクトリー監査 VICTORY CONFIRMED 判定完了
 
 ## Project Status
@@ -40,16 +39,16 @@ Manage Sentinel monitoring, routing, and victory audit for Legal Consulting LP (
 
 ## Artifact Index
 - c:\Project\事業案\05_LP作成\.agents\ORIGINAL_REQUEST.md — Authoritative record of user requests
-- c:\Project\事業案\05_LP作成\samples\legal\index.html — Legal Consulting LP
-- c:\Project\事業案\05_LP作成\samples\legal\css\legal.css — Legal Consulting Styles
-- c:\Project\事業案\05_LP作成\samples\legal\js\config.js — Legal Config
-- c:\Project\事業案\05_LP作成\samples\legal\js\legal.js — Legal Booking & Calendar Logic
-- c:\Project\事業案\05_LP作成\samples\legal\assets\images\hero_consultation.jpg — AI Hero Image
-- c:\Project\事業案\05_LP作成\samples\legal\assets\images\partner_portrait.jpg — AI Partner Image
-- c:\Project\事業案\05_LP作成\samples\legal\assets\images\legal_contract_review.jpg — AI Contract Image
-- c:\Project\事業案\05_LP作成\samples\legal\assets\images\boardroom_meeting.jpg — AI Boardroom Image
-- c:\Project\事業案\05_LP作成\index.html — Top Portal Hub
-- c:\Project\事業案\05_LP作成\tests\run_all_tests.py — Comprehensive Master Test Suite
-- c:\Project\事業案\05_LP作成\.agents\orchestrator_4\handoff.md — Orchestrator Handoff Report
-- c:\Project\事業案\05_LP作成\.agents\auditor_victory_3\handoff.md — Victory Audit Report
+- c:\Project\事業案\05_LP作成\samples\bakery\index.html — Bakery LP
+- c:\Project\事業案\05_LP作成\samples\bakery\css\bakery.css — Bakery Styles
+- c:\Project\事業案\05_LP作成\samples\bakery\js\config.js — Bakery Config
+- c:\Project\事業案\05_LP作成\samples\bakery\js\bakery.js — Bakery Booking Engine
+- c:\Project\事業案\05_LP作成\samples\washoku\index.html — Washoku Izakaya LP
+- c:\Project\事業案\05_LP作成\samples\washoku\css\washoku.css — Washoku Styles
+- c:\Project\事業案\05_LP作成\samples\washoku\js\config.js — Washoku Config
+- c:\Project\事業案\05_LP作成\samples\washoku\js\washoku.js — Washoku Booking Engine
+- c:\Project\事業案\05_LP作成\index.html — Top Portal Hub (5 Flagships)
+- c:\Project\事業案\05_LP作成\tests\run_all_tests.py — Master Automated Test Suite (179 tests)
+- c:\Project\事業案\05_LP作成\.agents\orchestrator_5\handoff.md — Orchestrator Handoff
+- c:\Project\事業案\05_LP作成\.agents\auditor_victory_4\handoff.md — Victory Audit Report
 

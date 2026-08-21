@@ -1,61 +1,52 @@
-# BRIEFING — 2026-08-20T13:42:00Z
+# BRIEFING — 2026-08-22T07:43:50+09:00
 
 ## Mission
-Empirically challenge interactive components and state resilience:
-1. Test portal category filtering with URL hash permutations (#beauty, #saas, #invalid_genre).
-2. Test FAQ accordion toggling (rapid clicks, multiple open items, keyboard accessibility).
-3. Test mobile sticky CTA trigger scroll thresholds.
-4. Test booking modal dialog (form validation, course preselection from pricing cards, escape key close).
-5. Run python tests/test_interactive_ui.py and python tests/run_all_tests.py.
-6. State verdict: APPROVE or CHALLENGE_FOUND.
+Adversarial stress-testing and empirical verification of Portal Hub integration, HTTP routing (root & subdirectory), link consistency, and 4-tier 179-test master suite across all 5 flagship LPs.
 
 ## 🔒 My Identity
-- Archetype: empirical_challenger
+- Archetype: empirical challenger
 - Roles: critic, specialist
-- Working directory: c:/Project/事業案/05_LP作成/.agents/challenger_2
-- Original parent: 4b6c469d-d43a-4ccf-bc5e-021cf8381478
-- Milestone: M4 Verification & Adversarial UI Challenge
-- Instance: Challenger 2 of 2
+- Working directory: c:\Project\事業案\05_LP作成\.agents\challenger_2
+- Original parent: 083470c7-d487-4f37-b7cd-3d44514a50bf
+- Milestone: M5 Multi-Agent Quality & Forensic Gate
+- Instance: 2 of 2
 
 ## 🔒 Key Constraints
-- Review-only — do NOT modify implementation code (index.html, samples/aesthetic/index.html, js/, css/)
-- Report any failures as findings
-- Must empirically verify everything by executing tests and code
+- Review-only — do NOT modify implementation code (report findings/failures)
+- UTF-8 terminal encoding rule for PowerShell commands
+- Empirical verification: run all tests and harnesses directly
+- Write only to .agents/challenger_2/
 
 ## Current Parent
-- Conversation ID: 4b6c469d-d43a-4ccf-bc5e-021cf8381478
-- Updated: 2026-08-20T13:42:00Z
+- Conversation ID: 083470c7-d487-4f37-b7cd-3d44514a50bf
+- Updated: 2026-08-22T07:40:08+09:00
 
 ## Review Scope
-- **Files reviewed**:
-  - `index.html`
-  - `js/portal.js`
-  - `css/portal.css`
-  - `samples/aesthetic/index.html`
-  - `samples/aesthetic/js/aesthetic.js`
-  - `samples/aesthetic/css/aesthetic.css`
-  - `tests/test_interactive_ui.py`
-  - `tests/run_all_tests.py`
-- **Interface contracts**: PROJECT.md, TEST_READY.md
-- **Review criteria**: State resilience, edge cases, accessibility, UI logic bugs, stress testing
+- **Files to review**: `index.html`, `css/portal.css`, `js/portal.js`, `tests/test_server.py`, `tests/validate_links.py`, `tests/run_all_tests.py`, `tests/test_interactive_ui.py`, `PROJECT.md`, `.agents/ORIGINAL_REQUEST.md`, `samples/washoku/*`, `samples/bakery/*`, `samples/legal/*`, `samples/italian/*`, `samples/aesthetic/*`.
+- **Interface contracts**: `PROJECT.md`
+- **Review criteria**: Category filtering (9 cards, 3 dining), hero & footer links (5 flagship LPs), HTTP root/subdirectory routing & MIME types, link validation (0 404s, 0 root-relative links), master test runner execution (179 tests).
 
 ## Attack Surface
 - **Hypotheses tested**:
-  1. Portal category filtering: Tested 15 hash permutations including direct `#beauty`, `#saas`, `#filter=xxx`, invalid genres (`#invalid_genre`), uppercase (`#BEAUTY`), anchor hashes (`#showcase`), and empty hashes (`#`). All safely parse or fall back to `'all'` with 0 console errors.
-  2. FAQ accordion: Tested rapid clicking, multiple concurrent items open, keyboard triggers (Enter/Space), and aria-expanded synchronization. Verified grid-based smooth animation and state convergence.
-  3. Mobile Sticky CTA: Tested 350px scroll threshold, action section in-view suppression (`rect.top < windowHeight && rect.bottom > 100`), RAF throttling, and desktop breakpoint suppression (`@media (min-width: 768px)`).
-  4. Booking Modal: Tested course preselection (`data-plan="plum"`, `"bamboo"`, `"pine"`), form validation (`required`, regex email check, inline `.has-error`), ESC key close, overlay backdrop close, and focus restoration to `lastFocusedElement`.
-- **Vulnerabilities found**: No breaking defects or regressions found. Architecture is resilient and handles all edge cases gracefully.
-- **Untested angles**: Hardware-accelerated GPU frame-drop under heavy throttling (static page with pure CSS transforms has near-zero overhead).
+  1. Portal Hub tab filtering correctly maps 9 total cards and 3 dining cards. (VERIFIED PASS)
+  2. Hero quick pills and footer navigation links connect bidirectionally to all 5 sample LPs. (VERIFIED PASS)
+  3. Static HTTP server translates `/` and `/lp-portal-hub/` subdirectories with 200 OK and `text/css` MIME. (VERIFIED PASS)
+  4. Link validation ensures zero root-relative `/` links and zero broken anchors. (VERIFIED PASS)
+  5. Visual image assets in all sample directories are valid binaries exceeding the 1,000-byte test threshold. (VERIFIED FAIL: Washoku image stubs are 74-79 bytes)
+- **Vulnerabilities found**:
+  - `samples/washoku/assets/images/hero_banquet_nabe.jpg` (76 bytes), `sashimi_platter.jpg` (74 bytes), `yakitori_charcoal.jpg` (76 bytes), `washoku_private_room.jpg` (79 bytes) are text comment stubs, violating `validate_links.py` (Rule `INVALID_IMAGE_ASSET`) and failing `run_all_tests.py` `TC-WSH-IMG-01`.
+- **Untested angles**: Full headless browser automated screenshot rendering (tested statically and DOM/HTTP level).
 
 ## Loaded Skills
-- None specified in dispatch
+- **Source**: N/A
+- **Local copy**: N/A
+- **Core methodology**: Empirical test execution, adversarial edge-case stress testing, server routing validation, binary asset integrity auditing.
 
 ## Key Decisions Made
-- Verdict: **APPROVE**. All 4 interactive UI challenge areas meet high reliability, zero external runtime dependency, and WAI-ARIA accessibility standards.
+- Final Verdict: **REQUEST_CHANGES** due to 4 stub image assets in `samples/washoku/assets/images/` failing `TC-WSH-IMG-01` and `validate_links.py`.
 
 ## Artifact Index
-- `.agents/challenger_2/BRIEFING.md` — persistent memory
-- `.agents/challenger_2/DISPATCH.md` — incoming dispatches
-- `.agents/challenger_2/progress.md` — liveness heartbeat
-- `.agents/challenger_2/handoff.md` — 5-component handoff report
+- `.agents/challenger_2/DISPATCH.md` — Incoming dispatch message
+- `.agents/challenger_2/BRIEFING.md` — Agent briefing & situational awareness
+- `.agents/challenger_2/progress.md` — Liveness & heartbeat
+- `.agents/challenger_2/handoff.md` — Final 5-component handoff report with verdict REQUEST_CHANGES

@@ -213,6 +213,63 @@ def run_server_tests(verbose: bool = True) -> Tuple[bool, List[Dict[str, Any]]]:
                 f"HTTP Status {status} (Expected 200). Is samples/legal/index.html created?"
             )
 
+        # Test 2c: Root samples/italian/index.html fetch
+        status, headers, body = fetch_url(f"{server.base_url}/samples/italian/index.html")
+        if status == 200:
+            content_type = headers.get("content-type", "")
+            has_html = "text/html" in content_type
+            record_result(
+                "SRV-ROOT-04",
+                "Root Mode: GET /samples/italian/index.html returns 200 OK",
+                has_html,
+                f"Status: {status}, Content-Type: {content_type}"
+            )
+        else:
+            record_result(
+                "SRV-ROOT-04",
+                "Root Mode: GET /samples/italian/index.html returns 200 OK",
+                False,
+                f"HTTP Status {status} (Expected 200)."
+            )
+
+        # Test 2d: Root samples/bakery/index.html fetch
+        status, headers, body = fetch_url(f"{server.base_url}/samples/bakery/index.html")
+        if status == 200:
+            content_type = headers.get("content-type", "")
+            has_html = "text/html" in content_type
+            record_result(
+                "SRV-ROOT-05",
+                "Root Mode: GET /samples/bakery/index.html returns 200 OK",
+                has_html,
+                f"Status: {status}, Content-Type: {content_type}"
+            )
+        else:
+            record_result(
+                "SRV-ROOT-05",
+                "Root Mode: GET /samples/bakery/index.html returns 200 OK",
+                False,
+                f"HTTP Status {status} (Expected 200)."
+            )
+
+        # Test 2e: Root samples/washoku/index.html fetch
+        status, headers, body = fetch_url(f"{server.base_url}/samples/washoku/index.html")
+        if status == 200:
+            content_type = headers.get("content-type", "")
+            has_html = "text/html" in content_type
+            record_result(
+                "SRV-ROOT-06",
+                "Root Mode: GET /samples/washoku/index.html returns 200 OK",
+                has_html,
+                f"Status: {status}, Content-Type: {content_type}"
+            )
+        else:
+            record_result(
+                "SRV-ROOT-06",
+                "Root Mode: GET /samples/washoku/index.html returns 200 OK",
+                False,
+                f"HTTP Status {status} (Expected 200)."
+            )
+
         # Test 3: Subdirectory Mode: /<subdir>/index.html
         status, headers, body = fetch_url(f"{server.subdir_base_url}/index.html")
         record_result(
@@ -240,6 +297,33 @@ def run_server_tests(verbose: bool = True) -> Tuple[bool, List[Dict[str, Any]]]:
             f"HTTP Status {status} (Expected 200)"
         )
 
+        # Test 4c: Subdirectory Mode: /<subdir>/samples/italian/index.html
+        status, headers, body = fetch_url(f"{server.subdir_base_url}/samples/italian/index.html")
+        record_result(
+            "SRV-SUBDIR-04",
+            f"Subdirectory Mode: GET /{SUBDIR_NAME}/samples/italian/index.html returns 200 OK",
+            status == 200,
+            f"HTTP Status {status} (Expected 200)"
+        )
+
+        # Test 4d: Subdirectory Mode: /<subdir>/samples/bakery/index.html
+        status, headers, body = fetch_url(f"{server.subdir_base_url}/samples/bakery/index.html")
+        record_result(
+            "SRV-SUBDIR-05",
+            f"Subdirectory Mode: GET /{SUBDIR_NAME}/samples/bakery/index.html returns 200 OK",
+            status == 200,
+            f"HTTP Status {status} (Expected 200)"
+        )
+
+        # Test 4e: Subdirectory Mode: /<subdir>/samples/washoku/index.html
+        status, headers, body = fetch_url(f"{server.subdir_base_url}/samples/washoku/index.html")
+        record_result(
+            "SRV-SUBDIR-06",
+            f"Subdirectory Mode: GET /{SUBDIR_NAME}/samples/washoku/index.html returns 200 OK",
+            status == 200,
+            f"HTTP Status {status} (Expected 200)"
+        )
+
         # Test 5: Non-existent asset returns 404 cleanly (no 500)
         status, headers, body = fetch_url(f"{server.base_url}/non_existent_asset_12345.xyz")
         record_result(
@@ -254,6 +338,8 @@ def run_server_tests(verbose: bool = True) -> Tuple[bool, List[Dict[str, Any]]]:
         portal_css_path = PROJECT_ROOT / "css" / "portal.css"
         aesthetic_css_path = PROJECT_ROOT / "samples" / "aesthetic" / "css" / "aesthetic.css"
         legal_css_path = PROJECT_ROOT / "samples" / "legal" / "css" / "legal.css"
+        bakery_css_path = PROJECT_ROOT / "samples" / "bakery" / "css" / "bakery.css"
+        washoku_css_path = PROJECT_ROOT / "samples" / "washoku" / "css" / "washoku.css"
         
         target_css = None
         if css_path.exists():
@@ -288,6 +374,28 @@ def run_server_tests(verbose: bool = True) -> Tuple[bool, List[Dict[str, Any]]]:
             record_result(
                 "SRV-MIME-02",
                 "MIME Type: GET /samples/legal/css/legal.css returns 200 and text/css",
+                is_css,
+                f"Status: {status}, Content-Type: {ct}"
+            )
+
+        if bakery_css_path.exists():
+            status, headers, _ = fetch_url(f"{server.base_url}/samples/bakery/css/bakery.css")
+            ct = headers.get("content-type", "")
+            is_css = status == 200 and "text/css" in ct
+            record_result(
+                "SRV-MIME-03",
+                "MIME Type: GET /samples/bakery/css/bakery.css returns 200 and text/css",
+                is_css,
+                f"Status: {status}, Content-Type: {ct}"
+            )
+
+        if washoku_css_path.exists():
+            status, headers, _ = fetch_url(f"{server.base_url}/samples/washoku/css/washoku.css")
+            ct = headers.get("content-type", "")
+            is_css = status == 200 and "text/css" in ct
+            record_result(
+                "SRV-MIME-04",
+                "MIME Type: GET /samples/washoku/css/washoku.css returns 200 and text/css",
                 is_css,
                 f"Status: {status}, Content-Type: {ct}"
             )

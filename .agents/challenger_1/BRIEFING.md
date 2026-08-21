@@ -1,60 +1,63 @@
-# BRIEFING — 2026-08-20T22:42:00+09:00
+# BRIEFING — 2026-08-22T07:43:00+09:00
 
 ## Mission
-Empirically stress-test and challenge the implementation of LP Portal Hub and Aesthetic Salon LP focusing on relative paths, static hosting (root and /repo/ subdirectories), link resolution/case sensitivity, and responsive boundaries.
+Stress-test the interactive behavior, calendar math, boundary conditions, and test suites for Bakery LP and Washoku LP.
 
 ## 🔒 My Identity
-- Archetype: teamwork_preview_challenger
+- Archetype: empirical challenger
 - Roles: critic, specialist
-- Working directory: c:/Project/事業案/05_LP作成/.agents/challenger_1
-- Original parent: 4b6c469d-d43a-4ccf-bc5e-021cf8381478
-- Milestone: M4 - Empirical Stress Testing & Adversarial Verification
+- Working directory: c:\Project\事業案\05_LP作成\.agents\challenger_1
+- Original parent: 083470c7-d487-4f37-b7cd-3d44514a50bf
+- Milestone: M3 / Stress Testing & Empirical Verification
 - Instance: 1 of 1
 
 ## 🔒 Key Constraints
-- Review-only — do NOT modify implementation code
-- Write all artifacts and Japanese text following user guidelines
-- UTF-8 terminal encoding on Windows (`[Console]::OutputEncoding = [System.Text.Encoding]::UTF8;`)
-- Sync Obsidian daemon before completing turn
+- Review-only — do NOT modify implementation code directly; document findings and verdict
+- Empirical verification mandatory: write and run tests/scripts to verify all failure modes and edge cases
 
 ## Current Parent
-- Conversation ID: 4b6c469d-d43a-4ccf-bc5e-021cf8381478
-- Updated: 2026-08-20T22:42:00+09:00
+- Conversation ID: 083470c7-d487-4f37-b7cd-3d44514a50bf
+- Updated: 2026-08-22T07:43:00+09:00
 
 ## Review Scope
-- **Files reviewed**:
-  - `index.html` (Portal Hub)
-  - `css/tokens.css`, `css/reset.css`, `css/portal.css`
-  - `js/portal.js`
-  - `samples/aesthetic/index.html` (Aesthetic Salon LP)
-  - `samples/aesthetic/css/aesthetic.css`
-  - `samples/aesthetic/js/aesthetic.js`
-  - `tests/run_all_tests.py`, `tests/test_server.py`, `tests/validate_links.py`, `tests/validate_pasona_dom.py`, `tests/test_interactive_ui.py`
-- **Interface contracts**: PROJECT.md, TEST_READY.md
-- **Review criteria**: Relative path resolution, GitHub Pages root & subdirectory hosting compatibility, case sensitivity, responsive boundary conditions (375px, 768px, 1920px), DOM semantic hierarchy, zero 404s/console errors.
+- **Files to review**:
+  - `samples/bakery/js/config.js`
+  - `samples/bakery/js/bakery.js`
+  - `samples/washoku/js/config.js`
+  - `samples/washoku/js/washoku.js`
+  - `tests/test_interactive_ui.py`
+  - `tests/run_all_tests.py`
+  - `PROJECT.md`
+  - `ORIGINAL_REQUEST.md`
+- **Review criteria**:
+  - 14-day calendar window generation & boundary math (month rollover, leap years)
+  - Past time slots on today's date marked disabled/full
+  - Closed days rendering (Bakery Mon/Tue, Washoku Sun)
+  - Party size bounds & bonus tier highlights (Washoku 2-40)
+  - Deterministic fallback availability seed reproducibility
+  - RFC 5545 `.ics` syntax compliance (DTSTART, DTEND, SUMMARY, LOCATION, VALARM)
+  - Automated test suite execution & results
 
 ## Attack Surface
 - **Hypotheses tested**:
-  1. Broken root-relative `/` links or missing assets on subdirectory `/repo/` hosting -> PASSED (0 root paths, 100% relative).
-  2. Case mismatch on Windows vs Linux/GitHub Pages -> PASSED (All directory and file names match exact disk casing).
-  3. Responsive layout breakdown at 375px mobile or stretched 1920px desktop -> PASSED (Strict clamp() and max-width containers).
-  4. New PASONA section omission or invalid DOM heading hierarchy -> PASSED (All 7 PASONA sections with 1 H1 and sequential headings).
-  5. JavaScript failure causing blank page or broken conversion -> PASSED (Static SSR markup, progressive enhancement, keyboard ARIA support).
-- **Vulnerabilities found**: None. System is resilient with zero runtime dependencies.
-- **Untested angles**: Live external LINE webhook/API endpoints (simulated via standard client URL schema).
+  - [x] Calendar date generation across month boundaries & leap years (2028-02-29): Fully supported by ECMAScript & Python standard datetime math.
+  - [x] Past time slot handling on today's date: Correctly identified via `now.getHours()` / `now.getMinutes()` and marked `full` / disabled.
+  - [x] Closed days mapping: Bakery (Mon=1, Tue=2), Washoku (Sun=0) accurately rendered as `closed` (`休`).
+  - [x] Party size validation: Washoku rejects <2 and >40; toggles `#perk-highlight-box` dynamically at >=8.
+  - [x] Deterministic fallback hash reproducibility: 32-bit polynomial rolling hash is 100% deterministic.
+  - [x] RFC 5545 `.ics` syntax: Complies with RFC 5545 (CRLF, DTSTART, DTEND, VALARM, PRODID).
+  - [x] Asset validation: Washoku image assets in `samples/washoku/assets/images/` are 74-79 byte text stubs.
+- **Vulnerabilities found**:
+  - `samples/washoku/assets/images/` contains four 74-79 byte text files (non-image stub comments), failing `TC-WSH-IMG-01` in `tests/run_all_tests.py` and failing visual rendering in browsers.
+- **Untested angles**: All core objectives and boundary conditions tested.
 
 ## Loaded Skills
-- **Source**: c:\Project\事業案\05_LP作成\.agents\skills\lp-pasona\SKILL.md
-- **Core methodology**: New PASONA copywriting and structure validation
-- **Source**: c:\Project\事業案\05_LP作成\.agents\skills\ui-ux-pro-max\SKILL.md
-- **Core methodology**: 3-tier design token and responsive UX design patterns
+- None explicitly loaded as external Antigravity domain methodology.
 
 ## Key Decisions Made
-- Confirmed verdict: **APPROVE**.
-- Prepared comprehensive 5-component handoff report in `c:/Project/事業案/05_LP作成/.agents/challenger_1/handoff.md`.
+- Issue verdict **REQUEST_CHANGES** due to defect in Washoku image assets, while confirming all interactive calendar and logic subsystems are robust.
 
 ## Artifact Index
-- `c:/Project/事業案/05_LP作成/.agents/challenger_1/DISPATCH.md` — Inbound task dispatch
-- `c:/Project/事業案/05_LP作成/.agents/challenger_1/BRIEFING.md` — Persistent identity and state
-- `c:/Project/事業案/05_LP作成/.agents/challenger_1/progress.md` — Progress tracker and heartbeat
-- `c:/Project/事業案/05_LP作成/.agents/challenger_1/handoff.md` — Handoff report
+- `.agents/challenger_1/BRIEFING.md` — Agent working memory
+- `.agents/challenger_1/progress.md` — Liveness & progress tracking
+- `.agents/challenger_1/handoff.md` — Final 5-component handoff report
