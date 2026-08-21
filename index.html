@@ -91,8 +91,18 @@
               <line x1="2" y1="12" x2="22" y2="12"></line>
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
             </svg>
-            <span>ゼロ依存・GitHub Pages完全準拠</span>
-          </div>
+        <!-- Live Demos Quick Action -->
+        <div class="hero-quick-demos" style="margin-top: 1.5rem; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+          <a href="./samples/aesthetic/index.html" class="quick-demo-pill" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,215,0,0.3); border-radius: 9999px; color: #FFF; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(255,215,0,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
+            <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#10B981;"></span>
+            <span>🌸 美容エステLP 実機デモ</span>
+            <span style="opacity:0.6;">→</span>
+          </a>
+          <a href="./samples/italian/index.html" class="quick-demo-pill" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; background: rgba(200,90,50,0.15); border: 1px solid rgba(200,90,50,0.4); border-radius: 9999px; color: #FFF; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(200,90,50,0.3)'" onmouseout="this.style.background='rgba(200,90,50,0.15)'">
+            <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#F59E0B;"></span>
+            <span>🍕 本格イタリアンLP 実機デモ</span>
+            <span style="opacity:0.6;">→</span>
+          </a>
         </div>
       </section>
 
@@ -144,7 +154,7 @@
         <!-- Cards Bento Grid -->
         <div class="showcase-grid" id="showcase-grid" role="region" aria-live="polite">
 
-          <!-- ★ FEATURED CARD (Aesthetic Salon LP) -->
+          <!-- ★ FEATURED CARD 1 (Aesthetic Salon LP) -->
           <article class="lp-card featured" data-category="beauty" id="card-aesthetic">
             <div class="featured-preview-col">
               <div class="featured-visual-mock" aria-hidden="true">
@@ -188,7 +198,7 @@
                       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                       <polyline points="22 4 12 14.01 9 11.01"></polyline>
                     </svg>
-                    <span>モバイル追従型LINE/WEB予約バー ＆ FAQアコーディオン</span>
+                    <span>14日間 リアルタイム空き状況カレンダー（Googleカレンダー自動同期対応）</span>
                   </div>
                   <div class="highlight-item">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -201,13 +211,81 @@
               </div>
               <div class="featured-actions">
                 <a href="./samples/aesthetic/index.html" class="btn-primary-demo" id="link-aesthetic-demo">
-                  <span>実機デモを見る</span>
+                  <span>エステLP 実機デモを見る</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
                 </a>
                 <span class="target-audience-text">ターゲット: 30〜40代 働く女性・美肌再生志向層</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ★ FEATURED CARD 2 (Italian Restaurant LP) -->
+          <article class="lp-card featured" data-category="dining" id="card-italian">
+            <div class="featured-preview-col">
+              <div class="featured-visual-mock" style="background: linear-gradient(145deg, #381E19 0%, #1F1916 100%); border-color: rgba(200, 90, 50, 0.4);" aria-hidden="true">
+                <div class="mock-window-header">
+                  <span class="mock-dot red"></span>
+                  <span class="mock-dot yellow"></span>
+                  <span class="mock-dot green"></span>
+                </div>
+                <div class="mock-content" style="background: radial-gradient(circle at center, rgba(200, 90, 50, 0.2) 0%, rgba(0, 0, 0, 0) 70%);">
+                  <span class="mock-salon-logo" style="color: #F8D7C9;">TRATTORIA &amp; PIZZERIA</span>
+                  <p class="mock-headline">薪窯の薫香と、手打ちの弾力。<br>今宵、一番美味しいイタリアへ。</p>
+                  <span class="mock-cta-preview" style="background: linear-gradient(135deg, #C85A32, #722F37);">14日席予約 ◯・△・✕</span>
+                </div>
+              </div>
+            </div>
+            <div class="featured-info-col">
+              <div>
+                <div class="featured-badges-group">
+                  <span class="badge-live">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    <span>公開中 (LIVE DEMO)</span>
+                  </span>
+                  <span class="badge-pasona" style="background: rgba(200,90,50,0.2); color: #F5A384; border-color: rgba(200,90,50,0.4);">五感刺激・シズル体験型モデル</span>
+                  <span class="badge-tag">14日2部制席予約</span>
+                  <span class="badge-tag">本格薪窯ピッツァ</span>
+                </div>
+                <h3 class="featured-title">本格薪窯ピッツァ＆手打ちパスタ イタリアン LP</h3>
+                <p class="featured-desc">
+                  本場ナポリ仕込みの薪窯ピッツァと毎朝手打ちの生パスタを訴求。食欲を刺激するシズル感あふれるストーリー、松竹梅コース提案、ランチ/ディナー2部制の14日間リアルタイム席予約カレンダーを備えた高成約型レストランLP。
+                </p>
+                <div class="featured-highlights-list">
+                  <div class="highlight-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>五感刺激ビジュアル（薪窯ピッツァ・手打ち生パスタ・厳選ワイン・名物ドルチェ）</span>
+                  </div>
+                  <div class="highlight-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>ランチ＆ディナー2部制 14日間席空き状況カレンダー（◯・△・✕・定休）</span>
+                  </div>
+                  <div class="highlight-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>1クリックGoogle/Appleカレンダー登録 ＆ LINE公式1タップ予約連動</span>
+                  </div>
+                </div>
+              </div>
+              <div class="featured-actions">
+                <a href="./samples/italian/index.html" class="btn-primary-demo" id="link-italian-demo" style="background: linear-gradient(135deg, #C85A32 0%, #8B263E 100%);">
+                  <span>イタリアンLP 実機デモを見る</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+                <span class="target-audience-text">ターゲット: 20〜40代 カップル・女子会・歓送迎会幹事・記念日層</span>
               </div>
             </div>
           </article>
@@ -296,74 +374,6 @@
                 </svg>
                 <span>Coming Soon</span>
               </span>
-            </div>
-          </article>
-
-          <!-- 4. Dining / Gourmet Live Demo Card (Italian Restaurant LP) -->
-          <article class="lp-card featured" data-category="dining" id="card-italian">
-            <div class="featured-preview-col">
-              <div class="featured-visual-mock" style="background: linear-gradient(145deg, #381E19 0%, #1F1916 100%); border-color: rgba(200, 90, 50, 0.4);" aria-hidden="true">
-                <div class="mock-window-header">
-                  <span class="mock-dot red"></span>
-                  <span class="mock-dot yellow"></span>
-                  <span class="mock-dot green"></span>
-                </div>
-                <div class="mock-content" style="background: radial-gradient(circle at center, rgba(200, 90, 50, 0.2) 0%, rgba(0, 0, 0, 0) 70%);">
-                  <span class="mock-salon-logo" style="color: #F8D7C9;">TRATTORIA &amp; PIZZERIA</span>
-                  <p class="mock-headline">薪窯の薫香と、手打ちの弾力。<br>今宵、一番美味しいイタリアへ。</p>
-                  <span class="mock-cta-preview" style="background: linear-gradient(135deg, #C85A32, #722F37);">14日席予約 ◯・△・✕</span>
-                </div>
-              </div>
-            </div>
-            <div class="featured-info-col">
-              <div>
-                <div class="featured-badges-group">
-                  <span class="badge-live">
-                    <span class="status-dot" aria-hidden="true"></span>
-                    <span>公開中 (LIVE DEMO)</span>
-                  </span>
-                  <span class="badge-pasona">新PASONA完全準拠</span>
-                  <span class="badge-tag">14日2部制席予約</span>
-                  <span class="badge-tag">本格薪窯ピッツァ</span>
-                </div>
-                <h3 class="featured-title">本格薪窯ピッツァ＆手打ちパスタ イタリアン LP</h3>
-                <p class="featured-desc">
-                  本場ナポリ仕込みの薪窯ピッツァと毎朝手打ちの生パスタを訴求。新PASONA心理動線、松竹梅コース提案、ランチ/ディナー2部制の14日間リアルタイム席予約カレンダーを備えた高成約型レストランLP。
-                </p>
-                <div class="featured-highlights-list">
-                  <div class="highlight-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>新PASONA全7セクション（シズル写真・3大こだわり・コース比較・松竹梅プラン）</span>
-                  </div>
-                  <div class="highlight-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>ランチ＆ディナー2部制 14日間席空き状況カレンダー（◯・△・✕・定休）</span>
-                  </div>
-                  <div class="highlight-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>1クリックGoogle/Appleカレンダー登録 ＆ LINE公式1タップ予約連動</span>
-                  </div>
-                </div>
-              </div>
-              <div class="featured-actions">
-                <a href="./samples/italian/index.html" class="btn-primary-demo" id="link-italian-demo">
-                  <span>実機デモを見る</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </a>
-                <span class="target-audience-text">ターゲット: 20〜40代 カップル・女子会・歓送迎会幹事・記念日層</span>
-              </div>
             </div>
           </article>
 
