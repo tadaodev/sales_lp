@@ -246,6 +246,87 @@ body {
   color: var(--primitive-gold-500);
 }
 
+/* Quick Demo Links (High Contrast, Distinctive Badges) */
+.hero-quick-demos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.quick-demo-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-glass-card);
+  backdrop-filter: var(--glass-blur-md);
+  -webkit-backdrop-filter: var(--glass-blur-md);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--primitive-slate-900);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.quick-demo-pill:hover {
+  transform: translateY(-2px);
+  color: var(--primitive-slate-950);
+  background: #FFFFFF;
+  box-shadow: var(--shadow-md);
+}
+
+.quick-demo-pill.pill-aesthetic {
+  border-color: rgba(197, 168, 128, 0.45);
+}
+
+.quick-demo-pill.pill-aesthetic:hover {
+  border-color: var(--primitive-gold-500);
+  box-shadow: 0 8px 24px rgba(197, 168, 128, 0.3);
+}
+
+.quick-demo-pill.pill-italian {
+  border-color: rgba(226, 109, 69, 0.45);
+}
+
+.quick-demo-pill.pill-italian:hover {
+  border-color: #E26D45;
+  box-shadow: 0 8px 24px rgba(226, 109, 69, 0.28);
+}
+
+.pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pill-dot.aesthetic {
+  background: #10B981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+
+.pill-dot.italian {
+  background: #E26D45;
+  box-shadow: 0 0 6px rgba(226, 109, 69, 0.6);
+}
+
+.pill-arrow {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.quick-demo-pill:hover .pill-arrow {
+  transform: translateX(3px);
+  color: var(--primitive-slate-900);
+}
+
 /* ==========================================================
    4. Genre Filter Navigation
    ========================================================== */
