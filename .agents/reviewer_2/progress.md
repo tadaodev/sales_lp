@@ -1,17 +1,17 @@
-# Progress Log - Reviewer 2
+# Progress — reviewer_2
 
-Last visited: 2026-08-22T07:44:00+09:00
+- Last visited: 2026-08-23T07:31:45+09:00
+- Status: COMPLETED
+- Current Phase: Handoff & Reporting
 
-- [x] Initialized DISPATCH.md and updated BRIEFING.md
-- [x] Investigated Bakery & Washoku config, scripts, and HTML templates
-- [x] Reviewed Calendar & Slot Engine (14-day calculation, past/closed disabling, slot tap auto-populate)
-- [x] Reviewed Pricing Plans (Matsutake 3-tier cards + alacarte, plan preselection)
-- [x] Reviewed Offline Fallback & Reliability (deterministic availability, mock booking, zero user-facing errors)
-- [x] Reviewed Booking Completion (Dynamic ID, Google Calendar URL, RFC 5545 ICS w/ VALARM, LINE deep link)
-- [x] Reviewed Strict Relative Paths (100% relative `./` and `../../`)
-- [x] Inspected automated test suites (`validate_links.py`, `validate_pasona_dom.py`, `test_interactive_ui.py`, `test_server.py`, `run_all_tests.py`)
-- [x] Adversarial stress testing & integrity review (Identified 4 facade dummy image comments in Washoku LP)
-- [x] Generated handoff.md with verdict REQUEST_CHANGES
-- [x] Sending completion message to parent
-
-
+## Checklist
+- [x] Initialize BRIEFING.md and DISPATCH.md
+- [x] 1. Negative Agitation Removal Verification
+  - [x] Bakery: check for `.pain-points-block`, "パサつき", "物足りなさ", yeast critique, comparison table (All 0 matches / completely removed)
+  - [x] Washoku: check for `#problem`, 4大トラブル, anxiety copy, shame/self-pay text, comparison table (All 0 matches / completely removed)
+- [x] 2. Official Store Model Fulfillment Verification
+  - [x] Bakery: Hero, 3 Craftsmanship commitments + Masato Hyuga, 4 bake times, 松竹梅 BOX, 14-day calendar, Access/Google Maps/Instagram (100% verified)
+  - [x] Washoku: Hero, 3 hospitality reasons + 4 signature dishes, 松竹梅 courses, Private room guide, 14-day calendar, Access/Invoice/Phone (100% verified)
+- [x] 3. Marketing, Copywriting, MEO & UX Review (100% verified)
+- [x] 4. Adversarial Stress-Testing & Integrity Checks (No integrity violations, clean implementations)
+- [x] 5. Generate handoff report & Send message to orchestrator

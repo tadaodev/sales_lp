@@ -1,14 +1,14 @@
-# BRIEFING — 2026-08-22T07:43:00Z
+# BRIEFING — 2026-08-23T07:32:00Z
 
 ## Mission
-Independently review Bakery LP, Washoku LP, Portal Hub integration, and test suite for semantic correctness, visual/UX fidelity, and test integrity.
+Comprehensive technical and design review of Bakery LP (`samples/bakery/`) and Washoku LP (`samples/washoku/`) for Store-Model refresh, semantic correctness, accessibility, interactive functionality, and integrity.
 
 ## 🔒 My Identity
 - Archetype: reviewer_critic
 - Roles: reviewer, critic
 - Working directory: c:\Project\事業案\05_LP作成\.agents\reviewer_1
-- Original parent: 083470c7-d487-4f37-b7cd-3d44514a50bf
-- Milestone: Review of Bakery & Washoku Flagship LPs + Portal Hub
+- Original parent: dd8e9a83-e05e-4279-8493-d4a95c48a98c
+- Milestone: Official Store-Model Refresh Review (Bakery & Washoku)
 - Instance: 1 of 1
 
 ## 🔒 Key Constraints
@@ -17,26 +17,29 @@ Independently review Bakery LP, Washoku LP, Portal Hub integration, and test sui
 - Follow UTF-8 terminal encoding and Japanese user communication rules
 
 ## Current Parent
-- Conversation ID: 083470c7-d487-4f37-b7cd-3d44514a50bf
-- Updated: 2026-08-22T07:43:00Z
+- Conversation ID: dd8e9a83-e05e-4279-8493-d4a95c48a98c
+- Updated: 2026-08-23T07:32:00Z
 
 ## Review Scope
 - **Files to review**:
-  - `c:\Project\事業案\05_LP作成\.agents\ORIGINAL_REQUEST.md`
-  - `c:\Project\事業案\05_LP作成\PROJECT.md`
   - `samples/bakery/index.html`, `css/bakery.css`, `js/config.js`, `js/bakery.js`
   - `samples/washoku/index.html`, `css/washoku.css`, `js/config.js`, `js/washoku.js`
-  - `index.html`, `css/portal.css`
-  - `tests/validate_links.py`, `tests/validate_pasona_dom.py`, `tests/test_interactive_ui.py`, `tests/test_server.py`, `tests/run_all_tests.py`
+  - `index.html`, `css/portal.css`, `js/portal.js`
+  - `tests/`
 - **Interface contracts**: PROJECT.md, ORIGINAL_REQUEST.md
-- **Review criteria**: semantic correctness, WAI-ARIA, design token conformance, responsive design, test execution & integrity
+- **Review criteria**:
+  1. Code quality, CSS organization, responsive design, visual aesthetics, typography, color palettes.
+  2. HTML5 semantic correctness: single H1 per page, strict heading hierarchy (H1 -> H2 -> H3 -> H4), WAI-ARIA roles, WCAG 2.1 AA color contrast.
+  3. Anchor links integrity (ensure all `#...` header/footer links match existing section IDs).
+  4. Interactive elements: 14-day calendar generation, modal dialogs, schedule slots, form inputs, external links.
 
 ## Key Decisions Made
-- Discovered Critical Integrity Violation: 4 Washoku image assets are 74-79 byte dummy comment text files, violating R3 and failing `< 1000` bytes test check.
-- Discovered Major Semantic Heading violation in `samples/washoku/index.html` (H2 -> H4 skipped level).
-- Confirmed Bakery LP (`samples/bakery/`) is fully implemented with high quality, valid assets, and sound architecture.
-- Confirmed Portal Hub (`index.html`, `css/portal.css`) 5-Flagship showcase is well-integrated with correct badges and navigation.
-- Verdict decided: **REQUEST_CHANGES**.
+- Confirmed complete removal of negative pain agitation in both Bakery and Washoku LPs.
+- Confirmed strict semantic heading hierarchy (H1 -> H2 -> H3 -> H4) without skipped levels.
+- Confirmed valid SVG assets (>1000 bytes) with rich visuals replacing any previous dummy files.
+- Confirmed 14-day interactive calendar, Google Calendar URL, RFC 5545 .ics with VALARM, and LINE deep links.
+- Confirmed Portal Hub 5-Flagship showcase and bidirectional navigation links.
+- Final Verdict: **APPROVE**.
 
 ## Artifact Index
 - `.agents/reviewer_1/DISPATCH.md` — Incoming dispatch log
@@ -46,13 +49,14 @@ Independently review Bakery LP, Washoku LP, Portal Hub integration, and test sui
 
 ## Review Checklist
 - **Items reviewed**: Bakery LP (HTML, CSS, JS, Assets), Washoku LP (HTML, CSS, JS, Assets), Portal Hub (HTML, CSS, JS), Test suite (5 test files)
-- **Verdict**: REQUEST_CHANGES
-- **Unverified claims**: Live browser rendering of heavy CSS backdrop-filter (static analysis verified)
+- **Verdict**: APPROVE
+- **Unverified claims**: Live browser rendering under heavy CPU load (verified via DOM static inspection)
 
 ## Attack Surface
 - **Hypotheses tested**:
-  - Image assets validity: FAILED for Washoku LP (dummy facade files)
-  - Heading hierarchy: FAILED for Washoku LP (H2 -> H4 in #narrowing)
-  - Portal 5-flagship badge count: PASSED (9 total, 3 dining)
-  - WAI-ARIA accordions & tablist: PASSED
-  - Deterministic fallback & .ics VALARM: PASSED
+  - Heading hierarchy continuity: PASSED (Zero level skips)
+  - Asset integrity (>1000 bytes & valid SVG): PASSED (All 8 images valid)
+  - Anchor link targets: PASSED (All IDs exist)
+  - 14-day calendar deterministic calculation: PASSED
+  - RFC 5545 .ics VALARM -PT2H format: PASSED
+  - Portal 5-flagship badge counts (9 total, 3 dining): PASSED

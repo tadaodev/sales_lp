@@ -1,14 +1,13 @@
-# Progress Tracking — worker_washoku_1
+# Progress Tracker — worker_washoku_1
 
-Last visited: 2026-08-22T07:26:00Z
+- **Last visited**: 2026-08-23T07:28:00+09:00
+- **Status**: COMPLETED
 
-## Milestone: M2 (Washoku LP Implementation & Visual Assets)
-
-### Tasks
-- [x] 1. Generate/create 4 visual image assets (`hero_banquet_nabe.jpg`, `sashimi_platter.jpg`, `yakitori_charcoal.jpg`, `washoku_private_room.jpg`)
-- [x] 2. Implement `samples/washoku/js/config.js` (`window.WASHOKU_CONFIG`)
-- [x] 3. Implement `samples/washoku/index.html` (Semantic PASONA, Guarantees, Dishes, Courses, Calendar, FAQ, Access, Modal, Sticky CTA)
-- [x] 4. Implement `samples/washoku/css/washoku.css` (Japanese Modern Glassmorphism, Responsive)
-- [x] 5. Implement `samples/washoku/js/washoku.js` (Calendar logic, Fallback, Slot Select, Form Validation, .ics, Google Cal, LINE)
-- [x] 6. Verification and test execution
-- [x] 7. Handoff report and Obsidian sync
+## Steps
+- [x] Phase 0: Review DISPATCH.md, ORIGINAL_REQUEST.md, survey handoff, test suite
+- [x] Phase 1: Create DISPATCH.md, BRIEFING.md, progress.md
+- [x] Phase 2: Refactor `samples/washoku/index.html` (Hero, Affinity, Hospitality, Atmosphere, Courses, Calendar, FAQ, Access, Header/Footer Nav)
+- [x] Phase 3: Update and clean up `samples/washoku/css/washoku.css` (Add atmosphere/room grid, remove unused problem/ba-before styles)
+- [x] Phase 4: Verify `samples/washoku/js/config.js` and `samples/washoku/js/washoku.js`
+- [x] Phase 5: Run full test suite validation & heading hierarchy / link check
+- [x] Phase 6: Produce `handoff.md` and report to caller agent

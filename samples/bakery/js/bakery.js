@@ -1,7 +1,7 @@
 /**
  * samples/bakery/js/bakery.js
  * Vanilla JavaScript Engine for BOULANGERIE ARTISANALE Landing Page
- * - 14-Day Takeout Availability Calendar Engine (4 Daily Baking Batches)
+ * - 14-Day Takeout Availability Calendar Engine (4 Daily Baking Batches: 08:00 / 11:30 / 14:00 / 16:30)
  * - Deterministic Offline Fallback Simulation
  * - Slot Selection & Reservation Form Auto-Fill Synchronization
  * - Plan Preselection Handlers (Matsutake 3-Tier + Alacarte)
@@ -92,10 +92,10 @@
       seed = (seed * 31 + seedStr.charCodeAt(i)) % 4294967296;
     }
 
-    // Popularity weighting for weekends (Sat, Sun) and 11:00 / 16:30 slots
+    // Popularity weighting for weekends (Sat, Sun) and peak slots
     var bonus = 0;
     if (jsWeekday === 0 || jsWeekday === 6) bonus += 15;
-    if (slotTime === '11:00' || slotTime === '16:30') bonus += 10;
+    if (slotTime === '11:00' || slotTime === '11:30' || slotTime === '16:30') bonus += 10;
 
     var score = (seed + slotIdx * 13 + bonus) % 100;
     if (score < 45) {
@@ -180,10 +180,10 @@
       html += '<tbody>';
       timeSlots.forEach(function (slotTime) {
         var batchLabel = '';
-        if (slotTime === '08:00') batchLabel = '朝便 08:00';
-        else if (slotTime === '11:00') batchLabel = '昼便 11:00';
-        else if (slotTime === '14:00') batchLabel = '午後便 14:00';
-        else if (slotTime === '16:30') batchLabel = '夕方便 16:30';
+        if (slotTime === '08:00') batchLabel = '第1便 08:00';
+        else if (slotTime === '11:00' || slotTime === '11:30') batchLabel = '第2便 ' + slotTime;
+        else if (slotTime === '14:00') batchLabel = '第3便 14:00';
+        else if (slotTime === '16:30') batchLabel = '第4便 16:30';
         else batchLabel = slotTime;
 
         html += '<tr>';
@@ -346,7 +346,7 @@
    */
   function initStickyCTA() {
     var stickyBar = document.getElementById('mobile-sticky-cta');
-    var actionSection = document.getElementById('action');
+    var actionSection = document.getElementById('booking') || document.getElementById('action');
     if (!stickyBar) return;
 
     var ticking = false;
@@ -687,7 +687,7 @@
         if (target) {
           e.preventDefault();
           var header = document.getElementById('site-header');
-          var headerHeight = header ? header.offsetHeight : 70;
+          var headerHeight = header ? header.offsetHeight : 74;
           var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
           window.scrollTo({

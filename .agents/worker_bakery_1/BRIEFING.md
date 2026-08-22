@@ -1,68 +1,62 @@
-# BRIEFING — 2026-08-22T07:27:40+09:00
+# BRIEFING — 2026-08-23T07:28:30+09:00
 
 ## Mission
-Build and thoroughly verify the authentic French artisan bakery landing page (`samples/bakery/`) according to the full spec_miner_bakery_1 specifications, new PASONA framework, Matsutake pricing tier, 14-day reservation calendar, responsive design, and image assets.
+Revamp Bakery LP (samples/bakery/index.html, css/bakery.css, js/config.js, js/bakery.js) for artisan bakery MEO/Instagram focus, eliminate negative agitation, align with 3 Craftsmanship commitments, 4 bake batches (08:00, 11:30, 14:00, 16:30), 松竹梅 3-tier box, calendar booking, and pass all tests.
 
 ## 🔒 My Identity
-- Archetype: worker_bakery_1
+- Archetype: worker
 - Roles: implementer, qa, specialist
-- Working directory: c:\Project\事業案\05_LP作成\.agents\worker_bakery_1
-- Original parent: 083470c7-d487-4f37-b7cd-3d44514a50bf
-- Milestone: Bakery Sample LP Implementation & Verification
+- Working directory: c:/Project/事業案/05_LP作成/.agents/worker_bakery_1/
+- Original parent: dd8e9a83-e05e-4279-8493-d4a95c48a98c
+- Milestone: Bakery LP Revamp & MEO/Instagram Optimization
 
 ## 🔒 Key Constraints
-- Exclusive write scope: `samples/bakery/` and `.agents/worker_bakery_1/`
-- Full new PASONA structure with semantic data-pasona attributes
-- Single H1 and strict heading hierarchy (h1 -> h2 -> h3)
-- Warm French Artisan Organic Glassmorphism (#F9F6F0, #D4A359, #5C3A21, #221C16)
-- 14-day booking calendar with 4 daily baking batches (08:00, 11:00, 14:00, 16:30), closed Mon/Tue
-- Matsutake 3-tier assortment (¥3,480 bamboo, ¥1,980 plum, ¥5,800 pine, ¥0 alacarte)
-- Sticky mobile CTA bar
-- RFC 5545 .ics generation with 2h VALARM, Google Calendar 1-click URL, LINE deep link
-- Genuine implementation with no hardcoding or dummy facades
-- UTF-8 terminal encoding and end-of-turn Obsidian sync
+- Scope: samples/bakery/index.html, samples/bakery/css/bakery.css, samples/bakery/js/config.js, samples/bakery/js/bakery.js
+- Complete removal of negative pain-point agitation (e.g. .pain-points-block, "パサつき", "物足りなさ", .before-after-block, etc.)
+- 3 Craftsmanship Commitments (T65 wheat, 72h levain, 260C firewood stone oven) + Chef Masato Hyuga story
+- 4 bake batches: 08:00, 11:30, 14:00, 16:30
+- 松竹梅 3-tier BOX (梅¥1,980 / 竹¥3,480 ★人気No.1 / 松¥5,800) + alacarte
+- 14-day booking calendar (30-min pickup slots) + dynamic availability + modal auto-fill + Google Calendar/.ics/LINE
+- Header navigation matches section IDs without broken links
+- Single H1, WCAG contrast, ARIA accessibility, Schema.org Bakery JSON-LD
+- Run all tests and pass
 
 ## Current Parent
-- Conversation ID: 083470c7-d487-4f37-b7cd-3d44514a50bf
-- Updated: 2026-08-22T07:27:40+09:00
+- Conversation ID: dd8e9a83-e05e-4279-8493-d4a95c48a98c
+- Updated: 2026-08-23T07:28:30+09:00
 
 ## Task Summary
-- **What to build**: Full production-grade bakery LP in `samples/bakery/` (`index.html`, `css/bakery.css`, `js/config.js`, `js/bakery.js`, `assets/images/*`)
-- **Success criteria**: All automated tests pass, zero 404 links, flawless PASONA semantic hierarchy and responsive behavior.
-- **Interface contracts**: `samples/bakery/js/config.js`, `PROJECT.md`, `spec_miner_bakery_1/handoff.md`
+- **What to build**: Full revamp of Bakery LP files (HTML, CSS, JS) according to specifications
+- **Success criteria**: All requirements met, clean and beautiful UI, passing all automated test suites
+- **Interface contracts**: PROJECT.md & ORIGINAL_REQUEST.md & survey handoff
+
+## Key Decisions Made
+- Fully removed `.pain-points-block` and `.before-after-block` negative agitation elements and text.
+- Implemented "本日営業中 07:30〜18:30" live open badge with glowing green pulse in Hero.
+- Consolidated 3 Craftsmanship Commitments (T65 French wheat, 72h levain, 260C firewood stone oven) in Concept section.
+- Updated 4-batch baking schedule to 08:00, 11:30, 14:00, 16:30 in HTML, config.js, and bakery.js.
+- Added `@boulangerie_artisanale` Instagram button and Schema.org Bakery JSON-LD metadata for MEO.
+- Verified all anchor IDs match navigation items `#hero`, `#concept`, `#timetable`, `#menu`, `#booking`, `#access`, `#faq`.
+
+## Artifact Index
+- DISPATCH.md — Assignment instructions
+- BRIEFING.md — Persistent state
+- progress.md — Heartbeat progress tracker
+- handoff.md — Final completion report
 
 ## Change Tracker
 - **Files modified**:
-  - `samples/bakery/js/config.js` — Centralized store metadata, baking schedule, closed days, Matsutake plans, aliases
-  - `samples/bakery/css/bakery.css` — Warm French Artisan Organic Glassmorphism tokens, calendar statuses, responsive 375px-1920px
-  - `samples/bakery/index.html` — Full New PASONA 7-section DOM, single H1, strict hierarchy, 4 image alt attributes, modal, sticky CTA
-  - `samples/bakery/js/bakery.js` — 14-day calendar slot calculation, deterministic fallback, form validation, BAK ID, GCal URL, RFC 5545 .ics (VALARM 2h), LINE deep link
-  - `samples/bakery/assets/images/hero_baguette.jpg` — 16:9 Artisan baguette hero visual
-  - `samples/bakery/assets/images/baker_craftsman.jpg` — 1:1 Baker Masato Hyuga portrait
-  - `samples/bakery/assets/images/campagne_slice.jpg` — 4:3 Pain de Campagne alveoli crumb slice
-  - `samples/bakery/assets/images/bakery_display.jpg` — 16:9 French boutique interior display
-- **Build status**: Complete & Validated
+  - `samples/bakery/index.html`: Refactored DOM to official store model, added live badge, Schema JSON-LD, 3 commitments, 4 bake batches, and Instagram link.
+  - `samples/bakery/css/bakery.css`: Removed negative agitation styles, added `.open-badge`, `.instagram-btn`, and 3-column pillar layout.
+  - `samples/bakery/js/config.js`: Updated `bakingSchedule` times to 08:00, 11:30, 14:00, 16:30 and added Instagram info.
+  - `samples/bakery/js/bakery.js`: Updated batch labels and navigation selector fallbacks.
+- **Build status**: Ready for verification
 - **Pending issues**: None
 
 ## Quality Status
-- **Build/test result**: All files created and statically verified against `validate_links.py` and `validate_pasona_dom.py` rules.
+- **Build/test result**: All syntax and structural requirements validated
 - **Lint status**: Clean
-- **Tests added/modified**: Ready for test suite validation
+- **Tests added/modified**: Coordinated for test suite runner
 
 ## Loaded Skills
-- None loaded
-
-## Key Decisions Made
-- Implemented full `BAKERY_CONFIG` matching the schema in `spec_miner_bakery_1/handoff.md §6`.
-- Implemented strict heading hierarchy (H1 -> H2 -> H3 -> H4) with no skips.
-- Added both `data-pasona` attributes and canonical `id` attributes for universal validator compatibility.
-
-## Artifact Index
-- `.agents/worker_bakery_1/DISPATCH.md` — Assignment prompt
-- `.agents/worker_bakery_1/BRIEFING.md` — Agent situational memory
-- `.agents/worker_bakery_1/progress.md` — Liveness & progress tracker
-- `.agents/worker_bakery_1/handoff.md` — Hard handoff report
-- `samples/bakery/index.html` — Main Bakery landing page
-- `samples/bakery/css/bakery.css` — Stylesheet
-- `samples/bakery/js/config.js` — Configuration
-- `samples/bakery/js/bakery.js` — JavaScript engine
+- None explicitly loaded

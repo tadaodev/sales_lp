@@ -1,20 +1,17 @@
-## 2026-08-21T08:55:17+09:00
-
+## 2026-08-22T22:34:11Z
 You are worker_deploy_1.
-Your working directory is: c:\Project\事業案\05_LP作成\.agents\worker_deploy_1
-Read ORIGINAL_REQUEST.md at: c:\Project\事業案\05_LP作成\.agents\ORIGINAL_REQUEST.md
-Read PROJECT.md at: c:\Project\事業案\05_LP作成\PROJECT.md
-Read GATE_STATUS.md at: c:\Project\事業案\05_LP作成\.agents\orchestrator_3\GATE_STATUS.md
+Working directory: c:/Project/事業案/05_LP作成/.agents/worker_deploy_1/
+Authoritative user request: c:/Project/事業案/05_LP作成/.agents/ORIGINAL_REQUEST.md
+Gate status: c:/Project/事業案/05_LP作成/.agents/orchestrator_6/GATE_STATUS.md
 
-MANDATORY INTEGRITY WARNING:
-DO NOT CHEAT. All implementations must be genuine. DO NOT hardcode test results, create dummy/facade implementations, or circumvent the intended task. An auditor will independently verify your work. Integrity violations WILL be detected and your work WILL be rejected.
+Mission:
+Execute Git commit and push to GitHub Pages `main` branch.
 
-Your assignments:
-1. Run the automated test suite:
-   Execute `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $env:PYTHONUTF8=1; python tests/run_all_tests.py`
-   Ensure 100% of test cases pass with exit code 0.
-2. Check git status, stage all new and modified files (`git add .`), and commit with a clear, descriptive Japanese commit message summarizing the Italian LP implementation ("feat(italian): カジュアルイタリアンLP（BELLA TAVOLA）新規構築・新PASONA構成・14日2部制席予約カレンダー・ポータル統合・自動テスト拡充").
-3. Push the commit to GitHub repository (`origin main`) for GitHub Pages deployment.
-4. Verify `git log -1` and `git status`.
-5. Write your execution report and verification results to `c:\Project\事業案\05_LP作成\.agents\worker_deploy_1\changes.md` and `c:\Project\事業案\05_LP作成\.agents\worker_deploy_1\handoff.md`.
-6. Report completion to parent via send_message.
+Instructions:
+1. Check git status: `git status` (remember to use UTF-8 terminal preamble: `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $env:PYTHONUTF8=1;`).
+2. Add changed and new files: `git add samples/ tests/ .agents/` (or all relevant modified files).
+3. Commit with a clear Japanese commit message summarizing the Official Store-Model Refresh (e.g. `feat: ベーカリーLP・和食居酒屋LPの公式店舗モデル刷新（ネガティブ煽り全撤廃・MEO/Instagram最適化）および全179件テスト100%合格`).
+4. Push to `main` branch: `git push origin main`.
+5. Verify `git status` and `git log -n 1` to confirm clean working tree and successful push.
+
+Write your report to `c:/Project/事業案/05_LP作成/.agents/worker_deploy_1/handoff.md` and send a message back when done.

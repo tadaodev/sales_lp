@@ -209,7 +209,7 @@ class PASONADOMValidator:
         return local_violations
 
     def validate_bakery_pasona(self, html_path: Path) -> List[Dict[str, Any]]:
-        """Validates Bakery LP specific PASONA components (Baking Timetable, Matsutake Assortment Boxes, 14-Day Calendar)."""
+        """Validates Bakery LP specific PASONA components (Baking Timetable, Matsutake Assortment Boxes, 14-Day Calendar, 0 Negative Agitation)."""
         local_violations = self.validate_file_pasona(html_path)
         if not html_path.exists():
             return local_violations
@@ -235,10 +235,29 @@ class PASONADOMValidator:
                 "message": "Bakery LP must contain Matsutake 3-tier assortment boxes (梅・竹・松アソートBOX)."
             })
 
+        # Check Negative Agitation Elimination Guard (0 pain-point agitation)
+        has_negative_pain = bool(re.search(r'(pain-points|パサつき|物足りなさ|ゴムのように硬い|添加物への不安|Bread Dilemma)', content, re.IGNORECASE))
+        if has_negative_pain:
+            local_violations.append({
+                "rule": "BAKERY_NEGATIVE_AGITATION_DETECTED",
+                "file": rel_file,
+                "message": "Bakery LP contains outdated negative pain-point agitation. Official store model requires 100% positive craftsmanship & sizzle."
+            })
+
+        # Check Official Store MEO & Instagram features
+        has_instagram = bool(re.search(r'instagram\.com', content, re.IGNORECASE))
+        has_open_badge = bool(re.search(r'(本日営業中|open-badge)', content))
+        if not (has_instagram and has_open_badge):
+            local_violations.append({
+                "rule": "BAKERY_OFFICIAL_MEO_MISSING",
+                "file": rel_file,
+                "message": "Bakery LP missing official store MEO features (Instagram official button or live open status badge)."
+            })
+
         return local_violations
 
     def validate_washoku_pasona(self, html_path: Path) -> List[Dict[str, Any]]:
-        """Validates Washoku Izakaya LP specific PASONA components (3 Guarantees, 4 Signature Dishes, Matsutake Courses, 14-Day Calendar)."""
+        """Validates Washoku Izakaya LP specific PASONA components (3 Guarantees, 4 Signature Dishes, Matsutake Courses, 14-Day Calendar, 0 Negative Agitation)."""
         local_violations = self.validate_file_pasona(html_path)
         if not html_path.exists():
             return local_violations
@@ -271,6 +290,25 @@ class PASONADOMValidator:
                 "rule": "WASHOKU_BANQUET_COURSES_MISSING",
                 "file": rel_file,
                 "message": "Washoku LP must contain 3-tier Matsutake banquet courses with 2h drink inclusion (¥3,980 / ¥4,980 / ¥6,500)."
+            })
+
+        # Check Negative Agitation Elimination Guard (0 pain agitation)
+        has_negative_pain = bool(re.search(r'(幹事様が夜も眠れなくなる|居酒屋選びの4大トラブル|失敗恐怖|恥をかかせない)', content))
+        if has_negative_pain:
+            local_violations.append({
+                "rule": "WASHOKU_NEGATIVE_AGITATION_DETECTED",
+                "file": rel_file,
+                "message": "Washoku LP contains outdated negative agitation. Official store model requires 100% positive hospitality & sizzle."
+            })
+
+        # Check Invoice Registration Number & Private Room Guide
+        has_invoice = bool(re.search(r'(T\d{13}|インボイス|適格請求書)', content))
+        has_rooms = bool(re.search(r'(2〜40名|掘りごたつ|完全個室)', content))
+        if not (has_invoice and has_rooms):
+            local_violations.append({
+                "rule": "WASHOKU_OFFICIAL_STORE_SPECS_MISSING",
+                "file": rel_file,
+                "message": "Washoku LP missing official store specs (Invoice registration number or 2-40 private room guide)."
             })
 
         return local_violations

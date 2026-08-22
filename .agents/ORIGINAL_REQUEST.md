@@ -1,195 +1,38 @@
 # Original User Request
 
-## 2026-08-20T14:17:46Z
+## Initial Request — 2026-08-23T07:20:36+09:00
 
-<USER_REQUEST>
-GitHub Pages上でサイトオーナーのWebサイト保守作業を完全ゼロにし、Googleカレンダーと完全自動連動する「空き状況カレンダー（◯・△・✕）」・「WEB予約自動登録」・「顧客台帳自動生成」・「メール通知」機能を備えたエステサロンLPおよびトップポータルの強化・自動検証・GitHub Pages本番反映。
+You are the Project Orchestrator (orchestrator_6) for the Sales LP project.
 
-Working directory: c:/Project/事業案/05_LP作成
-Integrity mode: development
+Working directory: c:/Project/事業案/05_LP作成/.agents/orchestrator_6
+Original User Request authoritative record: c:/Project/事業案/05_LP作成/.agents/ORIGINAL_REQUEST.md
 
-## Requirements
+## Mission & Requirements
+Execute the Official Store-Model Refresh for two flagship LPs on GitHub Pages:
+1. Bakery LP (`samples/bakery/index.html` & `bakery.css`):
+   - Complete removal of negative pain-point agitation (e.g. `pain-points-block`, "パサつき", "物足りなさ").
+   - Official store MEO/Instagram optimization:
+     1. Hero: Firewood stone-oven baguette sizzle + business hours & "Open Today" badge + instant reserve CTA
+     2. Concept: 3 craftsmanship commitments (French Wheat T65, 72-hour cold fermentation levain, direct firewood stone oven)
+     3. Timetable: Fresh bake times (08:00 / 11:30 / 14:00 / 16:30)
+     4. Menu: Lineup & Takeout/Delivery Assortment BOX (松竹梅: 梅¥1,980 / 竹¥3,480 / 松¥5,800)
+     5. Booking: 14-day fresh bake takeout reserve calendar (30-min pickup slots)
+     6. Access: Google Map, address, phone, hours, holidays, Instagram link
 
-### R1. リアルタイム空き状況カレンダーUI（`samples/aesthetic/`）
-直近14日分の日付 × 4つの時間枠（10:00/13:00/16:00/18:30）の空き状況（◯：空き、△：残り1枠、✕：満席、定休）を視覚的に表示するレスポンシブなカレンダーグリッドを実装する。
-「◯」または「△」のスロットをタップすると、予約フォームの希望日時が自動入力され、スムーズに予約入力エリアへスクロール連動すること。
+2. Washoku Izakaya LP (`samples/washoku/index.html` & `washoku.css`):
+   - Complete removal of negative agitation (e.g. `#problem`, "幹事様が夜も眠れなくなる居酒屋選びの4大トラブル").
+   - Official store MEO/Instagram optimization:
+     1. Hero: Steaming hot pot & sashimi platter sizzle + Shinbashi 2-min walk & private room badge + instant booking CTA
+     2. Hospitality: 3 major reasons to choose (All private rooms 2-40 persons, Toyosu fresh fish & Bincho charcoal yakitori, 2-hr all-you-can-drink clear tax-included accounting)
+     3. Courses: Banquet Course List (松竹梅: 梅¥3,980 / 竹¥4,980 / 松¥6,500)
+     4. Atmosphere: Private room guide from small parties to max 40 persons horigotatsu
+     5. Reservation: 14-day banquet seat availability calendar (◯・△・✕・Sun holiday) -> Web booking / LINE tentative reservation
+     6. Access: Access map, directions, invoice registration number, phone, business hours
 
-### R2. Googleカレンダー＆スプレッドシート完全自動連動（サーバー代0円）
-店舗オーナーが普段スマホで使っているGoogleカレンダーの予定状況を自動取得して空き枠を判定し、フォームからの予約送信時に「Googleカレンダーへの自動予定登録」「Googleスプレッドシートへの予約顧客台帳自動記録」「自動確認メール送信」を行うGoogle Apps Script（`gas/Code.gs`）および誰でも3分で設定できる手順書（`gas/README.md`）を作成する。
-また、設定一元管理ファイル（`samples/aesthetic/js/config.js`）でGASのWebhook URLや営業時間、定休日を簡単に切り替え可能にする。
+3. Test Suite Update (`tests/`):
+   - Update PASONA DOM validators and all scenario/link tests to fit the official store structure. Ensure all test cases (179+ tests) pass 100%.
 
-### R3. 予約完了（サンクス）画面 ＆ ドタキャン防止・LINE連携
-予約送信後に上質な完了画面を表示し、自動発行予約番号、顧客自身のGoogleカレンダー/Appleカレンダー（.ics）一発追加機能、選択コースが自動入力された状態のLINE公式アカウント起動ボタンを実装する。GAS未設定時や通信障害時でも動的計算モードで破綻なく動作する堅牢なフォールバックを備えること。
+4. Production Deploy:
+   - Commit changes with clear Japanese messages and push to `main` branch for GitHub Pages deployment.
 
-### R4. 自動テスト検証 ＆ GitHub Pages本番デプロイ
-カレンダー生成・スロット判定・GAS連携ペイロード・相対パス整合性のテストケースを更新・実行し、100%パスを確認した上で、Gitコミットを行いGitHubリポジトリ（`https://github.com/tadaodev/sales_lp.git` の `main` ブランチ）へプッシュしてGitHub Pages本番環境を更新する。
-
-## Acceptance Criteria
-
-### 画面・機能要件
-- [ ] エステサロンLPに直近14日間の空き状況カレンダー（◯・△・✕・定休）が表示され、タップで予約フォームに日時が自動連動する
-- [ ] `gas/Code.gs` および導入手順書 `gas/README.md` が整備され、Googleカレンダー・スプレッドシート自動台帳化が可能な状態になっている
-- [ ] `config.js` でGAS URLや定休日・営業時間を一元設定できる
-- [ ] 予約完了画面で顧客用カレンダー追加（Google/Apple .ics）およびLINE 1タップ予約が機能する
-- [ ] GAS未接続時でもエラーで画面が停止せずフォールバック動作する
-
-### 検証・デプロイ品質
-- [ ] 自動テストスイートが全件PASSする
-- [ ] GitHubの `main` ブランチに正常にプッシュされ、GitHub Pagesでアクセス可能になっている
-
-</USER_REQUEST>
-
-## 2026-08-20T23:40:16Z
-
-<USER_REQUEST>
-GitHub Pages対応のLPポータルに、第2弾サンプルとして新PASONAの法則とシズル感あふれるモダンUIを採用した「本格石窯ピッツァ＆手打ちパスタの親しみやすいカジュアルイタリアン（TRATTORIA & PIZZERIA BELLA TAVOLA）」のサンプルLPを構築し、生成済み料理画像アセットの組み込み、席予約・カレンダー連動、およびトップポータルからの選択動線を実装・本番デプロイする。
-
-Working directory: c:/Project/事業案/05_LP作成
-Integrity mode: development
-
-## 料理・店舗ビジュアルアセット（生成済み）
-- `samples/italian/assets/images/trattoria_interior.jpg`（温かみあるトラットリア店内）
-- `samples/italian/assets/images/pizza_margherita.jpg`（薪窯焼き立てマルゲリータ）
-- `samples/italian/assets/images/handmade_pasta.jpg`（手打ちタリアテッレ ボロネーゼ）
-- `samples/italian/assets/images/dolce_tiramisu.jpg`（自家製濃厚ティラミス＆エスプレッソ）
-
-## Requirements
-
-### R1. イタリア料理店 サンプルLP（`samples/italian/index.html`）
-新PASONAの法則（Problem・Affinity・Solution・Offer・Narrowing Down・Action）に基づき、食欲とシズル感を刺激するコピーライティング（本場ナポリ仕込みの薪窯ピッツァ・毎朝手打ちの生パスタ・厳選オーガニックワイン・記念日＆歓送迎会プラン）と、暖色系（テラコッタ・ワインレッド・オリーブグリーン・木目調）のモダンUIを持つLPを実装する。
-シェフのこだわりストーリー、名物料理・コースメニュー一覧（松竹梅コース＆ランチ）、リアルタイム席空き状況カレンダー、Web席予約/LINE予約、店舗アクセス案内（地図・営業時間）を含む。
-
-### R2. 生成済み料理画像アセットの最適配置とビジュアル演出
-`samples/italian/assets/images/` 配下の高解像度実写画像をヒーロー・メニュー紹介・こだわり・ドルチェ各セクションに最適配置し、シズル感のある写真ギャラリーやホバー演出を実装する。
-
-### R3. 設定一元管理（`samples/italian/js/config.js`）＆ Googleカレンダー自動同期対応
-エステLPと同様の完全自動化設計を踏襲し、`config.js` でGAS Webhook URL、営業時間（ランチ・ディナー2部制）、定休日、席数設定を一元管理する。未設定時でも動的計算フォールバックで席カレンダー（◯・△・✕）と予約シミュレーションが完結動作すること。
-
-### R4. トップポータル（`index.html`）統合 ＆ 双方向ナビゲーション
-トップポータルのジャンルフィルタ「飲食・店舗」に本イタリアンLPのカード（サムネイル・新PASONA特徴タグ・直接リンク）を追加し、エステLPと並ぶ「公開中」サンプルとして連携する。イタリアンLP側からもポータルへの戻りリンクを完備する。
-
-### R5. 自動テスト検証 ＆ GitHub Pages本番デプロイ
-リンク整合性（404ゼロ）、DOM構造、レスポンシブ表示（375px〜1920px）、席予約カレンダー連動の自動テストスイートを拡張・全件合格させ、GitHubの `main` ブランチへプッシュして即座にGitHub Pages本番環境を更新する。
-
-## Acceptance Criteria
-
-### 画面・機能要件
-- [ ] トップポータル（`index.html`）から `samples/italian/index.html` への遷移、およびイタリアンLPからトップへの復帰リンクが正常に動作する
-- [ ] イタリアンLP内に生成済みの料理・店内写真が適切に配置され、シズル感のある洗練されたデザインになっている
-- [ ] 新PASONA全セクション（こだわり、コース料金、利用シーン・お客様の声、席予約カレンダー、FAQ等）が実装されている
-- [ ] モバイル（375px〜）からPCまで完全レスポンシブで、下部追従の席予約CTAが機能する
-- [ ] 席予約完了画面で予約番号発行、Google/Appleカレンダー登録、LINE連動が動作する
-
-### 検証・品質
-- [ ] 全自動テストが100%パスする
-- [ ] GitHubの `main` ブランチにプッシュされ、GitHub Pagesで公開される
-
-</USER_REQUEST>
-
-## 2026-08-21T08:25:33Z
-
-<USER_REQUEST>
-GitHub Pages対応のLPポータルに、第3弾サンプルとして新PASONAの法則（リスク回避・課題解決型）および重厚感と信頼性あふれるモダンUIを採用した「企業法務・労務コンサルティング・契約書トラブル解決に強い士業・法務総合事務所（LUMEN LEGAL CONSULTING）」の特化LPを構築し、AI生成ビジュアルアセット、オンライン＆対面2WAY相談予約カレンダー、料金体系（松竹梅）、ポータル連携、および自動テスト・本番反映を実施する。
-
-Working directory: c:/Project/事業案/05_LP作成
-Integrity mode: development
-
-## Requirements
-
-### R1. 士業・法務コンサルティング特化 サンプルLP（`samples/legal/index.html`）
-新PASONAの法則（Problem：契約・労務・未払いリスク / Affinity：代表弁護士・専門家の寄り添いストーリー / Solution：予防法務×スピード解決の3大強み / Offer：松竹梅明朗顧問・スポットプラン / Narrowing Down：毎月先着10社無料相談枠 / Action：14日間相談予約カレンダー & LINE即時相談）に基づいた高成約型コピーライティングと、信頼感・権威性のあるネイビー＆シャンパンゴールドのモダンGlassmorphism UIを実装する。
-
-### R2. 高解像度AI実写ビジュアルアセットの生成と組み込み
-Gemini画像生成ツールを活用し、以下の高解像度実写画像を生成して `samples/legal/assets/images/` に配置・最適化する。
-1. `hero_consultation.jpg`: モダンなエグゼクティブルームで親身に相談を受ける知的な日本人法務コンサルタント・弁護士
-2. `partner_portrait.jpg`: 誠実で信頼感あふれる代表パートナーの自然なポートレート
-3. `legal_contract_review.jpg`: 契約書・重要書類を緻密にチェックするプロフェッショナルな手元
-4. `boardroom_meeting.jpg`: 洗練されたカンファレンスルームでの戦略的コンサルティング風景
-
-### R3. 相談予約カレンダー（Zoomオンライン / 対面2WAY）＆ 設定一元化
-`samples/legal/js/config.js` でGAS Webhook URL、相談枠（10:00/13:00/15:30/18:00）、定休日を一元管理し、Googleカレンダー同期・動的フォールバック計算・予約完了画面（Google/Appleカレンダー登録、LINE相談連動）を実装する。
-
-### R4. トップポータル（`index.html`）統合 ＆ 双方向ナビゲーション
-トップポータルの「士業・法務」ジャンルに公開中（LIVE DEMO）カードを追加し、エステ・イタリアンと並ぶ3大看板として連携する。ヘッダーのクイックリンクや双方向復帰リンクを整備する。
-
-### R5. 自動テスト検証 ＆ GitHub Pages本番デプロイ
-リンク整合性（404ゼロ）、DOM構造、レスポンシブ表示（375px〜1920px）、相談予約カレンダー連動の自動テストスイートを拡張・100%パスさせ、GitHubの `main` ブランチへプッシュして即座にGitHub Pages本番環境を更新する。
-
-## Acceptance Criteria
-
-### 画面・機能要件
-- [ ] トップポータル（`index.html`）から `samples/legal/index.html` への遷移、および士業LPからポータルへの復帰リンクが正常に動作する
-- [ ] 士業LP内に新PASONA全セクション（リスク提起、代表メッセージ、3大強み、松竹梅料金、14日予約カレンダー、FAQ）が実装されている
-- [ ] Gemini生成の弁護士/法務実写写真がヒーロー・代表紹介・強みセクションに美しく配置されている
-- [ ] モバイル（375px〜）からPCまで完全レスポンシブで、下部追従の無料相談CTAが機能する
-- [ ] 相談予約完了画面で予約番号発行、Google/Appleカレンダー登録、LINE相談連動が動作する
-
-### 検証・品質
-- [ ] 全自動テストスイートが100%パスする
-- [ ] GitHubの `main` ブランチにプッシュされ、GitHub Pagesで公開される
-
-</USER_REQUEST>
-
-## 2026-08-21T22:12:24Z
-
-<USER_REQUEST>
-GitHub Pages対応のLPポータルに、第4弾・第5弾サンプルとして「① 本場フランス仕込みのハード系特化ベーカリー（BOULANGERIE ARTISANALE）」および「② 忘年会・歓送迎会に使えるリーズナブルな本格和食居酒屋（個室和食 旬彩 縁 -ENISHI-）」の特化LPを2件同時に構築し、AI生成実写ビジュアルアセット、予約・取り置きカレンダー、料金プラン（松竹梅）、ポータル連携、および自動テスト・本番デプロイを実施する。
-
-Working directory: c:/Project/事業案/05_LP作成
-Integrity mode: development
-
-## Requirements
-
-### R1. ハード系特化ベーカリー サンプルLP（`samples/bakery/index.html` & `bakery.css`）
-- **訴求モデル**: 五感刺激・アルチザン体験型モデル（フランス産小麦、自家製ルヴァン酵母、石窯直焼き、長時間低温熟成）。
-- **主要コンテンツ**:
-  - 焼き立てバゲット・カンパーニュ・クロワッサンのシズル感あふれるストーリー
-  - 毎日の焼き上がり時刻表（タイムテーブル）
-  - 店頭受け取り＆お取り寄せ松竹梅アソートBOX（梅：モーニングハードセット / 竹：人気定番7種詰め合わせ / 松：プレミアム薪窯バゲット＆贅沢オードブルBOX）
-  - 14日間 焼き立てパン取り置き＆来店予約カレンダー
-  - クラフト紙・小麦ゴールド・ナチュラルウッドの温もりあるオーガニックGlassmorphism UI
-
-### R2. 忘年会・宴会向けリーズナブル和食居酒屋 サンプルLP（`samples/washoku/index.html` & `washoku.css`）
-- **訴求モデル**: 幹事悩み解決（予算・席数・個室・飲み放題）× 旬の本格和食シズル体験モデル。
-- **主要コンテンツ**:
-  - 幹事様必見の3大安心保証（駅チカ徒歩2分、完全個室最大40名、2時間飲み放題付き税込明朗会計）
-  - 名物料理（豊洲直送鮮魚5点盛り、備長炭火焼き鳥、博多和牛もつ鍋/季節の寄せ鍋、地酒30種飲み放題）
-  - 忘年会・宴会松竹梅コース（梅：旬彩カジュアル宴会 ¥3,980 / 竹：名物鍋＆鮮魚の王道忘年会 ¥4,980 / 松：特選和牛＆極上舟盛り贅沢極みコース ¥6,500）
-  - 14日間 宴会席空き状況カレンダー（◯・△・✕・定休）＆ LINE即時仮予約
-  - 藍色（インディゴネイビー）× 提灯の琥珀ゴールド × 和紙・木目の活気と風情ある和モダンUI
-
-### R3. Gemini AI 高解像度実写ビジュアルアセットの生成と組み込み
-- **ベーカリー用（`samples/bakery/assets/images/`）**:
-  1. `hero_baguette.jpg`: 黄金色に焼き上がった美しいクープと気泡の薪窯バゲット
-  2. `baker_craftsman.jpg`: 小麦粉をまとった情熱ある日本人ブーランジェ（パン職人）
-  3. `campagne_slice.jpg`: 香ばしいクラストとみずみずしいクラムのカンパーニュ断面
-  4. `bakery_display.jpg`: 欧風アンティークな店内に美しく並ぶ焼きたてハードパン
-- **和食居酒屋用（`samples/washoku/assets/images/`）**:
-  1. `hero_banquet_nabe.jpg`: 湯気が立ち上る冬の海鮮・和牛もつ鍋と乾杯風景の忘年会シズル
-  2. `sashimi_platter.jpg`: 氷の上に美しく盛られた豊洲直送の極上鮮魚お造り盛り合わせ
-  3. `yakitori_charcoal.jpg`: 備長炭の炎と香ばしい煙に包まれる職人の炭火焼き鳥
-  4. `washoku_private_room.jpg`: 暖色系の行灯が灯る掘りごたつ式の落ち着いた完全個室
-
-### R4. 設定一元化（`config.js`）＆ 14日間カレンダー・予約連動
-`samples/bakery/js/config.js` および `samples/washoku/js/config.js` で営業時間、定休日、席数/受取枠を一元管理し、Googleカレンダー同期・動的フォールバック・予約完了画面（Google/Appleカレンダー登録、LINE連動）を実装する。
-
-### R5. トップポータル（`index.html`）統合 ＆ 5大看板化
-トップポータルの「飲食・グルメ」ジャンルに「本格イタリアン」に加えて「ハード系ベーカリー」および「忘年会・個室和食居酒屋」のLIVE DEMOカードを配置し、ヒーロー直下のクイックボタンも拡充する。
-
-### R6. 自動テスト検証 ＆ GitHub Pages本番デプロイ
-リンク整合性（404ゼロ）、DOM構造、レスポンシブ表示（375px〜1920px）、予約カレンダー連動の自動テストスイートを拡張（全150+ケース）し、100%合格を確認した上でGitHubの `main` ブランチへプッシュして即座にGitHub Pages本番環境を更新する。
-
-## Acceptance Criteria
-
-### 画面・機能要件
-- [ ] トップポータル（`index.html`）から `samples/bakery/` および `samples/washoku/` への双方向リンクが正常に動作する
-- [ ] ベーカリーLPにハードパンのシズル感、焼き上がり時刻表、松竹梅アソート、取り置きカレンダーが実装されている
-- [ ] 和食LPに忘年会幹事の安心訴求、名物鍋・刺身、松竹梅宴会コース、席予約カレンダーが実装されている
-- [ ] Gemini生成の実写写真（パン4点、和食4点）が適切に配置されている
-- [ ] モバイルからPCまで完全レスポンシブで、下部追従CTAやカレンダー連動・LINE相談が正常に動作する
-
-### 検証・品質
-- [ ] 全自動テストスイートが100%パスする
-- [ ] GitHubの `main` ブランチにプッシュされ、GitHub Pagesで公開される
-
-</USER_REQUEST>
+Manage your subagents (explorer, worker, reviewer, challenger, etc.), maintain your `plan.md` and `progress.md`, and report completion with a structured `handoff.md`.

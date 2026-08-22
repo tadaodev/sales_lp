@@ -534,59 +534,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   Problem Section: 4 Pain Point Cards
-   ========================================================================== */
-.problem-cards-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-lg);
-}
-@media (min-width: 640px) {
-  grid-template-columns: repeat(2, 1fr);
-}
-@media (min-width: 1024px) {
-  .problem-cards-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.problem-card {
-  background: var(--glass-card);
-  backdrop-filter: var(--glass-backdrop-blur);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  transition: transform 0.25s ease, border-color 0.25s ease;
-  display: flex;
-  flex-direction: column;
-}
-.problem-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--color-border-gold);
-}
-
-.problem-card-badge {
-  font-family: var(--font-family-accent);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-accent-vermilion);
-  letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
-}
-
-.problem-card-title {
-  font-size: 1.05rem;
-  margin-bottom: 0.75rem;
-  color: var(--color-text-primary);
-}
-
-.problem-card-text {
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
-  line-height: 1.7;
-}
-
-/* ==========================================================================
    Affinity Section: Empathy & Trust
    ========================================================================== */
 .affinity-box {
@@ -815,76 +762,162 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.7;
 }
 
-/* Before / After Comparison */
-.before-after-box {
+/* ==========================================================================
+   Atmosphere Section: Private Room Space Guide & Experience Proof
+   ========================================================================== */
+.rooms-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-3xl);
+}
+@media (min-width: 640px) {
+  .rooms-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .rooms-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.room-card {
   background: var(--glass-card);
   backdrop-filter: var(--glass-backdrop-blur);
   border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-xl);
-  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.room-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-border-gold);
 }
 
-.before-after-grid {
+.room-image-box {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: var(--color-bg-secondary);
+}
+.room-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.room-card:hover .room-image-box img {
+  transform: scale(1.06);
+}
+
+.room-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: rgba(7, 17, 38, 0.88);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--color-border-gold);
+  color: var(--color-accent-gold-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+}
+
+.room-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.room-title {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+}
+
+.room-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+}
+
+/* Experience & Hospitality Proof */
+.experience-proof-box {
+  background: var(--glass-card);
+  backdrop-filter: var(--glass-backdrop-blur);
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--glass-box-shadow);
+}
+
+.experience-proof-header {
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+.experience-proof-header .ba-tag {
+  background: var(--color-accent-gold);
+  color: #071126;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+.proof-box-title {
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+  margin-top: 0.25rem;
+}
+
+.experience-proof-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-lg);
 }
 @media (min-width: 768px) {
-  .before-after-grid {
-    grid-template-columns: 1fr 1fr;
+  .experience-proof-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.ba-card {
-  padding: 1.5rem;
+.proof-card {
+  background: rgba(11, 27, 61, 0.6);
+  border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-lg);
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-.ba-card.before {
-  background: rgba(248, 81, 73, 0.08);
-  border: 1px solid rgba(248, 81, 73, 0.25);
-}
-.ba-card.after {
-  background: rgba(217, 155, 38, 0.12);
-  border: 1px solid var(--color-border-gold);
-  box-shadow: 0 0 20px rgba(217, 155, 38, 0.15);
-}
-
-.ba-tag {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--radius-sm);
-  width: fit-content;
-}
-.ba-card.before .ba-tag {
-  background: var(--color-accent-vermilion);
-  color: #FFF;
-}
-.ba-card.after .ba-tag {
-  background: var(--color-accent-gold);
-  color: #071126;
-}
-
-.ba-title {
-  font-size: 1.15rem;
-}
-
-.ba-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
-}
-.ba-list li {
-  display: flex;
   align-items: flex-start;
   gap: 0.5rem;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.proof-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-border-gold);
+}
+
+.proof-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.proof-card-title {
+  font-size: 1.05rem;
+  color: var(--color-accent-gold-light);
+  font-weight: 700;
+}
+
+.proof-card-text {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
 }
 
 /* ==========================================================================

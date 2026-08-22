@@ -3,15 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="【自由が丘・八雲】72時間低温熟成とフランス直輸入石窯直焼き。本場パリ仕込みのアルチザンハードパン専門店。直近14日間の焼き立てパン取り置き予約受付中。">
+  <meta name="description" content="【自由が丘・八雲】72時間低温熟成とフランス直輸入耐火レンガ石窯直焼き。本場パリ仕込みのアルチザンハードパン専門店。直近14日間の焼き立てパン取り置き予約受付中。">
   <title>【公式】72時間熟成・石窯直焼きハード系ブーランジェリー | BOULANGERIE ARTISANALE</title>
 
   <!-- Open Graph / OGP Tags -->
   <meta property="og:type" content="restaurant">
   <meta property="og:title" content="【公式】72時間熟成・石窯直焼きハード系ブーランジェリー | BOULANGERIE ARTISANALE">
-  <meta property="og:description" content="72時間低温熟成とフランス直輸入石窯直焼き。噛みしめるほどに小麦が香る本物のアルチザンブレッド。直近14日間の焼き立てパン取り置き予約受付中。">
+  <meta property="og:description" content="72時間低温熟成とフランス直輸入耐火レンガ石窯直焼き。噛みしめるほどに小麦が香る本物のアルチザンブレッド。直近14日間の焼き立てパン取り置き予約受付中。">
   <meta property="og:site_name" content="BOULANGERIE ARTISANALE">
   <meta property="og:image" content="./assets/images/hero_baguette.jpg">
+
+  <!-- Schema.org JSON-LD Structured Data for Local MEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "BOULANGERIE ARTISANALE",
+    "alternateName": "ブーランジェリー・アルチザナル",
+    "image": "./assets/images/hero_baguette.jpg",
+    "telephone": "03-3456-7890",
+    "email": "contact@boulangerie-artisanale.example.com",
+    "priceRange": "¥1,980 - ¥5,800",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "八雲3-12-8 ブーランジェリーテラス 1F",
+      "addressLocality": "目黒区",
+      "addressRegion": "東京都",
+      "postalCode": "152-0023",
+      "addressCountry": "JP"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 35.6186,
+      "longitude": 139.6644
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "07:30",
+        "closes": "18:30"
+      }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/boulangerie_artisanale/"
+    ],
+    "servesCuisine": "French Artisan Hard Bread"
+  }
+  </script>
 
   <!-- Google Fonts: Playfair Display, Shippori Mincho, Noto Sans JP, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,10 +84,10 @@
 
       <!-- Navigation Links -->
       <nav class="header-nav" aria-label="メインナビゲーション">
-        <a href="#solution" class="header-nav-link">こだわり・時刻表</a>
-        <a href="#offer" class="header-nav-link">アソートBOX</a>
-        <a href="#narrowing" class="header-nav-link">限定取り置き</a>
-        <a href="#action" class="header-nav-link">受取予約</a>
+        <a href="#concept" class="header-nav-link">こだわり</a>
+        <a href="#timetable" class="header-nav-link">焼きたて時刻表</a>
+        <a href="#menu" class="header-nav-link">メニュー・BOX</a>
+        <a href="#booking" class="header-nav-link">受取予約</a>
         <a href="#faq" class="header-nav-link">よくある質問</a>
         <a href="#access" class="header-nav-link">店舗案内</a>
       </nav>
@@ -60,7 +99,7 @@
           </svg>
           <span>03-3456-7890</span>
         </a>
-        <a href="#action" class="header-cta-btn">
+        <a href="#booking" class="header-cta-btn">
           <span>焼きたて取り置き予約</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
@@ -70,27 +109,28 @@
     </div>
   </header>
 
-  <!-- =========================================================================
-       2. Problem (P): Hero Section & Pain Point Agitation
-       ========================================================================= -->
   <main>
+    <!-- =========================================================================
+         2. Hero Section: Firewood Stone-Oven Baguette Sizzle + Live Badge + Instant Reserve
+         ========================================================================= -->
     <section class="hero-section" id="hero" data-pasona="problem">
       <div class="container">
         <div class="hero-grid">
           <div class="hero-content">
             <div class="hero-prehead">
+              <span class="open-badge">本日営業中 07:30〜18:30</span>
               <span class="hero-prehead-tag">自由が丘・八雲</span>
               <span>本場フランス伝統製法 × 薪石窯直焼き</span>
             </div>
 
             <h1 class="hero-title">
-              粉・水・酵母・塩。わずか4つの素材で焼き上げる──<br>
-              <span class="title-accent">噛みしめるほどに広がる、本物のフランスパンに出会えていますか？</span>
+              粉・水・酵母・塩。薪石窯が奏でる極上の香ばしさ──<br>
+              <span class="title-accent">72時間低温熟成が紡ぐ、本場パリ仕込みのアルチザンブレッド</span>
             </h1>
 
             <p class="hero-subtitle">
-              量産化と効率を優先した短時間イースト発酵では決して出せない、小麦本来の芳醇な香りと力強い旨味。<br>
-              72時間じっくりと低温熟成させ、フランス製耐火レンガ石窯で一気に焼き上げる、本場パリのアルチザンブレッドをお届けします。
+              フランス直輸入耐火レンガ薪石窯による260℃直焼きと自家製ルヴァン天然酵母。<br>
+              噛みしめるほどに広がる小麦本来の芳醇な香りと、薄くパリッとした極上クラストをお届けします。
             </p>
 
             <!-- Social Proof Badges -->
@@ -100,8 +140,8 @@
                 <span>看板バゲット・トラディション累計 <strong>150,000本突破</strong></span>
               </div>
               <div class="proof-badge-item">
-                <span class="badge-icon" aria-hidden="true">⏳</span>
-                <span>自然酵母と乳酸菌が紡ぐ <strong>72時間長時間低温熟成</strong></span>
+                <span class="badge-icon" aria-hidden="true">📍</span>
+                <span>東急東横線・大井町線「自由が丘駅」正面口 <strong>徒歩8分</strong></span>
               </div>
               <div class="proof-badge-item">
                 <span class="badge-icon" aria-hidden="true">⭐</span>
@@ -111,8 +151,8 @@
 
             <!-- Hero CTA Actions -->
             <div class="hero-cta-box">
-              <a href="#action" class="cta-btn-primary">
-                <span>【焼きたて取り置き】直近の空き枠を見る</span>
+              <a href="#booking" class="cta-btn-primary">
+                <span>【焼きたて取り置き】直近14日間の受取枠を見る</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
                 </svg>
@@ -125,38 +165,10 @@
 
           <!-- Hero Visual Card -->
           <div class="hero-visual-card">
-            <img src="./assets/images/hero_baguette.jpg" alt="薪窯で焼き上げた極上バゲット・トラディション" class="hero-img">
+            <img src="./assets/images/hero_baguette.jpg" alt="薪石窯で焼き上げた極上バゲット・トラディション" class="hero-img">
             <div class="hero-img-badge">
               <strong>Baguette Tradition</strong>
               <span>フランス産石臼挽きT65 × 薪石窯直焼き</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3 Pain Points / Problems -->
-        <div class="pain-points-block">
-          <div class="pain-header">
-            <span class="section-tag">Bread Dilemma</span>
-            <h2 class="pain-main-title">こんな「パンの物足りなさ」を感じていませんか？</h2>
-          </div>
-
-          <div class="pain-grid">
-            <div class="pain-card">
-              <div class="pain-num">01</div>
-              <h3 class="pain-title">小麦の香りが薄く、甘みを感じられない</h3>
-              <p class="pain-desc">人工イーストによる2〜3時間の超スピード発酵では、小麦のデンプンが十分に糖化せず、噛んでも深みのある香りと旨味が広がりません。</p>
-            </div>
-
-            <div class="pain-card">
-              <div class="pain-num">02</div>
-              <h3 class="pain-title">翌朝にはパサつき、皮がゴムのように硬い</h3>
-              <p class="pain-desc">十分な水分保持力を持たない生地は、焼き上がりから数時間で水分が抜け落ち、翌朝にはパサパサで噛み切りにくい食感になってしまいます。</p>
-            </div>
-
-            <div class="pain-card">
-              <div class="pain-num">03</div>
-              <h3 class="pain-title">日持ちや膨らみのための添加物への不安</h3>
-              <p class="pain-desc">乳化剤、イーストフード、保存料、人工香料など、本来パンには不要な化学物質が多く使われている量産パンに違和感を抱いていませんか？</p>
             </div>
           </div>
         </div>
@@ -164,18 +176,58 @@
     </section>
 
     <!-- =========================================================================
-         3. Affinity (A): Empathy & Baker Craftsman Story
+         3. Concept Section: 3 Craftsmanship Commitments & Baker Profile
          ========================================================================= -->
-    <section class="affinity-section" id="affinity" data-pasona="affinity">
+    <section class="concept-section" id="concept" data-pasona="affinity">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Artisan Philosophy</span>
           <h2 class="section-title">
-            「パンは生き物。72時間かけて酵母と対話し、<br>
-            <span class="text-gold">最高の瞬間を石窯で閉じ込める」</span>
+            粉・水・酵母・塩。素材の生命力を極限まで引き出す<br>
+            <span class="text-gold">「3大職人こだわり」</span>
           </h2>
+          <p class="section-subtitle">
+            本場フランス・パリの伝統製法を受け継ぎ、職人の五感と手仕事で一つひとつ焼き上げています。
+          </p>
         </div>
 
+        <!-- 3 Pillars Grid -->
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-header">
+              <span class="pillar-num">01</span>
+              <h3 class="pillar-title">フランス産石臼挽き伝統小麦T65 × 北海道キタノカオリ</h3>
+            </div>
+            <p class="pillar-desc">
+              豊かなミネラルと香ばしい灰分を含むフランス伝統小麦「T65」に、もっちりとした甘みと吸水性を誇る北海道産「キタノカオリ」を独自の黄金比率でブレンド。噛みしめるほどに重層的な小麦の甘みが溢れ出します。
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-header">
+              <span class="pillar-num">02</span>
+              <h3 class="pillar-title">自家製ルヴァン天然酵母 × 72時間低温熟成発酵</h3>
+            </div>
+            <p class="pillar-desc">
+              リンゴとレーズンから育てた自然発酵種（ルヴァン）を使用。0℃〜4℃の専用熟成庫で72時間じっくり寝かせることで、小麦のデンプンがアミノ酸へと分解され、消化に優しく翌日もしっとり感が持続します。
+            </p>
+            <div class="pillar-visual-box">
+              <img src="./assets/images/campagne_slice.jpg" alt="72時間低温熟成カンパーニュの美しい気泡断面" class="campagne-img">
+            </div>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-header">
+              <span class="pillar-num">03</span>
+              <h3 class="pillar-title">フランス直輸入 耐火レンガ薪石窯による260℃直焼き</h3>
+            </div>
+            <p class="pillar-desc">
+              フランスから直輸入した蓄熱性の高い耐火レンガ薪石窯を採用。熱した石床に生地を直接滑り込ませ、強力なスチームとともに一気に焼き上げることで、薄くパリッとした極上クラストと大きく膨らんだ蜂の巣状の気泡（クラム）を生み出します。
+            </p>
+          </div>
+        </div>
+
+        <!-- Baker Profile Card -->
         <div class="affinity-card">
           <div class="baker-photo-col">
             <div class="baker-photo-frame">
@@ -205,159 +257,59 @@
     </section>
 
     <!-- =========================================================================
-         4. Solution (S): 4 Artisan Standards, Timetable & Before/After
+         4. Timetable Section: 1日4便 焼きたて時刻表 (08:00 / 11:30 / 14:00 / 16:30)
          ========================================================================= -->
-    <section class="solution-section" id="solution" data-pasona="solution">
+    <section class="timetable-section" id="timetable" data-pasona="solution">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Craftsmanship</span>
+          <span class="section-tag">Baking Schedule</span>
           <h2 class="section-title">
-            BOULANGERIE ARTISANALEが極める<br>
-            <span class="text-gold">「4つのアルチザン基準」</span>
+            1日4便 焼きたて時刻表<br>
+            <span class="text-gold">（Daily Fresh Baking Batches）</span>
           </h2>
           <p class="section-subtitle">
-            妥協なき素材選びと伝統製法が生み出す、圧倒的なシズル感と小麦本来の美味しさの秘密。
+            石窯から取り出したばかりの熱気と薪の香ばしさを味わえる、当店の焼き上がりスケジュールです。
           </p>
         </div>
 
-        <!-- 4 Pillars Grid -->
-        <div class="pillars-grid">
-          <div class="pillar-card">
-            <div class="pillar-header">
-              <span class="pillar-num">01</span>
-              <h3 class="pillar-title">フランス産石臼挽きT65 × 北海道キタノカオリ</h3>
-            </div>
-            <p class="pillar-desc">
-              豊かなミネラルと香ばしい灰分を含むフランス伝統小麦「T65」に、もっちりとした甘みと吸水性を誇る北海道産「キタノカオリ」を独自の黄金比率でブレンド。噛みしめるほどに重層的な小麦の甘みが溢れ出します。
-            </p>
-          </div>
-
-          <div class="pillar-card">
-            <div class="pillar-header">
-              <span class="pillar-num">02</span>
-              <h3 class="pillar-title">自家製ルヴァン酵母 × 72時間低温熟成発酵</h3>
-            </div>
-            <p class="pillar-desc">
-              リンゴとレーズンから育てた自然発酵種（ルヴァン）を使用。0℃〜4℃の専用熟成庫で72時間じっくり寝かせることで、小麦のデンプンがアミノ酸へと分解され、消化に優しく翌日もしっとり感が持続します。
-            </p>
-            <div class="pillar-visual-box">
-              <img src="./assets/images/campagne_slice.jpg" alt="72時間低温熟成カンパーニュの美しい気泡断面" class="campagne-img">
-            </div>
-          </div>
-
-          <div class="pillar-card">
-            <div class="pillar-header">
-              <span class="pillar-num">03</span>
-              <h3 class="pillar-title">フランス直輸入 耐火レンガ石窯による260℃直焼き</h3>
-            </div>
-            <p class="pillar-desc">
-              フランスから直輸入した蓄熱性の高い耐火レンガ石窯を採用。熱した石床に生地を直接滑り込ませ、強力なスチームとともに一気に焼き上げることで、薄くパリッとした極上クラストと大きく膨らんだ蜂の巣状の気泡（クラム）を生み出します。
-            </p>
-          </div>
-
-          <div class="pillar-card">
-            <div class="pillar-header">
-              <span class="pillar-num">04</span>
-              <h3 class="pillar-title">完全無添加 純生製法（ゲランド天日塩使用）</h3>
-            </div>
-            <p class="pillar-desc">
-              原材料は小麦粉、水、自家製天然酵母、そしてブルターニュ産ゲランドの天日塩のみ。保存料、乳化剤、イーストフード、人工香料は一切不使用。毎日のお食事として安心してお召し上がりいただけます。
-            </p>
-          </div>
-        </div>
-
-        <!-- Daily Baking Timetable -->
         <div class="timetable-block">
-          <div class="timetable-header">
-            <span class="section-tag">Baking Schedule</span>
-            <h3>1日4便 焼き上がり時刻表 (Daily Baking Timetable)</h3>
-            <p class="section-subtitle">石窯から取り出したばかりの熱気と香ばしさを味わえる、当店の焼き上がりスケジュールです。</p>
-          </div>
-
           <div class="timetable-grid">
             <div class="timetable-card">
-              <div class="time-badge">07:30</div>
-              <h4 class="batch-title">第1便：モーニング・ヴィエノワズリー</h4>
+              <div class="time-badge">08:00</div>
+              <h3 class="batch-title">第1便：モーニング・ヴィエノワズリー</h3>
               <p class="batch-items">発酵バタークロワッサン / パン・オ・ショコラ / クイニーアマン</p>
               <p class="batch-desc">朝の澄んだ空気に広がる発酵バターの芳醇な香り</p>
             </div>
 
             <div class="timetable-card">
-              <div class="time-badge">10:30</div>
-              <h4 class="batch-title">第2便：石窯直焼き看板ハードパン</h4>
+              <div class="time-badge">11:30</div>
+              <h3 class="batch-title">第2便：石窯直焼き看板ハードパン</h3>
               <p class="batch-items">バゲット・トラディション / カンパーニュ・オ・ルヴァン</p>
-              <p class="batch-desc">パリッと香ばしい極上クラストとみずみずしい気泡</p>
+              <p class="batch-desc">パリッと香ばしい極上クラストとみずみずしい気泡断面</p>
             </div>
 
             <div class="timetable-card">
-              <div class="time-badge">13:30</div>
-              <h4 class="batch-title">第3便：ルヴァン＆ライ麦スペシャリテ</h4>
+              <div class="time-badge">14:00</div>
+              <h3 class="batch-title">第3便：ルヴァン＆ライ麦スペシャリテ</h3>
               <p class="batch-items">ノア・レザン（胡桃レーズン） / パン・ド・セーグル（ライ麦70%）</p>
               <p class="batch-desc">噛むほどに溢れる自然酵母の深い酸味とナッツのコク</p>
             </div>
 
             <div class="timetable-card">
-              <div class="time-badge">16:00</div>
-              <h4 class="batch-title">第4便：夕方焼きたてイブニングバゲット</h4>
+              <div class="time-badge">16:30</div>
+              <h3 class="batch-title">第4便：夕方焼きたてイブニングバゲット</h3>
               <p class="batch-items">夕方便バゲット / 石窯ハードパンドミ（食パン）</p>
               <p class="batch-desc">ディナーのメインや翌朝の朝食用に焼き上げる夕方便</p>
             </div>
-          </div>
-        </div>
-
-        <!-- Before / After Comparison Table -->
-        <div class="before-after-block">
-          <div class="ba-header">
-            <span class="section-tag">Quality Comparison</span>
-            <h3>一般的な量産パンと当店のアルチザンパンの違い</h3>
-          </div>
-
-          <div class="ba-table-wrapper">
-            <table class="ba-table">
-              <thead>
-                <tr>
-                  <th scope="col">比較項目</th>
-                  <th scope="col">一般的な量産・チェーン店パン</th>
-                  <th scope="col" class="col-artisan">BOULANGERIE ARTISANALE</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">発酵・熟成時間</th>
-                  <td>2〜3時間（人工イーストで急速発酵）</td>
-                  <td class="col-artisan"><strong>72時間 長時間低温熟成発酵</strong></td>
-                </tr>
-                <tr>
-                  <th scope="row">使用酵母</th>
-                  <td>乾燥イースト（単一菌）</td>
-                  <td class="col-artisan"><strong>自家製ルヴァン種（自然酵母×乳酸菌）</strong></td>
-                </tr>
-                <tr>
-                  <th scope="row">焼成方式</th>
-                  <td>熱風コンベクションオーブン（型焼き）</td>
-                  <td class="col-artisan"><strong>フランス製耐火レンガ石窯 260℃直焼き</strong></td>
-                </tr>
-                <tr>
-                  <th scope="row">添加物</th>
-                  <td>乳化剤・イーストフード・保存料を使用</td>
-                  <td class="col-artisan"><strong>完全無添加（小麦・水・酵母・塩のみ）</strong></td>
-                </tr>
-                <tr>
-                  <th scope="row">翌日以降の変化</th>
-                  <td>パサつき、皮が湿気てゴム化</td>
-                  <td class="col-artisan"><strong>3日目もしっとり、リベイクで焼きたての再現</strong></td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
     </section>
 
     <!-- =========================================================================
-         5. Offer (O): Matsutake 3-Tier Takeout Assortment Boxes & Alacarte
+         5. Menu Section: Matsutake 3-Tier Takeout Assortment Boxes & Alacarte
          ========================================================================= -->
-    <section class="offer-section" id="offer" data-pasona="offer">
+    <section class="menu-section" id="menu" data-pasona="offer">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Takeout Assortments</span>
@@ -367,7 +319,7 @@
           </h2>
           <p class="section-subtitle">
             用途や人数に合わせてお選びいただける、松竹梅の贅沢な詰め合わせセットです。<br>
-            店頭受取または全国クール便発送に対応しております。
+            店頭受取・事前取り置き予約に対応しております。
           </p>
         </div>
 
@@ -389,23 +341,23 @@
 
             <ul class="plan-features-list">
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>ミニバゲット・トラディション × 1本</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>発酵バタークロワッサン × 2個</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>パン・オ・ショコラ × 2個</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>プチカンパーニュ・オ・ルヴァン × 1個</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>特製クラフトペーパーバッグ入り</span>
               </li>
             </ul>
@@ -427,27 +379,27 @@
 
             <ul class="plan-features-list">
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>バゲット・トラディション(フル) × 1本</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>カンパーニュ・オ・ルヴァン(ハーフ) × 1個</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>ノア・レザン（胡桃＆レーズン） × 1本</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>パン・ド・セーグル（ライ麦70%） × 1本</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>発酵バタークロワッサン × 2個 ＆ ショコラ × 2個</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>クイニーアマン × 1個 ＆ 保存ジッパー袋・リベイク表付</span>
               </li>
             </ul>
@@ -468,27 +420,27 @@
 
             <ul class="plan-features-list">
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>特選薪石窯ロングバゲット × 1本</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>カンパーニュ・オ・ルヴァン(ホール) × 1個</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>トリュフ香るゴルゴンゾーラ無花果ハード × 1本</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>自家製ポークリエット瓶詰(90g) × 1瓶</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>フランス直輸入AOPイズニー発酵バター(25g) × 2個</span>
               </li>
               <li class="plan-feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 <span>高級桐調化粧箱＆サテンリボン包装付き</span>
               </li>
             </ul>
@@ -513,7 +465,7 @@
     </section>
 
     <!-- =========================================================================
-         6. Narrowing Down (N): Scarcity & Daily Limits
+         6. Narrowing Down: Scarcity & Daily Limits
          ========================================================================= -->
     <section class="narrowing-section" id="narrowing" data-pasona="narrowing">
       <div class="container">
@@ -538,7 +490,7 @@
             </div>
           </div>
 
-          <a href="#action" class="cta-btn-primary">
+          <a href="#booking" class="cta-btn-primary">
             <span>直近14日間の空き枠を確認して取り置きする</span>
           </a>
         </div>
@@ -546,9 +498,9 @@
     </section>
 
     <!-- =========================================================================
-         7. Action (A): 14-Day Calendar & Dual CTA Reservation
+         7. Booking Section (14-Day Calendar & Dual CTA Reservation) - #booking / #action
          ========================================================================= -->
-    <section class="action-section" id="action" data-pasona="action">
+    <section class="booking-section" id="booking" data-pasona="action">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Realtime Availability</span>
@@ -600,7 +552,7 @@
             </div>
             <button type="button" class="btn-open-booking-modal" id="btn-open-modal-main">
               <span>取り置き予約フォームを開く</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
             </button>
           </div>
 
@@ -612,7 +564,7 @@
             </div>
             <a href="https://line.me/R/ti/p/@boulangerie_art" class="btn-line-reservation" target="_blank" rel="noopener noreferrer">
               <span>公式LINEで予約・クーポン取得</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
           </div>
         </div>
@@ -638,7 +590,7 @@
                 <span class="faq-q-badge">Q1</span>
                 <span>ハード系パンはどのように保存するのが一番長持ちしますか？</span>
               </div>
-              <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+              <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div class="faq-answer-panel">
               <div class="faq-a-content">
@@ -655,12 +607,12 @@
                 <span class="faq-q-badge">Q2</span>
                 <span>冷凍したハードパンやバゲットの美味しいリベイク（温め直し）方法は？</span>
               </div>
-              <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+              <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div class="faq-answer-panel">
               <div class="faq-a-content">
                 <span class="faq-a-badge">A</span>
-                <p>表面に軽く霧吹きで水を吹きかけ、予熱したオーブントースター（200℃〜220℃）で2〜3分温めてください。石窯で焼いた直後のような、外はバリッと香ばしく、中はもっちりみずみずしい食感が蘇ります。</p>
+                <p>表面に軽く霧吹きで水を吹きかけ、予熱したオーブントースター（200℃〜220℃）で2〜3分温めてください。リベイクによる焼き立ての食感と芳醇な香りの変化をお楽しみいただけます。石窯直焼き特有の薄皮クラストがパリッと蘇り、クラムのみずみずしいもっちり感が際立ちます。</p>
               </div>
             </div>
           </div>
@@ -672,7 +624,7 @@
                 <span class="faq-q-badge">Q3</span>
                 <span>アレルギーや添加物についての情報を教えてください。</span>
               </div>
-              <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+              <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div class="faq-answer-panel">
               <div class="faq-a-content">
@@ -689,7 +641,7 @@
                 <span class="faq-q-badge">Q4</span>
                 <span>事前予約なしでも店頭で購入できますか？</span>
               </div>
-              <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+              <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div class="faq-answer-panel">
               <div class="faq-a-content">
@@ -706,7 +658,7 @@
                 <span class="faq-q-badge">Q5</span>
                 <span>店頭受取の際の支払い方法は何が使えますか？</span>
               </div>
-              <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+              <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div class="faq-answer-panel">
               <div class="faq-a-content">
@@ -723,7 +675,7 @@
                 <span class="faq-q-badge">Q6</span>
                 <span>ギフト用のラッピングや地方発送（お取り寄せ）は可能ですか？</span>
               </div>
-              <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+              <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div class="faq-answer-panel">
               <div class="faq-a-content">
@@ -744,7 +696,7 @@
         <div class="section-header">
           <span class="section-tag">Boutique Access</span>
           <h2 class="section-title">店舗情報・アクセス</h2>
-          <p class="section-subtitle">自由が丘の閑静な住宅街に佇む、フランス伝統の石窯ベーカリーです。</p>
+          <p class="section-subtitle">自由が丘の閑静な住宅街に佇む、フランス伝統の薪石窯ブーランジェリーです。</p>
         </div>
 
         <div class="access-grid">
@@ -779,19 +731,28 @@
                   <th scope="row">設備・席数</th>
                   <td>店頭テラス席 8席（ペット可） / 駐輪スペースあり</td>
                 </tr>
+                <tr>
+                  <th scope="row">SNS公式</th>
+                  <td>
+                    <a href="https://www.instagram.com/boulangerie_artisanale/" target="_blank" rel="noopener noreferrer" class="instagram-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                      </svg>
+                      <span>@boulangerie_artisanale</span>
+                    </a>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
 
           <div class="access-map-box">
-            <div style="text-align: center; padding: 24px;">
-              <p style="font-weight: 700; color: var(--bakery-crust-800); margin-bottom: 8px;">📍 東京都目黒区八雲3-12-8</p>
-              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;">東急東横線・大井町線「自由が丘駅」正面口 徒歩8分</p>
-              <a href="https://maps.google.com/?q=東京都目黒区八雲3-12-8" target="_blank" rel="noopener noreferrer" class="portal-return-link" style="display:inline-flex;">
-                <span>Googleマップで開く</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-              </a>
-            </div>
+            <p style="font-weight: 700; color: var(--bakery-crust-800); margin-bottom: 8px;">📍 東京都目黒区八雲3-12-8 ブーランジェリーテラス 1F</p>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">東急東横線・大井町線「自由が丘駅」正面口 徒歩8分</p>
+            <a href="https://maps.google.com/?q=東京都目黒区八雲3-12-8" target="_blank" rel="noopener noreferrer" class="portal-return-link" style="display:inline-flex;">
+              <span>Googleマップでルート案内を見る</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
           </div>
         </div>
       </div>
@@ -805,21 +766,21 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         BOULANGERIE ARTISANALE
-        <span>PARIS TRADITION &amp; WOOD-FIRED OVEN</span>
+        <span>PARIS TRADITION &amp; WOOD-FIRED STONE OVEN</span>
       </div>
 
       <nav class="footer-nav" aria-label="フッターナビゲーション">
         <a href="#hero">トップ</a>
-        <a href="#solution">こだわり・時刻表</a>
-        <a href="#offer">アソートBOX</a>
-        <a href="#narrowing">限定取り置き</a>
-        <a href="#action">受取予約</a>
+        <a href="#concept">こだわり</a>
+        <a href="#timetable">焼きたて時刻表</a>
+        <a href="#menu">メニュー・BOX</a>
+        <a href="#booking">受取予約</a>
         <a href="#faq">よくある質問</a>
         <a href="#access">店舗案内</a>
       </nav>
 
       <a href="../../index.html" class="footer-return-portal">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
         <span>LPポータル（デモ一覧）に戻る</span>
       </a>
 
@@ -835,7 +796,7 @@
   <div class="modal-overlay" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text" aria-hidden="true">
     <div class="modal-container">
       <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="モーダルを閉じる">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
 
       <!-- Step 1: Booking Form -->
@@ -890,7 +851,7 @@
       <!-- Step 2: Thank-You View -->
       <div class="thankyou-view" id="thankyou-view">
         <div class="thankyou-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
         </div>
 
         <h3 class="thankyou-title">お取り置き予約が完了いたしました</h3>
@@ -924,12 +885,12 @@
 
         <div class="modal-actions-list">
           <a href="#" class="btn-modal-gcal" id="btn-google-cal" target="_blank" rel="noopener noreferrer">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2"></rect><line x1="16" y1="2" x2="16" y2="6" stroke-width="2"></line><line x1="8" y1="2" x2="8" y2="6" stroke-width="2"></line><line x1="3" y1="10" x2="21" y2="10" stroke-width="2"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2"></rect><line x1="16" y1="2" x2="16" y2="6" stroke-width="2"></line><line x1="8" y1="2" x2="8" y2="6" stroke-width="2"></line><line x1="3" y1="10" x2="21" y2="10" stroke-width="2"></line></svg>
             <span>Googleカレンダーに受取予定を登録</span>
           </a>
 
           <button type="button" class="btn-modal-ics" id="btn-download-ics">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
             <span>Apple / Outlook カレンダー保存 (.ics / 2h前通知付)</span>
           </button>
 
@@ -953,7 +914,7 @@
       <a href="https://line.me/R/ti/p/@boulangerie_art" class="sticky-btn-line" target="_blank" rel="noopener noreferrer">
         <span>LINE予約</span>
       </a>
-      <a href="#action" class="sticky-btn-web">
+      <a href="#booking" class="sticky-btn-web">
         <span>🥖 焼きたてパン取り置き予約</span>
       </a>
     </div>

@@ -22,6 +22,8 @@
     bakeryEmail: 'contact@boulangerie-artisanale.example.com',
     email: 'contact@boulangerie-artisanale.example.com',
     representative: 'シェフ・ブーランジェ 日向 雅人 (Masato Hyuga)',
+    instagramHandle: '@boulangerie_artisanale',
+    instagramUrl: 'https://www.instagram.com/boulangerie_artisanale/',
 
     // 2. GAS Webhook 設定
     gasWebhookUrl: '',
@@ -49,28 +51,28 @@
     fallbackSimulation: true,
     simulationSeedSalt: 'boulangerie_artisanale_bakery_2026',
 
-    // 6. 焼きたてタイムテーブル定義
+    // 6. 焼きたてタイムテーブル定義 (1日4便: 08:00 / 11:30 / 14:00 / 16:30)
     bakingSchedule: [
       {
-        time: '07:30',
+        time: '08:00',
         batch: '第1便：モーニング・ヴィエノワズリー',
         items: '発酵バタークロワッサン、パン・オ・ショコラ、クイニーアマン',
         desc: '朝の澄んだ空気に広がる発酵バターの芳醇な香り'
       },
       {
-        time: '10:30',
+        time: '11:30',
         batch: '第2便：石窯直焼き看板ハードパン',
         items: 'バゲット・トラディション、カンパーニュ・オ・ルヴァン',
         desc: 'パリッと香ばしい極上クラストとみずみずしい気泡'
       },
       {
-        time: '13:30',
+        time: '14:00',
         batch: '第3便：ルヴァン＆ライ麦スペシャリテ',
         items: 'ノア・レザン（胡桃＆レーズン）、パン・ド・セーグル（ライ麦70%）',
         desc: '噛むほどに溢れる自然酵母の深い酸味とナッツのコク'
       },
       {
-        time: '16:00',
+        time: '16:30',
         batch: '第4便：夕方焼きたてイブニングバゲット',
         items: '夕方便バゲット、石窯ハードパンドミ（食パン）',
         desc: 'ディナーのメインや翌朝の朝食用に焼き上げる夕方便'
@@ -139,7 +141,9 @@
     representative: BAKERY_CONFIG.representative,
     businessHours: BAKERY_CONFIG.businessHours.label,
     regularHolidays: BAKERY_CONFIG.closedDays,
-    regularHolidaysLabel: BAKERY_CONFIG.closedDaysLabel
+    regularHolidaysLabel: BAKERY_CONFIG.closedDaysLabel,
+    instagramHandle: BAKERY_CONFIG.instagramHandle,
+    instagramUrl: BAKERY_CONFIG.instagramUrl
   };
 
   BAKERY_CONFIG.gas = {
@@ -150,10 +154,10 @@
   BAKERY_CONFIG.calendar = {
     daysToShow: BAKERY_CONFIG.daysToShow,
     slots: [
-      { id: '08:00', time: '08:00', label: '08:00〜', period: '朝便', batch: '第1便受取' },
-      { id: '11:00', time: '11:00', label: '11:00〜', period: '昼前便', batch: '第2便受取' },
-      { id: '14:00', time: '14:00', label: '14:00〜', period: '午後便', batch: '第3便受取' },
-      { id: '16:30', time: '16:30', label: '16:30〜', period: '夕方便', batch: '第4便受取' }
+      { id: '08:00', time: '08:00', label: '08:00〜', period: '第1便', batch: '第1便受取' },
+      { id: '11:00', time: '11:00', label: '11:00〜', period: '第2便', batch: '第2便受取' },
+      { id: '14:00', time: '14:00', label: '14:00〜', period: '第3便', batch: '第3便受取' },
+      { id: '16:30', time: '16:30', label: '16:30〜', period: '第4便', batch: '第4便受取' }
     ],
     closedDays: BAKERY_CONFIG.closedDays,
     capacityPerSlot: BAKERY_CONFIG.capacityPerSlot

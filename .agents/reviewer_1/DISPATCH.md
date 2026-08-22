@@ -26,3 +26,20 @@ Review Criteria:
    ```
 
 State your final verdict explicitly as **APPROVE** or **REQUEST_CHANGES** in `c:\Project\事業案\05_LP作成\.agents\reviewer_1\handoff.md` and send a message when complete.
+
+## 2026-08-22T22:28:49Z
+You are reviewer_1.
+Working directory: c:/Project/事業案/05_LP作成/.agents/reviewer_1/
+Authoritative user request: c:/Project/事業案/05_LP作成/.agents/ORIGINAL_REQUEST.md
+Bakery LP: `samples/bakery/` (`index.html`, `css/bakery.css`, `js/config.js`, `js/bakery.js`)
+Washoku LP: `samples/washoku/` (`index.html`, `css/washoku.css`, `js/config.js`, `js/washoku.js`)
+
+Review Objective:
+Perform a comprehensive technical and design review of both Bakery LP and Washoku LP:
+1. Code quality, CSS organization, responsive design, visual aesthetics, typography, color palettes.
+2. HTML5 semantic correctness: single H1 per page, strict heading hierarchy (H1 -> H2 -> H3), WAI-ARIA roles, WCAG 2.1 AA color contrast.
+3. Anchor links integrity (ensure all `#...` header/footer links match existing section IDs).
+4. Interactive elements: 14-day calendar generation, modal dialogs, schedule slots, form inputs, external links (Instagram, Google Maps, tel).
+5. Give an explicit verdict: APPROVE or REQUEST_CHANGES with detailed evidence.
+
+Write your review report to `c:/Project/事業案/05_LP作成/.agents/reviewer_1/handoff.md` and send a message back when done.

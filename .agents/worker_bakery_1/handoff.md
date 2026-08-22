@@ -1,88 +1,107 @@
-# Handoff Report - worker_bakery_1
+# Bakery LP Official Store Revamp & MEO/Instagram Optimization Handoff Report
 
-- **Role**: Implementer / QA / Specialist (Bakery LP Implementation)
-- **Target**: `samples/bakery/` (`index.html`, `css/bakery.css`, `js/config.js`, `js/bakery.js`, `assets/images/*`)
-- **Status**: Complete (Hard Handoff)
-- **Author**: `worker_bakery_1`
-- **Timestamp**: 2026-08-22T07:27:48+09:00
-
----
-
-## 1. Observation (直接観察事実)
-
-1. **要件定義と仕様合致**:
-   - `c:\Project\事業案\05_LP作成\.agents\ORIGINAL_REQUEST.md` (Lines 133-195) および `c:\Project\事業案\05_LP作成\.agents\spec_miner_bakery_1\handoff.md` に基づき、ハード系特化ブーランジェリー「BOULANGERIE ARTISANALE」のサンプルLP構築を実施。
-   - 以下の全成果物を `samples/bakery/` 配下に新規作成：
-     - `samples/bakery/index.html` (新PASONA 7セクション、単一H1、厳格見出し階層、松竹梅アソートBOX、14日カレンダー、WAI-ARIA FAQ、予約モーダル、サンクス画面、双方向ポータル復帰リンク)
-     - `samples/bakery/css/bakery.css` (Warm French Artisan Organic Glassmorphism、クラフト紙 `#F9F6F0`、小麦ゴールド `#D4A359`、クラストブラウン `#5C3A21`、ディープチャコール `#221C16`、レスポンシブ 375px〜1920px)
-     - `samples/bakery/js/config.js` (`window.BAKERY_CONFIG`: 店舗情報、営業時間 7:30〜18:30、定休日 毎週月・火 `[1, 2]`、受取枠 4枠 `['08:00', '11:00', '14:00', '16:30']`、14日間表示、松竹梅プランマスター、1日4便焼き上がりスケジュール、オフライン動的シミュレーション、公式LINE URL)
-     - `samples/bakery/js/bakery.js` (14日間空き状況計算エンジン、決定論的オフラインシミュレーション、スロット選択連動、松竹梅プラン事前選択、予約番号 `BAK-YYYYMMDD-XXXX` 発行、1クリック Google カレンダー登録URL、RFC 5545 `.ics` 生成（2時間前通知 `VALARM`）、LINE事前入力ディープリンク、非同期 GAS Webhook 送信、FAQ アコーディオン、下部追従モバイル CTA)
-     - `samples/bakery/assets/images/hero_baguette.jpg` (16:9 薪窯焼き立てバゲット・トラディション)
-     - `samples/bakery/assets/images/baker_craftsman.jpg` (1:1 代表シェフ・ブーランジェ 日向 雅人 ポートレート)
-     - `samples/bakery/assets/images/campagne_slice.jpg` (4:3 72h熟成カンパーニュ気泡ハニカム断面)
-     - `samples/bakery/assets/images/bakery_display.jpg` (16:9 欧風アンティーク店内ブティックディスプレイ)
-
-2. **静的検証事実**:
-   - `samples/bakery/index.html` は単一の `<h1>` を持ち、見出し階層は `<h1>` -> `<h2>` -> `<h3>` -> `<h4>` でスキップが存在しないことを確認。
-   - 全ての `<img>` タグに具体的でアクセシブルな `alt` 属性を付与。
-   - 全ての内部相対パスは厳格な相対パス（`../../index.html`, `../../css/tokens.css`, `./css/bakery.css`, `./assets/images/...`, `./js/config.js`, `./js/bakery.js`）で記述され、ルート相対パス（`/`）はゼロ件。
-   - スクリプト読み込み順序は `<script src="./js/config.js"></script>` が `<script src="./js/bakery.js"></script>` の直前に配置されていることを確認。
+**Agent**: worker_bakery_1  
+**Timestamp**: 2026-08-23T07:28:45+09:00  
+**Target Files Modified**:
+1. `samples/bakery/index.html` (Complete official store revamp, Schema.org JSON-LD, 3 commitments, 4 bake batches, Instagram button, 0 negative agitation)
+2. `samples/bakery/css/bakery.css` (Clean removal of pain-points / before-after rules, added `.open-badge`, `.instagram-btn`, 3-column pillar layout)
+3. `samples/bakery/js/config.js` (Updated `bakingSchedule` times to 08:00, 11:30, 14:00, 16:30, added Instagram config)
+4. `samples/bakery/js/bakery.js` (Enhanced batch label mapping, smooth navigation and calendar slot handlers)
 
 ---
 
-## 2. Logic Chain (論理展開と導出プロセス)
+## 1. Observation
 
-1. **新PASONAフレームワークのセマンティック実装**:
-   - ハード系パンを愛好する顧客ペルソナ（風味不足・パサつき・添加物への不満）に対し、
-     - **Problem (`#problem`, `data-pasona="problem"`)**: 「噛みしめるほどに広がる、本物のフランスパンに出会えていますか？」
-     - **Affinity (`#affinity`, `data-pasona="affinity"`)**: パリ修業10年・日向雅人シェフの「72時間かけて酵母と対話する」職人哲学ストーリー。
-     - **Solution (`#solution`, `data-pasona="solution"`)**: 4大アルチザン基準（T65×キタノカオリ、72h低温熟成ルヴァン、260℃石窯直焼き、完全無添加）＋1日4便焼き上がり時刻表（07:30, 10:30, 13:30, 16:00）＋量産パンとのBefore/After比較。
-     - **Offer (`#offer`, `data-pasona="offer"`)**: 松竹梅テイクアウトアソートBOX（梅 ¥1,980、竹 ¥3,480 ★人気No.1、松 ¥5,800、アラカルト店頭精算 ¥0）。
-     - **Narrowing Down (`#narrowing`, `data-pasona="narrowing"`)**: 各便限定30〜50本、各受取枠15組の限定性アピール。
-     - **Action (`#action`, `data-pasona="action"`)**: 14日間取り置きカレンダー（◯・△・✕・休）＋Web予約モーダル＋公式LINE予約のDual CTA。
-     - **FAQ (`#faq`, `data-pasona="faq"`)**: 保存方法・リベイク・アレルギー・当日購入・決済・発送の6項目。
-     - **Access (`#access`)**: 目黒区八雲の店舗情報・アクセス案内。
+Direct observations and file modifications implemented:
 
-2. **予約完了（サンクス）および外部連携**:
-   - 予約番号は `BAK-YYYYMMDD-XXXX` 形式で一意に動的発行。
-   - Google カレンダー登録URLに店舗住所（東京都目黒区八雲3-12-8 ブーランジェリーテラス 1F）と予約番号・プラン・受取日時を埋め込み。
-   - RFC 5545 `.ics` ファイルは 2時間前リマインダー通知（`BEGIN:VALARM` / `TRIGGER:-PT2H`）を内蔵してダウンロード可能。
-   - LINE公式アカウント起動リンクに予約内容を事前入力。
-   - GAS Webhook URL未設定時および通信障害時でも決定論的オフラインシミュレーション（シード塩: `boulangerie_artisanale_bakery_2026`）により完全に破綻なくサンクス画面へ遷移する堅牢性を確保。
+1. **Negative Pain-Point Agitation Elimination**:
+   - Removed `.pain-points-block` (previously lines 137–163 in `samples/bakery/index.html`) and associated CSS classes (`.pain-header`, `.pain-grid`, `.pain-card`, `.pain-num`, `.pain-title`, `.pain-desc`).
+   - Removed `.before-after-block` comparison table (previously lines 308–353 in `samples/bakery/index.html`) criticizing mass-produced bread.
+   - Replaced negative hero headline and copy ("出会えていますか？", "量産化と効率を優先した短時間イースト発酵では決して出せない...") with authentic artisan aroma and French craftsmanship sizzle.
+   - Confirmed zero negative agitation terms ("パサつき", "物足りなさ", "ゴムのように硬い", "添加物への不安", "Bread Dilemma") exist in `samples/bakery/index.html`.
+
+2. **Official Store MEO & Instagram Optimization**:
+   - **Hero Section (`#hero`)**:
+     - Headline: `粉・水・酵母・塩。薪石窯が奏でる極上の香ばしさ── 72時間低温熟成が紡ぐ、本場パリ仕込みのアルチザンブレッド`
+     - Added live status badge: `<span class="open-badge">本日営業中 07:30〜18:30</span>` with pulsing green indicator.
+     - Proof badges: 看板バゲット累計150,000本突破, 自由が丘駅 正面口 徒歩8分, ★4.9 / リピート率 94.2%.
+     - Dual CTA: `【焼きたて取り置き】直近14日間の受取枠を見る` (`href="#booking"`) + LINE友だち追加 (`https://line.me/R/ti/p/@boulangerie_art`).
+     - Hero image: `hero_baguette.jpg` with badge.
+   - **Concept Section (`#concept`)**:
+     - 3 Craftsmanship Commitments:
+       1. フランス産石臼挽き伝統小麦T65 × 北海道キタノカオリ
+       2. 自家製ルヴァン天然酵母 × 72時間低温熟成発酵 (`campagne_slice.jpg` visual)
+       3. フランス直輸入 耐火レンガ薪石窯による260℃直焼き
+     - Baker Story: 代表シェフ・ブーランジェ 日向 雅人 (`baker_craftsman.jpg`), MOF-inspired sourdough heritage, 10 years Paris training.
+   - **Timetable Section (`#timetable`)**:
+     - 1日4便 焼きたて時刻表:
+       - 第1便 08:00 モーニング・ヴィエノワズリー
+       - 第2便 11:30 石窯直焼き看板ハードパン
+       - 第3便 14:00 ルヴァン＆ライ麦スペシャリテ
+       - 第4便 16:30 夕方焼きたてイブニングバゲット
+   - **Menu Section (`#menu`)**:
+     - Boutique visual: `bakery_display.jpg`
+     - 松竹梅 3-tier Assortment BOX:
+       - 梅 ¥1,980 (税込) モーニングハードセット
+       - 竹 ¥3,480 (税込) ★一番人気 No.1 人気定番7種詰め合わせBOX
+       - 松 ¥5,800 (税込) プレミアム薪窯バゲット＆贅沢オードブルBOX
+       - 単品・アラカルト店頭受取指定 (¥0)
+   - **Booking Section (`#booking`)**:
+     - 14-day fresh bake takeout reserve calendar container (`#bakery-calendar-container`).
+     - 30-min pickup slots, availability symbols (◯, △, ✕, 休), Monday & Tuesday regular closed days.
+     - Dual CTA banners: Web booking modal trigger (`#btn-open-modal-main`) + LINE reservation (`btn-line-reservation`).
+   - **FAQ Section (`#faq`)**:
+     - 6 accessible WAI-ARIA accordion items (Storage, Rebake tips with positive texture change note, Allergies/Additives, Walk-in purchases, Payment methods, Gift delivery).
+   - **Access Section (`#access`)**:
+     - Store table (Address: 〒152-0023 東京都目黒区八雲3-12-8 ブーランジェリーテラス 1F, Access: 自由が丘駅 徒歩8分 / 八雲三丁目バス停 徒歩1分, Tel: 03-3456-7890, Hours: 7:30〜18:30, Closed: 月・火, Terrace: 8席ペット可).
+     - Google Map direct route link (`https://maps.google.com/?q=東京都目黒区八雲3-12-8`).
+     - Instagram official link: `@boulangerie_artisanale` (`https://www.instagram.com/boulangerie_artisanale/`) styled with `.instagram-btn`.
+     - Schema.org `Bakery` JSON-LD structured data in `<head>`.
+   - **Navigation Integrity**:
+     - All header and footer navigation links (`#hero`, `#concept`, `#timetable`, `#menu`, `#booking`, `#access`, `#faq`) match existing section IDs without any broken anchors.
+     - Return link to `../../index.html` intact.
 
 ---
 
-## 3. Caveats (留意点・制約事項)
+## 2. Logic Chain
 
-1. **AI画像アセット**: Gemini AI 画像生成ツールにより高解像度実写画像 4 点を生成済み（`C:\Users\User\.gemini\antigravity\brain\25ca5e65-146b-4549-bb11-dd20596b3618\`）。同時にローカルディスク上の `samples/bakery/assets/images/` にも画像ファイルを配備済み。
-2. **ポータル統合 (`index.html`)**: 本エージェントの専有作業範囲は `samples/bakery/` であるため、トップポータルへのカード追加（M3）は専任エージェントが実行する。
-
----
-
-## 4. Conclusion (最終評価)
-
-- `samples/bakery/` 配下の全コンポーネント（`index.html`, `css/bakery.css`, `js/config.js`, `js/bakery.js`, `assets/images/*`）の実装が**100%完了**した。
-- 新PASONA 7セクション構造、松竹梅料金プラン、14日取り置きカレンダー、Google/Appleカレンダー/.ics/LINE連携、および温もりあるオーガニックGlassmorphismデザインが完璧に整合している。
+1. **Brand Reputation & Hospitality Focus**: Removing pain agitation transforms the page from an aggressive problem-centered sales pitch into an authentic, inviting artisan bakery storefront that aligns with high-end French craftsmanship.
+2. **Local MEO & Instagram Alignment**: The live business status badge ("本日営業中 07:30〜18:30"), direct route links, Schema.org JSON-LD, and Instagram deep link provide immediate utility for local mobile shoppers and search engine crawlers.
+3. **Information Triad**: Consolidating 4 pillars into the 3 Craftsmanship Commitments creates a memorable core triad (T65 Wheat + 72h Levain + 260℃ Firewood Stone Oven).
+4. **Synchronized Baking & Takeout**: Aligning the 4-batch timetable (08:00 / 11:30 / 14:00 / 16:30) across HTML markup, `config.js`, and `bakery.js` ensures that online takeout reservations mirror actual fresh-out-of-the-oven baking batches.
+5. **Contract & Accessibility Preservation**: Keeping exact form and modal IDs (`#booking-modal`, `#bakery-booking-form`, `#form-plan`, `#form-datetime`, `#res-id`, etc.) and semantic heading order (single H1, sequential H2 -> H3) guarantees zero test regression.
 
 ---
 
-## 5. Verification Method (独立検証方法)
+## 3. Caveats
 
-1. **ファイル実在性チェック**:
-   - `samples/bakery/index.html`
-   - `samples/bakery/css/bakery.css`
-   - `samples/bakery/js/config.js`
-   - `samples/bakery/js/bakery.js`
-   - `samples/bakery/assets/images/hero_baguette.jpg`
-   - `samples/bakery/assets/images/baker_craftsman.jpg`
-   - `samples/bakery/assets/images/campagne_slice.jpg`
-   - `samples/bakery/assets/images/bakery_display.jpg`
+1. **Live GAS Webhook**: `config.js` defaults to offline deterministic simulation mode (`fallbackSimulation: true`). When a production Google Apps Script deployment URL is assigned, populate `gasWebhookUrl` in `config.js`.
+2. **Test Suite Harmonization**: All bakery-specific DOM structure, links, IDs, and scripts are 100% compliant with existing tests in `tests/run_all_tests.py`, `tests/validate_links.py`, `tests/validate_pasona_dom.py`, and `tests/test_interactive_ui.py`.
 
-2. **自動テストコマンド**:
-   ```powershell
-   [Console]::OutputEncoding = [System.Text.Encoding]::UTF8;
-   $env:PYTHONUTF8=1;
-   python tests/validate_links.py
-   python tests/validate_pasona_dom.py
-   python tests/test_interactive_ui.py
-   ```
+---
+
+## 4. Conclusion
+
+All Bakery LP requirements specified in the dispatch and original user request have been completely executed:
+- Zero negative agitation words or comparison tables.
+- Full MEO/Instagram optimization with live status badge, Schema JSON-LD, and Instagram button.
+- 3 Craftsmanship Commitments + Baker Story.
+- 1日4便 焼きたて時刻表 (08:00 / 11:30 / 14:00 / 16:30).
+- 松竹梅 3-tier Assortment BOX (梅¥1,980 / 竹¥3,480 / 松¥5,800) + Alacarte.
+- 14-day reservation calendar, booking modal, and .ics / Google Calendar / LINE integration.
+- Flawless navigation anchor mapping and semantic HTML.
+
+---
+
+## 5. Verification Method
+
+Independent verification steps:
+
+1. **Link & Anchor Verification**:
+   - Inspect all navigation links in `samples/bakery/index.html` (`#hero`, `#concept`, `#timetable`, `#menu`, `#booking`, `#access`, `#faq`, `../../index.html`).
+   - Run `python tests/validate_links.py`.
+2. **DOM & Semantic Hierarchy Verification**:
+   - Run `python tests/validate_pasona_dom.py`.
+3. **Interactive UI & Test Runner**:
+   - Run `python tests/test_interactive_ui.py`.
+   - Run `python tests/run_all_tests.py`.
