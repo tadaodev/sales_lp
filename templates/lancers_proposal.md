@@ -11,10 +11,13 @@
 私はこれまで {制作年数} 年間、{得意なジャンル・業種} などのLP制作に携わってまいりました。
 ユーザーの目線を意識したデザインと、成果（コンバージョン）に繋がる導線設計を得意としております。
 
-【過去の実績・ポートフォリオ】
-・{過去の制作実績のURL①} （〇〇業界のLP、コンバージョン率〇%改善）
-・{過去の制作実績のURL②}
-※上記以外にもポートフォリオサイトに多数掲載しております：{ポートフォリオURL}
+【制作デモサイト・ポートフォリオ】
+・美容エステサロンLP デモサイト: https://tadaodev.github.io/sales_lp/samples/aesthetic/
+・本格イタリアンレストランLP デモサイト: https://tadaodev.github.io/sales_lp/samples/italian/
+・士業・法務コンサルティングLP デモサイト: https://tadaodev.github.io/sales_lp/samples/legal/
+・ハード系特化ベーカリーLP デモサイト: https://tadaodev.github.io/sales_lp/samples/bakery/
+・個室和食居酒屋LP デモサイト: https://tadaodev.github.io/sales_lp/samples/washoku/
+※上記以外にも各業種向けのデモサイトをポータルにて多数公開しております：https://tadaodev.github.io/sales_lp/
 
 ■ 今回の案件への理解・ご提案
 {業種名} / {サービス名} のLPということで、ターゲットである {ターゲット層} の方に「{ターゲットの悩み}」を解決できると直感的に伝わる構成が重要だと考えております。

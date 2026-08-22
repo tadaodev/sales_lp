@@ -15,10 +15,13 @@
 
 また、法人のお客様との取引経験も豊富にあり、情報管理やセキュリティ・秘密保持（NDA締結など）にも厳格に対応いたします。安心してお任せください。
 
-【ポートフォリオ・実績】
-・{過去の制作実績のURL①} （法人向け〇〇サービスのLP）
-・{過去の制作実績のURL②}
-その他の実績：{ポートフォリオURL}
+【制作デモサイト・ポートフォリオ】
+・美容エステサロンLP デモサイト: https://tadaodev.github.io/sales_lp/samples/aesthetic/
+・本格イタリアンレストランLP デモサイト: https://tadaodev.github.io/sales_lp/samples/italian/
+・士業・法務コンサルティングLP デモサイト: https://tadaodev.github.io/sales_lp/samples/legal/
+・ハード系特化ベーカリーLP デモサイト: https://tadaodev.github.io/sales_lp/samples/bakery/
+・個室和食居酒屋LP デモサイト: https://tadaodev.github.io/sales_lp/samples/washoku/
+※業種別LPデモサイト ポータルハブ: https://tadaodev.github.io/sales_lp/
 
 ■ 本案件の目的・課題へのアプローチ
 募集内容から、今回のLPの主目的は「{問い合わせの獲得 / サービスの認知拡大 など}」であると拝見いたしました。
