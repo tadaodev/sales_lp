@@ -267,18 +267,28 @@ button {
   gap: 16px;
 }
 
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  max-width: 100%;
+  padding: 0 16px;
+}
+
 .portal-return-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--bakery-crust-800);
   background: rgba(212, 163, 89, 0.12);
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(212, 163, 89, 0.3);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .portal-return-link:hover {
@@ -288,7 +298,7 @@ button {
 
 .header-logo {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--bakery-charcoal-900);
@@ -296,23 +306,35 @@ button {
   flex-direction: column;
   line-height: 1.1;
   white-space: nowrap;
+  min-width: 0;
 }
 
 .header-logo span {
   color: var(--bakery-gold-600);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
   white-space: nowrap;
 }
 
 .header-nav {
-  display: flex;
+  display: none;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+}
+
+@media (min-width: 1150px) {
+  .header-nav {
+    display: flex;
+  }
+}
+@media (min-width: 1280px) {
+  .header-nav {
+    gap: 18px;
+  }
 }
 
 .header-nav-link {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--bakery-charcoal-800);
   position: relative;
@@ -342,18 +364,24 @@ button {
 .header-right {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
 .header-tel-link {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 6px;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 700;
   font-family: var(--font-mono);
   color: var(--bakery-crust-800);
   white-space: nowrap;
+}
+@media (min-width: 860px) {
+  .header-tel-link {
+    display: inline-flex;
+  }
 }
 
 .header-tel-link:hover {
@@ -363,16 +391,37 @@ button {
 .header-cta-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: linear-gradient(135deg, var(--bakery-gold-500) 0%, var(--bakery-gold-600) 100%);
   color: #FFFFFF;
   font-weight: 700;
-  font-size: 0.9rem;
-  padding: 9px 20px;
+  font-size: 0.82rem;
+  padding: 7px 16px;
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-gold);
   white-space: nowrap;
   transition: all 0.25s ease;
+}
+
+@media (max-width: 640px) {
+  .header-inner {
+    height: 60px;
+    padding: 0 10px;
+  }
+  .header-logo {
+    font-size: 1rem;
+  }
+  .header-logo span {
+    display: none;
+  }
+  .portal-return-link {
+    padding: 4px 8px;
+    font-size: 0.72rem;
+  }
+  .header-cta-btn {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
 }
 
 .header-cta-btn:hover {

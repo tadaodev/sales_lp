@@ -2016,6 +2016,23 @@ button {
   .site-header .header-phone {
     display: none;
   }
+  .site-header {
+    height: 60px;
+  }
+  .header-left {
+    gap: 10px;
+  }
+  .legal-brand-logo {
+    font-size: 1rem;
+  }
+  .portal-return-link {
+    padding: 4px 8px;
+    font-size: 0.72rem;
+  }
+  .header-cta-btn {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
   .footer-top {
     flex-direction: column;
     gap: 24px;
@@ -2027,6 +2044,9 @@ button {
 }
 
 @media (max-width: 480px) {
+  .legal-brand-logo span {
+    display: none;
+  }
   .hero-title {
     font-size: 1.75rem;
   }
