@@ -216,6 +216,7 @@ button, input, select, textarea {
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(26, 26, 36, 0.1);
   border-radius: 6px;
+  white-space: nowrap;
   transition: all var(--transition-smooth);
 }
 
@@ -238,6 +239,7 @@ button, input, select, textarea {
   font-weight: 700;
   letter-spacing: 0.15em;
   color: var(--salon-slate-800);
+  white-space: nowrap;
 }
 
 .salon-brand-logo span {
@@ -257,6 +259,7 @@ button, input, select, textarea {
   color: var(--salon-slate-600);
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
 .header-phone svg {
@@ -279,6 +282,7 @@ button, input, select, textarea {
   box-shadow: 0 4px 14px rgba(197, 168, 128, 0.35);
   border: none;
   cursor: pointer;
+  white-space: nowrap;
   transition: all var(--transition-smooth);
 }
 

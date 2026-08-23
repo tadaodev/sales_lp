@@ -77,9 +77,30 @@ h2,
 h3,
 h4,
 h5,
-h6,
-p {
+h6 {
+  text-wrap: balance;
   overflow-wrap: break-word;
+}
+
+p,
+li,
+blockquote {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+/* Japanese typography phrase preservation utilities */
+.u-nowrap, .nowrap {
+  white-space: nowrap !important;
+}
+
+.u-inline-block, .inline-block {
+  display: inline-block !important;
+}
+
+.u-phrase {
+  display: inline-block !important;
+  white-space: nowrap !important;
 }
 
 :focus-visible {
