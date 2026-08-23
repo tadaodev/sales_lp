@@ -357,30 +357,21 @@ button {
   color: #FFFFFF;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .header-inner {
     height: 60px;
-    padding: 0 10px;
-  }
-  .header-logo {
-    font-size: 0.95rem;
+    padding: 0 12px;
   }
   .portal-return-link {
     padding: 4px 8px;
     font-size: 0.72rem;
-  }
-  .header-cta-btn {
-    padding: 5px 10px;
-    font-size: 0.75rem;
-  }
-}
-    display: none;
-  }
-  .header-inner {
-    height: 60px;
+    flex-shrink: 0;
   }
   .header-logo {
-    font-size: 0.9375rem;
+    font-size: 1rem;
+  }
+  .header-right {
+    display: none;
   }
 }
 

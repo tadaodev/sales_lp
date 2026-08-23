@@ -297,18 +297,20 @@ button, input, select, textarea {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .site-header {
     height: 60px;
   }
   .site-header .container {
-    padding: 0 10px;
+    padding: 0 12px;
   }
   .header-left {
+    width: 100%;
+    justify-content: space-between;
     gap: 8px;
   }
   .salon-brand-logo {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
   .salon-brand-logo span {
     display: none;
@@ -316,10 +318,10 @@ button, input, select, textarea {
   .portal-return-link {
     padding: 4px 8px;
     font-size: 0.72rem;
+    flex-shrink: 0;
   }
-  .header-cta-btn {
-    padding: 6px 12px;
-    font-size: 0.75rem;
+  .header-actions {
+    display: none;
   }
 }
 

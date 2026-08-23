@@ -344,27 +344,33 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 6px 18px rgba(217, 155, 38, 0.45);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .header-inner {
     height: 60px;
-    padding: 0 10px;
+    padding: 0 12px;
   }
   .header-brand-group {
+    width: 100%;
+    justify-content: space-between;
     gap: 0.5rem;
   }
   .portal-return-link {
-    padding: 0.2rem 0.45rem;
-    font-size: 0.7rem;
+    padding: 0.25rem 0.55rem;
+    font-size: 0.72rem;
+    flex-shrink: 0;
+  }
+  .header-logo {
+    text-align: right;
+    align-items: flex-end;
   }
   .header-logo-main {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
   .header-logo-sub {
-    display: none;
+    font-size: 0.625rem;
   }
-  .header-cta-btn {
-    padding: 0.35rem 0.7rem;
-    font-size: 0.75rem;
+  .header-right {
+    display: none;
   }
 }
 

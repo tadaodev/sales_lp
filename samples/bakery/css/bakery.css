@@ -403,24 +403,26 @@ button {
   transition: all 0.25s ease;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .header-inner {
     height: 60px;
-    padding: 0 10px;
-  }
-  .header-logo {
-    font-size: 1rem;
-  }
-  .header-logo span {
-    display: none;
+    padding: 0 12px;
   }
   .portal-return-link {
     padding: 4px 8px;
     font-size: 0.72rem;
+    flex-shrink: 0;
   }
-  .header-cta-btn {
-    padding: 5px 10px;
-    font-size: 0.75rem;
+  .header-logo {
+    text-align: right;
+    align-items: flex-end;
+    font-size: 1.05rem;
+  }
+  .header-logo span {
+    font-size: 0.65rem;
+  }
+  .header-right {
+    display: none;
   }
 }
 
